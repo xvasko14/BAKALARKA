@@ -36,6 +36,48 @@ class PlayerController extends Controller
     }
 
 
+    public function myTraining()
+    {
+        $training = DB::table('training')->get();
+        $teamstraining = DB::table('teams_training')->get();
+        $data = [
+            'training' => $training,
+            'teams_training' => $teamstraining
+        ];
+        return view('player.player_training', $data);
+    }
+
+    public function JoinmyTraining( Request $request)
+    {
+
+        $user = Auth::user()->id;
+
+
+        /*$trainings = DB::table('teams_training')
+            ->insert(array(
+        $user => $request->get('	playerTraining_id'),
+       'id' => $request->get('	training_id'),
+
+
+    ));
+
+        $trainings->save();*/
+
+
+       /* $trainings= DB::table('training')->get();
+
+        $trainings->each(function(Qrcode $team_T) {
+            DB::table('teams_training')
+                ->where('id', $team_T->id)
+                ->update([
+                    'id' => $team_T->training_id
+                ]);
+        });
+
+
+        return view('player.player_training');*/
+    }
+
     public function myClub()
     {
 

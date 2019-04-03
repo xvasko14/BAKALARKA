@@ -17,7 +17,7 @@ class Team extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'teamTraining_id','starts','date',
+        'teamTraining_id','starts','length',
     ];
 
     /**
@@ -26,8 +26,6 @@ class Team extends Authenticatable
      * @var array
      */
 
-    protected $casts = [
-        'date' => 'hh:mm'
-    ];
+
 
 }
