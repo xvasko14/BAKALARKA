@@ -16,11 +16,11 @@
                         </ul>
 
                         <ul class="nav navbar-nav">
-                          <li><a href="/">Home</a></li>
-                          <li><a href="/leagueOverview">League Table</a></li>
-                          <li><a href="/services">Club</a></li>
-                          <li><a href="/player_home/login">Hrac</a></li>
-                           <li><a href="/manager_home/login">Trener</a></li>
+                          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                          <li class="nav-item"><a class="nav-link" href="/leagueOverview">League Table</a></li>
+                          <li class="nav-item"><a class="nav-link" href="/services">Club</a></li>
+                          <li class="nav-item"><a class="nav-link" href="/player_home/login">Hrac</a></li>
+                           <li class="nav-item"><a class="nav-link" href="/manager_home/login">Trener</a></li>
                         </ul>
 
 
