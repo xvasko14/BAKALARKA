@@ -18,6 +18,9 @@ class AdminController extends Controller
      *
      * @return void
      */
+
+
+
     public function __construct()
     {
         // use only admin guard not user
@@ -53,6 +56,8 @@ class AdminController extends Controller
         ];
         return view('admin.admin_insert_player', $data);
     }
+
+
 
     public function insertPlayer(Request $request)
     {

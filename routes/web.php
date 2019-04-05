@@ -46,18 +46,13 @@ Route::get('/logout', 'Auth\AdminLoginController@logout')->name('logout');
 Route::prefix('admin')->group(function() {
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login'); // name sme si urcili prezyvku toho controllera
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-// skusime na logout specialny
-	Route::get('/', 'AdminController@index')->name('admin.dashboard'); // upravene pre novy dashboard
-
-
-
-    //HRAC
+	Route::get('/', 'AdminController@index')->name('admin.dashboard');
+	//HRAC
 	Route::get('/admin_update_player/{id}', 'AdminController@editPlayer')->name('admin.player.update');
     Route::post('/admin_update_player/{id}', 'AdminController@updatePlayer')->name('admin.player.updatePlayer');
 	Route::get('/admin_list_player', 'AdminController@playersList')->name('admin.players.list');
 	Route::get('/admin_insert_player', 'AdminController@newPlayer')->name('admin.player.insert');
     Route::post('/admin_insert_player', 'AdminController@insertPlayer')->name('admin.player.insertPlayer');
-
 
     //Manager
     Route::get('/admin_update_manager/{id}', 'AdminController@editManager')->name('admin.manager.update');
@@ -65,23 +60,19 @@ Route::prefix('admin')->group(function() {
     Route::get('/admin_list_manager', 'AdminController@managersList')->name('admin.managers.list');
     Route::get('/admin_insert_manager', 'AdminController@newManager')->name('admin.manager.insert');
     Route::post('/admin_insert_manager', 'AdminController@insertManager')->name('admin.manager.insertManager');
-
     //Tim
     Route::get('/admin_update_team/{id}', 'AdminController@editTeam')->name('admin.team.update');
     Route::post('/admin_update_team/{id}', 'AdminController@updateTeam')->name('admin.team.updateTeam');
     Route::get('/admin_list_team', 'AdminController@teamsList')->name('admin.teams.list');///
     Route::get('/admin_insert_team','AdminController@newTeam')->name('admin.team.insert');
     Route::post('/admin_insert_team','AdminController@insertTeam')->name('admin.team.insertTeam');
-
     //Liga
     Route::get('/admin_list_league', 'AdminController@leagueList')->name('admin.league.list');///
     Route::get('/admin_insert_league','AdminController@newLeague')->name('admin.league.insert');
     Route::post('/admin_insert_league','AdminController@insertLeague')->name('admin.league.insertLeague');
-
     //games
     Route::get('/admin_insert_game','AdminController@newGame')->name('admin.game.insert');
     Route::post('/admin_insert_game','AdminController@insertGame')->name('admin.game.insertGame');
-
     //training
     Route::get('/admin_insert_training', 'AdminController@newTraining')->name('admin.training.insert');
     Route::post('/admin_insert_training', 'AdminController@insertTraining')->name('admin.training.insertTraining');
@@ -112,7 +103,9 @@ Route::prefix('player_home')->group(function() {
     Route::get('/player_club/player_club_Info/{id}','PlayerController@myclubInfo')->name('player_club_Info.main');
 
     Route::get('/player_training','PlayerController@myTraining')->name('player_training.main');
-    //Route::get('/player_training','PlayerController@JoinmyTraining')->name('player_Join_training.main');
+    // bitie rovnakych url pozriet
+    Route::get('/player_training/join/{id}','PlayerController@JoinMyTraining')->name('player_Join_training.main');
+    Route::get('/player_training/remove/{id}','PlayerController@RemoveMyTraining')->name('player_Remove_training.main');
 
 
 

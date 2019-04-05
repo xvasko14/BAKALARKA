@@ -19,6 +19,7 @@
                                     <th>Trening</th>
                                     <th>Zaciatok</th>
                                     <th>Dlzka</th>
+                                    <th>Potvrdit ucast</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -27,6 +28,19 @@
                                         <th>{{$data->id}}</th>
                                         <th>{{$data->starts}}</th>
                                         <th>{{$data->length}}</th>
+                                        <th> <center>
+                                                @if ($data->signed)
+                                                    <a class='btn-floating  waves-effect blue darken-4' href="{{route('player_Remove_training.main',$data->id)}}">
+                                                        <i class='material-icons'>remove</i>
+                                                    </a>
+                                                @else
+                                                    <a class='btn-floating  waves-effect blue darken-4' href="{{route('player_Join_training.main',$data->id)}}">
+                                                        <i class='material-icons'>join</i>
+                                                    </a>
+                                                @endif
+                                            </center>
+                                        </th>
+
                                     </tr>
                                 @endforeach
                                 </tbody>

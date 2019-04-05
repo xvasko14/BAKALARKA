@@ -38,46 +38,84 @@ class PlayerController extends Controller
 
     public function myTraining()
     {
-        $training = DB::table('training')->get();
-        $teamstraining = DB::table('teams_training')->get();
+        $user = Auth::user()->id;
+
+        // nacitame timy usera
+        $teams = DB::table('teams')
+            ->select('teams.*')
+            ->join('teamplayers', 'teams.id', '=', 'teamplayers.team_id')
+            ->where('teamplayers.player_id', '=', $user)
+            ->first();
+
+
+
+        // nacitame trening a potom vyberieme treningy timu
+        // TODO len dopisat ze pre ktory
+        $training = DB::table('training')
+            ->select('*')
+            ->where('teamTraining_id', '=', $teams->id)
+            ->get();
+
+        $teamstraining = DB::table('teams_training')
+            ->select('*')
+            ->where('teams_training.playerTraining_id', '=', $user)
+            ->get();
+
+
+        foreach ($training as $train)
+        {
+            $train->signed = 0;
+            foreach ($teamstraining as $teamstrain)
+            {   // porovname ci take id uz je tam
+                if ($train->id == $teamstrain->training_id)
+                {
+                    $train->signed = 1;
+                }
+            }
+        }
         $data = [
             'training' => $training,
             'teams_training' => $teamstraining
         ];
+
+
         return view('player.player_training', $data);
     }
 
-    public function JoinmyTraining( Request $request)
+    public function JoinMyTraining(  $id)
     {
 
         $user = Auth::user()->id;
 
 
-        /*$trainings = DB::table('teams_training')
+        $remove = DB::table('teams_training')
             ->insert(array(
-        $user => $request->get('	playerTraining_id'),
-       'id' => $request->get('	training_id'),
+        'playerTraining_id' => $user,
+        'training_id' => $id,
 
 
     ));
 
-        $trainings->save();*/
-
-
-       /* $trainings= DB::table('training')->get();
-
-        $trainings->each(function(Qrcode $team_T) {
-            DB::table('teams_training')
-                ->where('id', $team_T->id)
-                ->update([
-                    'id' => $team_T->training_id
-                ]);
-        });
-
-
-        return view('player.player_training');*/
+        return redirect('player_home/player_training');
     }
 
+
+    public function RemoveMyTraining(  $id)
+    {
+
+        $user = Auth::user()->id;
+
+
+        $trainings = DB::table('teams_training')
+            ->select('id')
+            ->where('training_id', '=', $id)
+            ->where('playerTraining_id','=', $user)
+            ->delete();
+
+
+
+        return redirect('player_home/player_training');
+    }
     public function myClub()
     {
 
