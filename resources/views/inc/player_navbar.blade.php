@@ -17,7 +17,7 @@
                 <li class="nav-item"  ><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/player_home/player_club">My Club</a></li>
                 <li class="nav-item"><a class="nav-link" href="/player_home/player_leagueOverview">League Table</a></li>
-                <li class="nav-item"><a class="nav-link" href="/player_home/player_training">My Games</a></li>
+                <li class="nav-item"><a class="nav-link" href="/player_home/player_mygames">My Games</a></li>
                 <li class="nav-item"><a class="nav-link" href="/player_home/player_training">Training</a></li>
             </ul>
 

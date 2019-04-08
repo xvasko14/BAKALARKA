@@ -40,6 +40,7 @@
                     <label for="result2">Tim</label>
                     <input type="text" class="form-control" name="result2" placeholder="Result2">
                 </div>
+
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}

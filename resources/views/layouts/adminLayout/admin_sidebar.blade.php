@@ -28,6 +28,11 @@
         <li><a href="{{ url('/admin/admin_insert_game') }}">Create Games</a></li>
       </ul>
     </li>
+    <li class="submenu" ><a href="#"><i class="fas fa-futbol"></i> <span>Player in Game</span><span class="label label-important"></span></a>
+      <ul>
+        <li><a href="{{ url('/admin/admin_insert_PlayerInGame_match') }}">Create formation</a></li>
+      </ul>
+    </li>
     <li class="submenu" ><a href="#"><i class="fas fa-bolt"></i> <span>Training</span><span class="label label-important"></span></a>
       <ul>
         <li><a href="{{ url('/admin/admin_insert_training') }}">Create Training</a></li>

@@ -17,10 +17,28 @@
 
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a class="nav-link"  href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link"  href="/manager_home/manager_club">My Club</a></li>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Club
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/manager_home/manager_club">My Club</a>
+                        <a class="dropdown-item" href="/manager_home/manager_insert_training">Injuries</a>
+                        <a class="dropdown-item" href="/manager_home/manager_insert_training">Fine</a>
+                    </div>
+                </div>
                 <li class="nav-item"><a class="nav-link"  href="/manager_home/manager_leagueOverview">League Table</a></li>
-                <li class="nav-item"><a class="nav-link" href="/player_home/player_training">My Games</a></li>
-                <li class="nav-item"><a class="nav-link"  href="/manager_home/login">Training</a></li>
+                <li class="nav-item"><a class="nav-link" href="/manager_home/manager_mygames">My Games</a></li>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Training section
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/manager_home/manager_training">Training</a>
+                        <a class="dropdown-item" href="/manager_home/manager_insert_training">Create Training</a>
+                    </div>
+                </div>
+
             </ul>
 
 

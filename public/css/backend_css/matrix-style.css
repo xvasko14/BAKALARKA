@@ -292,6 +292,18 @@ hr{ border-top-color:#dadada;}
 .todo li .date {
     margin-right: 10px;
 }
+.Row
+{
+	display: table;
+	width: 100%; /*Optional*/
+	table-layout: fixed; /*Optional*/
+	border-spacing: 10px; /*Optional*/
+}
+.Column
+{
+	display: table-cell;
+	background-color: red; /*Optional*/
+}
 
 /* Stat boxes and quick actions */
 .quick-actions_homepage {

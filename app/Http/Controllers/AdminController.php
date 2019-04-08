@@ -156,7 +156,7 @@ class AdminController extends Controller
 
         $players = DB::table('players');
         // kolko zbrazime timov (paginate)
-        $players = $players->paginate(10)->appends([
+        $players = $players->paginate(20)->appends([
             'name' => request('name'),
         ]);
 
@@ -473,8 +473,10 @@ class AdminController extends Controller
     public function newGame()
     {
         $teams = DB::table('teams')->get();
+        $players = DB::table('players')->get();
         $data = [
             'teams' => $teams,
+            'players' => $players,
         ];
 
         return view('admin.admin_insert_game', $data);
@@ -492,6 +494,8 @@ class AdminController extends Controller
             'team2' => $request->input('club2'),
             'team1_goals' => $request->input('result1'),
             'team2_goals' => $request->input('result2'),
+           // 'brankar' => $request->input('club1'),
+
         );
         //var_dump($data);exit;
 
@@ -505,6 +509,110 @@ class AdminController extends Controller
 
 
     }
+
+    /// PlayerInGame //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // nacitanie zapasov ake sa hrali
+    public function GamesAdmin()
+    {
+
+        $games = DB::table('game')->get();
+
+        //$database = DB::table('teams');
+
+        foreach ($games as $game) {
+            $game->teamName1 = DB::table('teams')->select('name')->where('id', '=', $game->team1)->first()->name;
+            $game->teamName2 = DB::table('teams')->select('name')->where('id', '=', $game->team2)->first()->name;
+        }
+
+        $data = [
+            'game' => $games,
+        ];
+
+
+        return view('admin.admin_insert_PlayerInGame_match', $data);
+    }
+    // nacitanie klubov toho zapasu
+    public function TeamsGameAdmin($id)
+    {
+
+        $games = DB::table('game')
+            ->select('*')
+            ->where('game.id', '=', $id)
+            ->get();
+
+        foreach ($games as $game) {
+            $game->teamName1 = DB::table('teams')->select('*')->where('id', '=', $game->team1)->first()->name;
+            $game->teamName2 = DB::table('teams')->select('*')->where('id', '=', $game->team2)->first()->name;
+        }
+
+        $data = [
+            'game' => $games,
+        ];
+
+        //var_dump($data); exit;
+
+        return view('admin.admin_insert_PlayerInGame_match_teams', $data);
+    }
+
+    // nacitanie tej tabulky
+    public function newPlayerInGame($team, $id)
+    {
+        //var_dump($team); exit;
+        $players = DB::table('players')
+            ->select('players.*')
+            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+            ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+            ->where('teams.id', '=', $team)
+            ->get();
+
+        $game = DB::table('game')
+            ->select('game.*')
+            ->where('game.id', '=', $id)
+            ->first();
+
+        $data = [
+            'players' => $players,
+            'game' => $game,
+        ];
+        //var_dump($data); exit;
+
+        return view('admin.admin_insert_PlayerInGame', $data);
+
+    }
+
+    public function insertPlayerInGame(Request $request, $id)
+    {
+
+        //var_dump($id); exit;
+        $playersInGame = DB::table('PlayerInGame');
+
+        /*$data = array(
+            'playerGameID' => $request->input('player'),
+            //'gameID' => $id,
+            'goals' => $request->input('goals'),
+            'yellowCard' => $request->input('yellowCard'),
+            'redCard' => $request->input('redCard'),
+        );*/
+
+        $data = array(
+            array('playerGameID'=>$request->input('brankar'),'gameID'=>$id, 'goals' => $request->input('goals'),'yellowCard' => $request->input('yellowCard'),'redCard' => $request->input('redCard')),
+            array('playerGameID'=>$request->input('obranca1'),'gameID'=>$id, 'goals' => $request->input('goals1'),'yellowCard' => $request->input('yellowCard1'),'redCard' => $request->input('redCard1')),
+            array('playerGameID'=>$request->input('obranca2'),'gameID'=>$id, 'goals' => $request->input('goals2'),'yellowCard' => $request->input('yellowCard2'),'redCard' => $request->input('redCard2')),
+            array('playerGameID'=>$request->input('obranca3'),'gameID'=>$id, 'goals' => $request->input('goals3'),'yellowCard' => $request->input('yellowCard3'),'redCard' => $request->input('redCard3')),
+            array('playerGameID'=>$request->input('obranca4'),'gameID'=>$id, 'goals' => $request->input('goals4'),'yellowCard' => $request->input('yellowCard4'),'redCard' => $request->input('redCard4')),
+            array('playerGameID'=>$request->input('zaloznik1'),'gameID'=>$id, 'goals' => $request->input('goals5'),'yellowCard' => $request->input('yellowCard5'),'redCard' => $request->input('redCard5')),
+            array('playerGameID'=>$request->input('zaloznik2'),'gameID'=>$id, 'goals' => $request->input('goals6'),'yellowCard' => $request->input('yellowCard6'),'redCard' => $request->input('redCard6')),
+            array('playerGameID'=>$request->input('zaloznik3'),'gameID'=>$id, 'goals' => $request->input('goals7'),'yellowCard' => $request->input('yellowCard7'),'redCard' => $request->input('redCard7')),
+            array('playerGameID'=>$request->input('utocnik1'),'gameID'=>$id, 'goals' => $request->input('goals8'),'yellowCard' => $request->input('yellowCard8'),'redCard' => $request->input('redCard8')),
+            array('playerGameID'=>$request->input('utocnik2'),'gameID'=>$id, 'goals' => $request->input('goals9'),'yellowCard' => $request->input('yellowCard9'),'redCard' => $request->input('redCard9')),
+            array('playerGameID'=>$request->input('utocnik3'),'gameID'=>$id, 'goals' => $request->input('goals10'),'yellowCard' => $request->input('yellowCard10'),'redCard' => $request->input('redCard10')),
+        );
+        //var_dump($data); exit;
+        $playersInGame->insert($data);
+
+        return redirect()->intended('admin');
+    }
+
 
     /// Training //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
