@@ -166,6 +166,18 @@ Route::prefix('manager_home')->group(function() {
     Route::get('/manager_mygames','ManagerController@Games')->name('manager_games.main');
     Route::get('/manager_mygames/manager_mygames_lineup/{id}','ManagerController@GamesLineup')->name('manager.TeamsGame');
 
+    //zranenie
+    Route::get('/manager_injury','ManagerController@Injury')->name('manager_injury.main');
+    Route::post('/manager_injury','ManagerController@InjuryInsert')->name('manager_injury_insert.main');
+
+    //pokuta
+    Route::get('/manager_fine','ManagerController@Fine')->name('manager_fine.main');
+    Route::post('/manager_fine','ManagerController@FineInsert')->name('manager_fine_insert.main');
+
+    //statistiky hracov v lige
+    Route::get('/manager_statisticsOverview','ManagerController@StatisticsOverview')->name('statisticsOverview.main');
+    Route::get('/manager_statisticsOverview/statistics/{id}','ManagerController@statistics')->name('manager_statistics.main');
+
 
 });
 

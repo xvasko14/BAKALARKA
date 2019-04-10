@@ -23,11 +23,19 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/manager_home/manager_club">My Club</a>
-                        <a class="dropdown-item" href="/manager_home/manager_insert_training">Injuries</a>
-                        <a class="dropdown-item" href="/manager_home/manager_insert_training">Fine</a>
+                        <a class="dropdown-item" href="/manager_home/manager_injury">Injuries</a>
+                        <a class="dropdown-item" href="/manager_home/manager_fine">Fine</a>
                     </div>
                 </div>
-                <li class="nav-item"><a class="nav-link"  href="/manager_home/manager_leagueOverview">League Table</a></li>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        League Table and statistics
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/manager_home/manager_leagueOverview">League Table</a>
+                        <a class="dropdown-item" href="/manager_home/manager_statisticsOverview">Player Statistics</a>
+                    </div>
+                </div>
                 <li class="nav-item"><a class="nav-link" href="/manager_home/manager_mygames">My Games</a></li>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

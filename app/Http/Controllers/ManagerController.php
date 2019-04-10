@@ -108,6 +108,7 @@ class ManagerController extends Controller
         // vyber ligy je natvrdo dany cislovkou asi zmenit !!!
         $teams = DB::table('teams')
             ->select('*')
+
             ->join('teams_in_league', 'teams.id', '=', 'teams_in_league.team_id')
             ->where('teams_in_league.league_id', '=', $id)
             ->get();
@@ -146,13 +147,16 @@ class ManagerController extends Controller
 
                 $team->goals += $pp->team2_goals;
             }
+            //var_dump($team->score );exit;
+           /* $arr= array ($team->score);
+            sort($arr);
+            //var_dump($arr);*/
 
-            $collection = collect([
-                ['team' => 'score'],
-            ]);
-            $sorted = $collection->sortBy('score');
+            //usort($myArray, function($a, $b) {
+           //     return $a['score'] <=> $b['score'];
+            //});
 
-            $sorted->values()->all();
+
 
         }
 
@@ -283,74 +287,176 @@ class ManagerController extends Controller
         return view('manager.manager_mygames', $data);
     }
 
+    // Supisky oboch timov v zapase
     public function GamesLineup($id)
     {
 
-        // vybrali sme id timov
-        /*$teamsplayers = DB::table('teamsplayers')
-            ->select('teamsplayers.team_id')
-            ->join('PlayerInGame', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
-            ->where('PlayerInGame.gameID', '=', $id)
-            ->get();
+        $game = DB::table('game')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->first();
 
-        $games = DB::table('game')->get();
-        foreach ($games as $game) {
-            $game->teamName1 = DB::table('teams')->select('*')->where('id', '=', $game->team1)->first()->name;
-            $game->teamName2 = DB::table('teams')->select('*')->where('id', '=', $game->team2)->first()->name;
-        }
-
-        $teamplayers = DB::table('teamplayers')->get();
-
-        $players = DB::table('players')
+        $teamLeft = DB::table('players')
             ->select('*')
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
             ->where('gameID', '=', $id)
-            ->where('teamplayers.team_id', '=', 7)
+            ->where('teamplayers.team_id', '=', $game->team1)
             ->get();
 
-       //var_dump($players);exit;
-
-        $data = [
-            'players' => $players,
-            'teamsplayers' => $teamsplayers,
-        ];*/
-
-        //var_dump($data); exit;
-        $players = DB::table('players')
+        $teamRight = DB::table('players')
             ->select('*')
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
             ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team2)
             ->get();
 
+       // var_dump($players);exit;
 
         $data = [
-            'players' => $players,
+            'teamLeft' => $teamLeft,
+            'teamRight' => $teamRight,
         ];
 
 //var_dump($data); exit;
 
-        return view('manager.manager_mygames_lineup', $data);
 
         return view('manager.manager_mygames_lineup', $data);
+    }
+
+    // ZRANENIA
+    public function Injury()
+    {
+
+        $user = Auth::user()->id;
+        //var_dump($user); exit;
+
+
+
+        $players = DB::table('players')
+            ->select('players.*')
+            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+            ->join('teammanagers', 'teamplayers.team_id', '=', 'teammanagers.team_id')
+            ->where('teammanagers.manager_id', '=', $user)
+            ->get();
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+
+
+        return view('manager.manager_injury', $data);
+    }
+
+
+    public function InjuryInsert(Request $request)
+    {
+
+
+        $injury = DB::table('injuries');
+
+
+        $data = array(
+            'InjuryPlayerID' => $request->input('player'),
+            'type_injury' => $request->input('type_injury'),
+            'approximately_time' => $request->input('approximately_time'),
+        );
+        //var_dump($data);exit;
+
+        $injury->insert($data);
+
+
+        return redirect()->intended('manager_home/manager_injury');///!!!!!!!!!!!!!!bolo admin.registration.list
+        ///
+    }
+
+    // POKUTY
+    public function Fine()
+    {
+
+        $user = Auth::user()->id;
+        //var_dump($user); exit;
+
+
+
+        $players = DB::table('players')
+            ->select('players.*')
+            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+            ->join('teammanagers', 'teamplayers.team_id', '=', 'teammanagers.team_id')
+            ->where('teammanagers.manager_id', '=', $user)
+            ->get();
+
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+
+
+        return view('manager.manager_fine', $data);
+    }
+
+
+    public function FineInsert(Request $request)
+    {
+
+
+        $fine = DB::table('fine');
+
+
+        $data = array(
+            'FinePlayerID' => $request->input('player'),
+            'reason' => $request->input('reason'),
+            'sum' => $request->input('sum'),
+        );
+        //var_dump($data);exit;
+
+        $fine->insert($data);
+
+
+        return redirect()->intended('manager_home/manager_fine');///!!!!!!!!!!!!!!bolo admin.registration.list
+        ///
+    }
+
+    // statistiky hracov v lige
+    // zobrazi len ligy
+    public function StatisticsOverview()
+    {
+        $league = DB::table('league')->get();
+        $data = [
+            'league' => $league,
+        ];
+
+
+        return view('manager.manager_statisticsOverview', $data);
+    }
+
+    public function statistics($id)
+    {
+
+        $statistics = DB::table('PlayerInGame')
+            ->select('*')
+            ->orderBy('PlayerInGame.goals', 'desc')
+            ->join('players', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            ->where('teams_in_league.league_id', '=', $id)
+            ->get();
+
+        //var_dump($statistics);exit;
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('manager.manager_statistics', $data);
+
     }
 
 
 }
 
-/*$players = DB::table('players')
-    ->select('*')
-    ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
-    ->where('gameID', '=', $id)
-    ->get();
 
-var_dump($players);exit;
-
-$data = [
-    'players' => $players,
-];
-
-//var_dump($data); exit;
-
-return view('manager.manager_mygames_lineup', $data);
-}*/

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInjuriesTable extends Migration
+class CreateFineTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateInjuriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('injuries', function (Blueprint $table) {
+        Schema::create('fine', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('InjuryPlayerID');
-            $table->string('type_injury');
-            $table->integer('approximately_time');
+            $table->integer('FinePlayerID');
+            $table->string('reason');
+            $table->integer('sum');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateInjuriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('injuries');
+        Schema::dropIfExists('fine');
     }
 }
