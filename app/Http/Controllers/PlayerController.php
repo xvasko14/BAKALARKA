@@ -116,6 +116,27 @@ class PlayerController extends Controller
 
         return redirect('player_home/player_training');
     }
+
+    // hraci ktory su na treningu
+    public function PlayerInTraining($id)
+    {
+
+
+
+        $players = DB::table('players')
+            ->select('players.name','age','position')
+            ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
+            ->join('training', 'training.id', '=', 'teams_training.training_id')
+            ->where('training.id', '=', $id)
+            ->get();
+
+
+        $data = [
+            'players' => $players,
+        ];
+
+        return view('player.player_trainingPlayers', $data);
+    }
     public function myClub()
     {
 
@@ -243,6 +264,41 @@ class PlayerController extends Controller
         return view('player.player_league', $data);
 
     }
+
+    // statistiky hracov v lige
+    // zobrazi len ligy
+    public function StatisticsOverview()
+    {
+        $league = DB::table('league')->get();
+        $data = [
+            'league' => $league,
+        ];
+
+
+        return view('player.player_statisticsOverview', $data);
+    }
+
+    public function statistics($id)
+    {
+
+        $statistics = DB::table('PlayerInGame')
+            ->select('*')
+            ->orderBy('PlayerInGame.goals', 'desc')
+            ->join('players', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            ->where('teams_in_league.league_id', '=', $id)
+            ->get();
+
+        //var_dump($statistics);exit;
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('player.player_statistics', $data);
+
+    }
+
 
 }
 

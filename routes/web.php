@@ -18,19 +18,12 @@ Auth::routes();
 
 // starostlivost o stranky bez prihlasenia
 Route::get('/','PagesController@index');
+Route::get('/gallery','PagesController@Gallery');
 
 Route::get('/leagueOverview','LeagueController@LeagueOverview')->name('leagueOverview.main');
 Route::prefix('leagueOverview')->group(function() {
 Route::get('/league/{id}','LeagueController@main')->name('league.main');
 });
-
-
-
-
-
-
-
-Route::get('/services','PagesController@services');
 
 
 
@@ -114,6 +107,7 @@ Route::prefix('player_home')->group(function() {
     Route::get('/player_club/player_club_Info/{id}','PlayerController@myclubInfo')->name('player_club_Info.main');
 
     Route::get('/player_training','PlayerController@myTraining')->name('player_training.main');
+    Route::get('/player_training/player_trainingPlayers/{id}','PlayerController@PlayerInTraining')->name('player_trainingPlayers.main');
     // bitie rovnakych url pozriet
     Route::get('/player_training/join/{id}','PlayerController@JoinMyTraining')->name('player_Join_training.main');
     Route::get('/player_training/remove/{id}','PlayerController@RemoveMyTraining')->name('player_Remove_training.main');
@@ -122,6 +116,10 @@ Route::prefix('player_home')->group(function() {
     Route::get('/player_mygames','GameController@Games')->name('player_games.main');
 
     Route::get('/player_mygames_formation','GameController@FormationGames')->name('player_games_formation.main');
+
+    //statistiky hracov v lige
+    Route::get('/player_statisticsOverview','PlayerController@StatisticsOverview')->name('statisticsOverview.main');
+    Route::get('/player_statisticsOverview/statistics/{id}','PlayerController@statistics')->name('player_statistics.main');
 
 
 
@@ -155,6 +153,7 @@ Route::prefix('manager_home')->group(function() {
     Route::get('/manager_club/manager_club_Info/{id}','ManagerController@myclubInfo')->name('manager_club_Info.main');
 
     //training
+    Route::get('/manager_trainingguide','ManagerController@TrainingGuide')->name('manager_trainingguide.main');
     Route::get('/manager_training','ManagerController@myTraining')->name('manager_training.main');
     Route::get('/manager_training/manager_trainingPlayers/{id}','ManagerController@PlayerInTraining')->name('manager_trainingPlayers.main');
 
@@ -167,12 +166,19 @@ Route::prefix('manager_home')->group(function() {
     Route::get('/manager_mygames/manager_mygames_lineup/{id}','ManagerController@GamesLineup')->name('manager.TeamsGame');
 
     //zranenie
+    Route::get('/manager_injuryguide','ManagerController@InjuryGuide')->name('manager_injuryguide.main');
     Route::get('/manager_injury','ManagerController@Injury')->name('manager_injury.main');
     Route::post('/manager_injury','ManagerController@InjuryInsert')->name('manager_injury_insert.main');
 
+    // TODO este nedorobeny pristup k tejto stranke
+    Route::get('/manager_injuryplayers','ManagerController@InjuryPlayers')->name('manager_injuryplayers.main');
     //pokuta
+    Route::get('/manager_fineguide','ManagerController@FIneGuide')->name('manager_fineguide.main');
     Route::get('/manager_fine','ManagerController@Fine')->name('manager_fine.main');
     Route::post('/manager_fine','ManagerController@FineInsert')->name('manager_fine_insert.main');
+
+    // TODO este nedorobeny pristup k tejto stranke
+    Route::get('/manager_fineplayers','ManagerController@FinePlayers')->name('manager_fineplayers.main');
 
     //statistiky hracov v lige
     Route::get('/manager_statisticsOverview','ManagerController@StatisticsOverview')->name('statisticsOverview.main');

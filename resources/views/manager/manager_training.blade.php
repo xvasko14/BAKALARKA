@@ -1,4 +1,4 @@
-@extends('layouts.manager_layout')
+@extends('layouts.mainLayout.manager_layout')
 
 @section('content')
 
@@ -6,8 +6,6 @@
 
         <div class="row">
 
-            <div class="col-md-11 col-md-offset-2">
-                <div class="panel panel-default">
                     <h1 align="center">Trening timu</h1>
 
                     <div class="panel-heading">
@@ -35,9 +33,10 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
+
         </div>
+
+
     </div>
 
 

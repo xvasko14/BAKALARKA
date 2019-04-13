@@ -14,7 +14,7 @@ class PagesController extends Controller
     	return view('league.about');
     }
     
-    public function services(){
-    	return view('pages.services');
+    public function Gallery(){
+    	return view('pages.gallery');
     }
 }

@@ -1,10 +1,14 @@
-@extends('layouts.manager_layout')
+@extends('layouts.mainLayout.manager_layout')
 
 @section('content')
 
 
+
+
     <div class="container" style="max-width:80%; margin-top: 40px;">
         <form action="{{ route('manager_injury_insert.main') }}" method="post">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
             <div class="form-group">
                 <label for="club">Hrac</label>
                 <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
@@ -32,6 +36,8 @@
             <button type="submit" class="btn btn-primary">Odoslať</button>
             </div>
         </form>
+    </div><!-- /.col-lg-4 -->
+    </div>
 
     </div>
 

@@ -1,0 +1,30 @@
+<title>Soccer a Sports Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+
+<link rel="stylesheet" href="{{ asset('css/main_css/bootstrap.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/main_css/style.css') }}" />
+
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!--Musim upravit logout lebo sa to posuva-->
+<script src="{{ asset('js/app.js') }}" defer></script>
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="soccer Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<!-- js -->
+<script type="text/javascript"  src="{{ asset('js/main_js/jquery.min.js') }}"></script>
+
+
+
+
+
+<!-- js -->

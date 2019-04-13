@@ -1,13 +1,9 @@
-@extends('layouts.player_layout')
+@extends('layouts.mainLayout.player_layout')
 
 @section('content')
-
     <div class="container" style="max-width:90%;">
 
         <div class="row">
-
-            <div class="col-md-11 col-md-offset-2">
-                <div class="panel panel-default">
                     <h1 align="center">Trening timu</h1>
 
                     <div class="panel-heading">
@@ -25,7 +21,7 @@
                                 <tbody>
                                 @foreach($training as $key => $data)
                                     <tr>
-                                        <th>{{$data->id}}</th>
+                                        <th><a  href="{{route('player_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </th>
                                         <th>{{$data->starts}}</th>
                                         <th>{{$data->length}}</th>
                                         <th> <center>
@@ -49,8 +45,6 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     </div>
 

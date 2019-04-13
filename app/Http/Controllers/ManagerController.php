@@ -32,7 +32,7 @@ class ManagerController extends Controller
     public function index()
     {
         // prechod z priecinku do player-home cez bodku
-        return view('manager.manager_home');
+        return view('manager.manager_home')->with('status', 'Ste uspesne prihlaseny ako Manazer !');
     }
 
     // aky ma klub dany hrac
@@ -171,6 +171,11 @@ class ManagerController extends Controller
 
     /// Training //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public function TrainingGuide()
+    {
+        return view('manager.manager_trainingguide');
+    }
+
     public function newTraining()
     {
         $teams = DB::table('teams')->get();
@@ -207,7 +212,7 @@ class ManagerController extends Controller
 
 
 
-        return redirect()->intended('manager_home');
+        return redirect()->intended('manager_home')->with('training', 'Tréning bol uspešne vytvorený !');
     }
 
     //ake treningy ma dany tim
@@ -242,7 +247,7 @@ class ManagerController extends Controller
             'teams_training' => $teamstraining
         ];
 
-
+        //return redirect()->back()->with('message', 'IT WORKS!');
         return view('manager.manager_training', $data);
     }
 
@@ -324,8 +329,13 @@ class ManagerController extends Controller
 
         return view('manager.manager_mygames_lineup', $data);
     }
-
     // ZRANENIA
+    public function InjuryGuide()
+    {
+        return view('manager.manager_injuryguide');
+    }
+
+
     public function Injury()
     {
 
@@ -369,11 +379,44 @@ class ManagerController extends Controller
         $injury->insert($data);
 
 
-        return redirect()->intended('manager_home/manager_injury');///!!!!!!!!!!!!!!bolo admin.registration.list
+        return redirect()->intended('manager_home')->with('zranenie', 'Zraneny hrac bol pridany do databazy !');///!!!!!!!!!!!!!!bolo admin.registration.list
         ///
     }
 
+    public function InjuryPlayers()
+    {
+
+
+
+
+        $user = Auth::user()->id;
+        //var_dump($user); exit;
+
+
+
+        $players = DB::table('injuries')
+            ->select('*')
+            ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+            ->where('teammanagers.manager_id', '=', $user)
+            ->get();
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+        return view('manager.manager_injuryplayers', $data);
+    }
+
     // POKUTY
+
+    public function FineGuide()
+    {
+        return view('manager.manager_fineguide');
+    }
+
     public function Fine()
     {
 
@@ -418,8 +461,32 @@ class ManagerController extends Controller
         $fine->insert($data);
 
 
-        return redirect()->intended('manager_home/manager_fine');///!!!!!!!!!!!!!!bolo admin.registration.list
+        return redirect()->intended('manager_home')->with('pokuta', 'Potrestny hrac bol pridany do databazy !');///!!!!!!!!!!!!!!bolo admin.registration.list
         ///
+    }
+
+    public function FinePlayers()
+    {
+
+        $user = Auth::user()->id;
+        //var_dump($user); exit;
+
+
+
+        $players = DB::table('fine')
+            ->select('*')
+            ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+            ->where('teammanagers.manager_id', '=', $user)
+            ->get();
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+        return view('manager.manager_fineplayers', $data);
     }
 
     // statistiky hracov v lige
