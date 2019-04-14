@@ -28,7 +28,7 @@
                             </a>
                             <div class="lb-overlay" id="image-1">
                                 <img src="images/main_images/g1.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a  href="gallery" class="lb-close "><img src="images/main_images/close.png" ></a>
                             </div>
                         </li>
                         <li>
@@ -38,7 +38,7 @@
                             </a>
                             <div class="lb-overlay" id="image-abt2">
                                 <img src="images/main_images/g2.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a href="gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -48,7 +48,7 @@
                             </a>
                             <div class="lb-overlay" id="image-2">
                                 <img src="images/main_images/g3.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a href="gallery" class="lb-close"> <img src="images/main_images/close.png" ></a>
                             </div>
                         </li>
                         <li>
@@ -58,7 +58,7 @@
                             </a>
                             <div class="lb-overlay" id="image-4">
                                 <img src="images/main_images/g4.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a href="gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                     </ul>
@@ -70,7 +70,7 @@
                             </a>
                             <div class="lb-overlay" id="image-5">
                                 <img src="images/main_images/g5.jpg" class="img-responsive" alt="image03">
-                                <a href="#gallery" class="lb-close"> </a>
+                                <a href="#gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -80,7 +80,7 @@
                             </a>
                             <div class="lb-overlay" id="image-6">
                                 <img src="images/main_images/g6.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a href="gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -90,7 +90,7 @@
                             </a>
                             <div class="lb-overlay" id="image-abt1">
                                 <img src="images/main_images/g7.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a href="gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -100,7 +100,7 @@
                             </a>
                             <div class="lb-overlay" id="image-g8">
                                 <img src="images/main_images/g8.jpg" class="img-responsive" alt="image03">
-                                <a href="gallery" class="lb-close"> </a>
+                                <a href="gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                     </ul>
@@ -112,7 +112,7 @@
                             </a>
                             <div class="lb-overlay" id="image-g9">
                                 <img src="images/main_images/g9.jpg" class="img-responsive" alt="image03">
-                                <a href="#page" class="lb-close"> </a>
+                                <a href="#page" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -122,7 +122,7 @@
                             </a>
                             <div class="lb-overlay" id="image-abt3">
                                 <img src="images/main_images/g10.jpg" class="img-responsive" alt="image03">
-                                <a href="#page" class="lb-close"> </a>
+                                <a href="#page" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -132,7 +132,7 @@
                             </a>
                             <div class="lb-overlay" id="image-3">
                                 <img src="images/main_images/g11.jpg" class="img-responsive" alt="image03">
-                                <a href="#page" class="lb-close"> </a>
+                                <a href="#page" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                         <li>
@@ -142,7 +142,7 @@
                             </a>
                             <div class="lb-overlay" id="image-12">
                                 <img src="images/main_images/g12.jpg" class="img-responsive" alt="image03">
-                                <a href="#page" class="lb-close"> </a>
+                                <a href="#page" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>
                     </ul>

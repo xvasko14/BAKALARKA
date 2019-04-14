@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use Auth;
+use App\Sezona;
 
 use App\Admin;
 use App\Player;
 use App\User;
 use App\Manager;
+use Illuminate\Support\Facades\Input;
+use Symfony\Component\Console\Question\Question;
+
 
 class ManagerController extends Controller
 {
@@ -105,6 +109,10 @@ class ManagerController extends Controller
     // tabulka timov skore goly atd
     public function main($id)
     {
+
+
+
+
         // vyber ligy je natvrdo dany cislovkou asi zmenit !!!
         $teams = DB::table('teams')
             ->select('*')
@@ -117,12 +125,17 @@ class ManagerController extends Controller
             $team->score = 0;
             $team->goals = 0;
 
-
+            //TODO
+            // zatial nastavena sezona natvrdo
             $p = DB::table('game')->select('*')
+                ->join('sezona', 'sezona.id', '=', 'game.sezona')
+                ->where('game.sezona', '=', '1')
                 ->where('team1', '=', $team->team_id)
                 ->get();
 
             $p1 = DB::table('game')->select('*')
+                ->join('sezona', 'sezona.id', '=', 'game.sezona')
+                ->where('game.sezona', '=', '1')
                 ->where('team2', '=', $team->team_id)
                 ->get();
 

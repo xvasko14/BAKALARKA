@@ -13,6 +13,31 @@
             <form action="{{ route('admin.game.insertGame') }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
+                    <label for="sezona">Sezona</label>
+                    <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
+                    <select name="sezona">
+                        @foreach ($sezona as $sezon)
+                            <option value="{{$sezon->id }}">{{$sezon->season }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <label for="Round">Kolo Ligy</label>
+                    <input type="text" class="form-control" name="Round" placeholder="Ligove kolo">
+                </div>
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <label for="starts">Datum</label>
+                    <input type="Date" class="form-control" name="Date" placeholder="Datum">
+                </div>
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <label for="starts">Zaciatok treningu</label>
+                    <input type="time" class="form-control" name="time" placeholder="Cas">
+                </div>
+                <div class="form-group">
+                    {{ csrf_field()}}
                     <label for="email">Klub</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                     <select name="club1">

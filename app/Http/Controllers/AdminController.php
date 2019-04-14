@@ -474,9 +474,11 @@ class AdminController extends Controller
     {
         $teams = DB::table('teams')->get();
         $players = DB::table('players')->get();
+        $sezona = DB::table('sezona')->get();
         $data = [
             'teams' => $teams,
             'players' => $players,
+            'sezona' => $sezona,
         ];
 
         return view('admin.admin_insert_game', $data);
@@ -489,11 +491,16 @@ class AdminController extends Controller
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }*/
 
+        $datetime = $request->input('Date') . ' ' . $request->input('time');
         $data = array(
+            'Date' => date('Y-m-d H:i:s',strtotime($datetime)),
+            'Round'=> $request->input('Round'),
+            'sezona'=> $request->input('sezona'),
             'team1' => $request->input('club1'),
             'team2' => $request->input('club2'),
             'team1_goals' => $request->input('result1'),
             'team2_goals' => $request->input('result2'),
+
            // 'brankar' => $request->input('club1'),
 
         );

@@ -12,6 +12,8 @@
                                 <thead>
                                 <tr>
                                     <th>Zapas ID </th>
+                                    <th>Kolo </th>
+                                    <th>Datum </th>
                                     <th>Team 1 </th>
                                     <th>Team 1 Skore </th>
                                     <th>Team 2 SKore </th>
@@ -22,6 +24,8 @@
                                 @foreach($game as $key => $data)
                                     <tr>
                                         <th> <a  href="{{route('manager.TeamsGame', $data->id)}}">{{ $data->id}}</a> </th>
+                                        <th>{{$data->Round}}</th>
+                                        <th>{{$data->Date}}</th>
                                         <th>{{$data->teamName1}}</th>
                                         <th>{{$data->team1_goals}}</th>
                                         <th>{{$data->team2_goals}}</th>

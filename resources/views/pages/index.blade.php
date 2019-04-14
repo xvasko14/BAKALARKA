@@ -18,14 +18,14 @@
             <div class="callbacks_container">
                 <ul class="rslides" id="slider">
                     <li>
-                        <img src="images/main_images/bnr3.jpg" alt="">
+                        <img src="images/main_images/bnr3.jpg" alt="obrazok1">
                         <div class="banner-info">
                             <h3>VITAJTE</h3>
                             <p>Vitajte na informačnom portáli futbalového klubu FC Haniska. Prosím prihlaste sa ako tréner alebo hráč aby ste mohli daľej pokračovať.</p>
                         </div>
                     </li>
                     <li>
-                        <img src="images/main_images/bnr2.jpg" alt="">
+                        <img src="images/main_images/bnr2.jpg" alt="obrazok2">
                         <div class="banner-info">
                             <h3>Curabitur turpis posuere rutrum.</h3>
                             <p>Lorem Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec a odio quam. Aenean ipsum arcu,
@@ -34,7 +34,7 @@
                         </div>
                     </li>
                     <li>
-                        <img src="images/main_images/bnr1.jpg" alt="">
+                        <img src="images/main_images/bnr1.jpg" alt="obrazok3">
                         <div class="banner-info">
                             <h3>Sed ultricies elementum.</h3>
                             <p>Lorem Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec a odio quam. Aenean ipsum arcu,
