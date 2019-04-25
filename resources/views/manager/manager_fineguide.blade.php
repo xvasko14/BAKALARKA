@@ -4,7 +4,7 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
-            <h1 align="center">Zraneni v time</h1>
+            <h1 align="center">Pokuty v tíme</h1>
             <div class="flex">
                 <div class="flex-item">
                     <td><button class="ZranenieTvorba btn btn-primary"  onclick="location.href='{{route('manager_fine.main')}}'">Zadat pokutu</button></td>

@@ -4,8 +4,6 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
-            <div class="col-md-11 col-md-offset-2">
-                <div class="panel panel-default">
                     <h1 align="center">Statistiky hracov v lige</h1>
 
                     <div class="panel-heading">
@@ -34,9 +32,7 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
 

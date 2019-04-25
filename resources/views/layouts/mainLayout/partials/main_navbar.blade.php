@@ -7,8 +7,8 @@
             <span class="menu"></span>
             <ul>
                 <li class="active"><a href="/">HOME</a></li>
-                <li><a href="gallery">GALLERY</a></li>
-                <li><a href="leagueOverview">LEAGUE TABLE</a></li>
+                <li><a href="gallery">GALERIA</a></li>
+                <li><a href="leagueOverview">LIGOVA TABULKA</a></li>
                 <li><a href="/player_home/login">HRAC</a></li>
                 <li><a href="/manager_home/login">TRENER</a></li>
                 @guest

@@ -20,18 +20,25 @@
                                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                         <thead>
                                         <tr>
-                                            <th>Tim</th>
+                                            <th>ID</th>
+                                            <th>Team1</th>
+                                            <th>Team1 Goals</th>
+                                            <th>Team2 Goals</th>
+                                            <th>Team2</th>
                                             <th>Editacia</th>
                                             <th>Vymazanie</th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($league as $league)
+                                        @foreach($game as $key => $data)
                                             <tr>
-                                                <th>{{ $league->name}}</th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.league.update',$league->id)}}"><i class='material-icons'>edit</i></a></center> </th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.league.delete',$league->id)}}"><i class='material-icons'>delete</i></a></center> </th>
+                                                <th>{{$data->id}}</th>
+                                                <th>{{$data->teamName1}}</th>
+                                                <th>{{$data->team1_goals}}</th>
+                                                <th>{{$data->team2_goals}}</th>
+                                                <th>{{$data->teamName2}}</th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.game.update',$game->id)}}"><i class='material-icons'>edit</i></a></center> </th>
 
                                             </tr>
                                         @endforeach

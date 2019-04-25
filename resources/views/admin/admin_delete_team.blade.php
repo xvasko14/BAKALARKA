@@ -10,7 +10,7 @@
         </div>
 
         <div class="container" style="max-width:80%; margin-top: 40px;">
-            <form action="{{ route('admin.team.updateTeam',$teams->id) }}" method="post">
+            <form action="{{ route('admin.team.deleteTeam',$teams->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="name">Tim</label>
@@ -31,7 +31,7 @@
                     </div>
                     <br>
                 @endif
-                <button type="submit" class="btn btn-primary">Odoslať</button>
+                <button type="submit" class="btn btn-primary">Vymazat</button>
             </form>
 
         </div>

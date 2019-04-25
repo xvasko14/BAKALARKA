@@ -22,6 +22,7 @@
                                         <tr>
                                             <th>Tim</th>
                                             <th>Editácie</th>
+                                            <th>Vymazanie</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -29,6 +30,7 @@
                                         <tr>
                                             <th>{{ $teams->name}}</th>
                                             <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.team.update',$teams->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                            <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.team.delete',$teams->id)}}"><i class='material-icons'>delete</i></a></center> </th>
                                         </tr>
                                         @endforeach
                                     </tbody>

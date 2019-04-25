@@ -302,9 +302,8 @@ hr{ border-top-color:#dadada;}
 .Column
 {
 	display: table-cell;
-	background-color: red; /*Optional*/
-}
 
+}
 /* Stat boxes and quick actions */
 .quick-actions_homepage {
 	width:100%;

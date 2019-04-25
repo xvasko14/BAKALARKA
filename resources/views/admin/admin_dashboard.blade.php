@@ -7,26 +7,36 @@
     <div id="breadcrumb"> <a href="{{ url('/admin') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
     </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Admin Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="container-fluid">
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lb"> <a href="{{ url('/admin/admin_insert_player') }}"> <i class="icon-user"></i> <span class="label label-important">2</span> Create Players </a> </li>
+                <li class="bg_lg span3"> <a href="{{ url('/admin/admin_insert_manager') }}"> <i class="icon-briefcase"></i> <span class="label label-important">2</span>  Create Managers</a> </li>
+                <li class="bg_ly"> <a href="{{ url('/admin/admin_insert_team') }}"> <i class="icon-inbox"></i><span class="label label-important">2</span>  Create Teams </a> </li>
+                <li class="bg_lo"> <a href="{{ url('/admin/admin_insert_league') }}"> <i class="icon-trophy"></i> <span class="label label-important">2</span> Crete League</a> </li>
+                <li class="bg_ls"> <a href="{{ url('/admin/admin_insert_game') }}"> <i class="icon-fullscreen"></i> Create Games</a> </li>
+                <li class="bg_lo span3"> <a href="{{ url('/admin/admin_insert_PlayerInGame_match') }}"> <i class=" icon-screenshot"></i> Create Player in Game</a> </li>
+                <li class="bg_ls"> <a href="{{ url('/admin/admin_insert_training') }}"> <i class="icon-tint"></i> Create Training</a> </li>
 
-                    You are logged in as Admin!
-                </div>
+
+            </ul>
+        </div>
+
+        <div class="row-fluid">
+            <div class="admin-text">
+                <h1 align="center">Vitaj Admin!</h1>
+                <p align="center" >Nachadzas sa na stránke správcu. Teraz máš absolútnu voľnosť vytvoriť čo len chceš.</p>
             </div>
         </div>
+        <!--End-Action boxes-->
+
+
+        <!--End-Chart-box-->
+
     </div>
 </div>
-</div>
+
 
 @endsection
 

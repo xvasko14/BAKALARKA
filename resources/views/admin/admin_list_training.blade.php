@@ -11,7 +11,7 @@
 
                 <div class="col-md-11 col-md-offset-2">
                     <div class="panel panel-default">
-                        <h1 align="center">Zoznam Timov</h1>
+                        <h1 align="center">Zoznam Treningov</h1>
 
                         <div class="panel-heading">
                             <div class="">
@@ -20,19 +20,19 @@
                                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                         <thead>
                                         <tr>
-                                            <th>Tim</th>
-                                            <th>Editacia</th>
+                                            <th>Tim ID</th>
+                                            <th>Cas</th>
+                                            <th>Dlzka</th>
+                                            <th>Editácie</th>
                                             <th>Vymazanie</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($league as $league)
+                                        @foreach ($training as $key => $data)
                                             <tr>
-                                                <th>{{ $league->name}}</th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.league.update',$league->id)}}"><i class='material-icons'>edit</i></a></center> </th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.league.delete',$league->id)}}"><i class='material-icons'>delete</i></a></center> </th>
-
+                                                <th>{{ $data->teamTraining_id}}</th>
+                                                <th>{{ $data->starts}}</th>
+                                                <th>{{ $data->length}}</th>
                                             </tr>
                                         @endforeach
                                         </tbody>

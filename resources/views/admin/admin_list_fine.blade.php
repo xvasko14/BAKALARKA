@@ -11,7 +11,7 @@
 
                 <div class="col-md-11 col-md-offset-2">
                     <div class="panel panel-default">
-                        <h1 align="center">Zoznam Timov</h1>
+                        <h1 align="center">Zoznam pokutovanych hracov</h1>
 
                         <div class="panel-heading">
                             <div class="">
@@ -20,18 +20,25 @@
                                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                         <thead>
                                         <tr>
-                                            <th>Tim</th>
-                                            <th>Editacia</th>
-                                            <th>Vymazanie</th>
+                                            <th>ID</th>
+                                            <th>Meno</th>
+                                            <th>Suma</th>
+                                            <th>Dovod</th>
+                                            <th>editacia</th>
+
 
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($league as $league)
+                                        @foreach($players as $key => $data)
                                             <tr>
-                                                <th>{{ $league->name}}</th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.league.update',$league->id)}}"><i class='material-icons'>edit</i></a></center> </th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.league.delete',$league->id)}}"><i class='material-icons'>delete</i></a></center> </th>
+                                                <th>{{ $data->id}}</th>
+                                                <th>{{ $data->name}}</th>
+                                                <th>{{ $data->sum}}</th>
+                                                <th>{{ $data->reason}}</th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.fine.update', $data->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.fine.delete',$data->id)}}"><i class='material-icons'>delete</i></a></center> </th>
+
 
                                             </tr>
                                         @endforeach

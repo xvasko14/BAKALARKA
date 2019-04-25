@@ -10,7 +10,7 @@
         </div>
 
         <div class="container" style="max-width:80%; margin-top: 40px;">
-            <form action="{{ route('admin.game.insertGame') }}" method="post">
+            <form action="{{ route('admin.game.updateGame',$game->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="sezona">Sezona</label>
@@ -24,17 +24,7 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="Round">Kolo Ligy</label>
-                    <input type="text" class="form-control" name="Round" placeholder="Ligove kolo">
-                </div>
-                <div class="form-group">
-                    {{ csrf_field()}}
-                    <label for="starts">Datum</label>
-                    <input type="Date" class="form-control" name="Date" placeholder="Datum">
-                </div>
-                <div class="form-group">
-                    {{ csrf_field()}}
-                    <label for="starts">Zaciatok zapasu</label>
-                    <input type="time" class="form-control" name="time" placeholder="Cas">
+                    <input type="text" class="form-control" name="Round" placeholder="Ligove kolo" value="{{$game->Round}}">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
@@ -58,12 +48,12 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="result1">Tim</label>
-                    <input type="text" class="form-control" name="result1" placeholder="Result1">
+                    <input type="text" class="form-control" name="result1" placeholder="Result1" value="{{$game->team1_goals}}">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="result2">Tim</label>
-                    <input type="text" class="form-control" name="result2" placeholder="Result2">
+                    <input type="text" class="form-control" name="result2" placeholder="Result2" value="{{$game->team2_goals}}">
                 </div>
 
                 @if (session('status'))

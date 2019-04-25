@@ -10,20 +10,15 @@
         </div>
 
         <div class="container" style="max-width:80%; margin-top: 40px;">
-            <form action="{{ route('admin.team.updateTeam',$teams->id) }}" method="post">
+            <form action="{{ route('admin.league.deleteLeague',$league->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="name">Tim</label>
-                    <input type="text" class="form-control" name="name" placeholder="Nazov timu" value="{{$teams->name}}">
+                    <label for="meno">Tim</label>
+                    <input type="text" class="form-control" name="name" placeholder="Nazov ligy" value="{{$league->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="league">Liga</label>
-                    <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
-                    <select name="league">
-                        @foreach ($league as $league)
-                            <option value="{{$league->id }}">{{$league->name }}</option>
-                        @endforeach
-                    </select>
+                    <label for="email">Pocet Timov</label>
+                    <input type="text" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Pocet timov" value="{{$league->teams_number}}">
                 </div>
                 @if (session('status'))
                     <div class="alert alert-success">
@@ -31,7 +26,7 @@
                     </div>
                     <br>
                 @endif
-                <button type="submit" class="btn btn-primary">Odoslať</button>
+                <button type="submit" class="btn btn-primary">Vymazat</button>
             </form>
 
         </div>

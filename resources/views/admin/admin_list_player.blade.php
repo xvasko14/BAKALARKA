@@ -24,7 +24,8 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Meno</th>   
-                                            <th>Editácie</th>                           
+                                            <th>Editácie</th>
+                                            <th>Vymazanie</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,6 +34,7 @@
                                             <th>{{ $player->id}}</th> 
                                             <th>{{ $player->name}}</th>
                                             <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.player.update',$player->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                            <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.player.delete',$player->id)}}"><i class='material-icons'>delete</i></a></center> </th>
                                         </tr>
                                         @endforeach
                                     </tbody>

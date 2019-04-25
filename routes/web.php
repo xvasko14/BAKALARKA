@@ -46,6 +46,8 @@ Route::prefix('admin')->group(function() {
 	Route::get('/admin_list_player', 'AdminController@playersList')->name('admin.players.list');
 	Route::get('/admin_insert_player', 'AdminController@newPlayer')->name('admin.player.insert');
     Route::post('/admin_insert_player', 'AdminController@insertPlayer')->name('admin.player.insertPlayer');
+    Route::get('/admin_delete_player/{id}', 'AdminController@tryDeletePlayer')->name('admin.player.delete');
+    Route::post('/admin_delete_player/{id}', 'AdminController@deletePlayer')->name('admin.player.deletePlayer');
 
     //Manager
     Route::get('/admin_update_manager/{id}', 'AdminController@editManager')->name('admin.manager.update');
@@ -53,19 +55,33 @@ Route::prefix('admin')->group(function() {
     Route::get('/admin_list_manager', 'AdminController@managersList')->name('admin.managers.list');
     Route::get('/admin_insert_manager', 'AdminController@newManager')->name('admin.manager.insert');
     Route::post('/admin_insert_manager', 'AdminController@insertManager')->name('admin.manager.insertManager');
+    Route::get('/admin_delete_manager/{id}', 'AdminController@tryDeleteManager')->name('admin.manager.delete');
+    Route::post('/admin_delete_manager/{id}', 'AdminController@deleteManager')->name('admin.manager.deleteManager');
+
     //Tim
     Route::get('/admin_update_team/{id}', 'AdminController@editTeam')->name('admin.team.update');
     Route::post('/admin_update_team/{id}', 'AdminController@updateTeam')->name('admin.team.updateTeam');
     Route::get('/admin_list_team', 'AdminController@teamsList')->name('admin.teams.list');///
     Route::get('/admin_insert_team','AdminController@newTeam')->name('admin.team.insert');
     Route::post('/admin_insert_team','AdminController@insertTeam')->name('admin.team.insertTeam');
+    Route::get('/admin_delete_team/{id}', 'AdminController@tryDeleteTeam')->name('admin.team.delete');
+    Route::post('/admin_delete_team/{id}', 'AdminController@deleteTeam')->name('admin.team.deleteTeam');
+
     //Liga
+    Route::get('/admin_update_league/{id}', 'AdminController@editLeague')->name('admin.league.update');
+    Route::post('/admin_update_league/{id}', 'AdminController@updateLeague')->name('admin.league.updateLeague');
     Route::get('/admin_list_league', 'AdminController@leagueList')->name('admin.league.list');///
     Route::get('/admin_insert_league','AdminController@newLeague')->name('admin.league.insert');
     Route::post('/admin_insert_league','AdminController@insertLeague')->name('admin.league.insertLeague');
+    Route::get('/admin_delete_league/{id}', 'AdminController@tryDeleteLeague')->name('admin.league.delete');
+    Route::post('/admin_delete_league/{id}', 'AdminController@deleteLeague')->name('admin.league.deleteLeague');
+
     //games
+    Route::get('/admin_update_game/{id}', 'AdminController@editGame')->name('admin.game.update');
+    Route::post('/admin_update_game/{id}', 'AdminController@updateGame')->name('admin.game.updateGame');
     Route::get('/admin_insert_game','AdminController@newGame')->name('admin.game.insert');
     Route::post('/admin_insert_game','AdminController@insertGame')->name('admin.game.insertGame');
+    Route::get('/admin_list_games', 'AdminController@gameList')->name('admin.game.list');
 
     //playerInGame-Zapas
     Route::get('/admin_insert_PlayerInGame_match','AdminController@GamesAdmin')->name('admin.PlayerInGame_match.insert');
@@ -80,8 +96,31 @@ Route::prefix('admin')->group(function() {
     Route::get('/admin_insert_training', 'AdminController@newTraining')->name('admin.training.insert');
     Route::post('/admin_insert_training', 'AdminController_a@insertTraining')->name('admin.training.insertTraining');
 
+    Route::get('/admin_list_training', 'AdminController@trainingList')->name('admin.training.list');
 
 
+    //pokuty
+
+    Route::get('/admin_insert_fine','AdminController@newFine')->name('admin.fine.insert');
+    Route::post('/admin_insert_fine','AdminController@insertFine')->name('admin.fine.insertFine');
+    Route::get('/admin_list_fine', 'AdminController@fineLists')->name('admin.fine.list');
+
+    Route::get('/admin_update_fine/{id}', 'AdminController@editFine')->name('admin.fine.update');
+    Route::post('/admin_update_fine/{id}', 'AdminController@updateFine')->name('admin.fine.updateFine');
+
+    Route::get('/admin_delete_fine{id}', 'AdminController@tryDeleteFine')->name('admin.fine.delete');
+    Route::post('/admin_delete_fine/{id}', 'AdminController@deleteFine')->name('admin.fine.deleteFine');
+
+    //zranenia
+    Route::get('/admin_insert_injury','AdminController@newInjury')->name('admin.injury.insert');
+    Route::post('/admin_insert_injury','AdminController@insertInjury')->name('admin.injury.insertInjury');
+    Route::get('/admin_list_injury', 'AdminController@injuryLists')->name('admin.injury.list');
+
+    Route::get('/admin_update_injury/{id}', 'AdminController@editInjury')->name('admin.injury.update');
+    Route::post('/admin_update_injury/{id}', 'AdminController@updateInjury')->name('admin.injury.updateInjury');
+
+    Route::get('/admin_delete_injury/{id}', 'AdminController@tryDeleteInjury')->name('admin.injury.delete');
+    Route::post('/admin_delete_injury/{id}', 'AdminController@deleteInjury')->name('admin.injury.deleteInjury');
 
 });
 

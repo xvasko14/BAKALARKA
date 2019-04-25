@@ -163,7 +163,24 @@ class AdminController extends Controller
         return view('admin.admin_list_player', compact('players'));
     }
 
+    // mazanie hracov
+    public function tryDeletePlayer($id){
+        $teams = DB::table('teams')->get();
+        $players = DB::table('players')->where('id', $id)->first();
+        $data = ['teams' => $teams,
+            'players' => $players
+        ];
 
+
+        return view('admin.admin_delete_player', $data);
+    }
+
+
+    public function deletePlayer($id){
+        DB::table('players')->where('id',$id)->delete();
+        DB::table('teamplayers')->where('player_id',$id)->delete();
+        return redirect()->intended('admin/admin_list_player');
+    }
 
 
 
@@ -288,6 +305,24 @@ class AdminController extends Controller
             'name' => request('name'),
         ]);
         return view('admin.admin_list_manager', compact('managers'));
+    }
+
+    // mazanie trenerov
+    public function tryDeleteManager($id){
+        $teams = DB::table('teams')->get();
+        $managers = DB::table('managers')->where('id', $id)->first();
+        $data = ['teams' => $teams,
+            'managers' => $managers
+        ];
+
+        return view('admin.admin_delete_manager', $data);
+    }
+
+
+    public function deleteManager($id){
+        DB::table('managers')->where('id',$id)->delete();
+        DB::table('teammanagers')->where('manager_id',$id)->delete();
+        return redirect()->intended('admin/admin_list_manager');
     }
 
 
@@ -416,6 +451,25 @@ class AdminController extends Controller
 
     }
 
+    public function tryDeleteTeam($id){
+        $league = DB::table('league')->get();
+        $teams = DB::table('teams')->where('id', $id)->first();
+
+
+        $data = ['league' => $league,
+            'teams' => $teams
+        ];
+
+        return view('admin.admin_delete_team', $data);
+    }
+
+
+    public function deleteTeam($id){
+        DB::table('teams')->where('id',$id)->delete();
+        DB::table('teams_in_league')->where('team_id',$id)->delete();
+        return redirect()->intended('admin/admin_list_team');
+    }
+
 
 
 
@@ -452,6 +506,17 @@ class AdminController extends Controller
         //return $this->RegistrationlList($id);
     }
 
+    public function editLeague($id)
+    {
+        $league = DB::table('league')->where('id', $id)->first();
+
+
+        $data = ['league' => $league,
+        ];
+        return view('admin.admin_update_league', $data);
+
+        //return view('admin.admin_update_team', compact('teams'));
+    }
     public function leagueList()
     {
         $league = DB::table('league');
@@ -466,6 +531,22 @@ class AdminController extends Controller
 
         return view('admin.admin_list_league', compact('league'));
 
+    }
+
+    public function tryDeleteLeague($id){
+        $league = DB::table('league')->where('id', $id)->first();
+
+
+        $data = ['league' => $league,
+        ];
+
+        return view('admin.admin_delete_league', $data);
+    }
+
+
+    public function deleteLeague($id){
+        DB::table('league')->where('id',$id)->delete();
+        return redirect()->intended('admin/admin_list_league');
     }
 
     /// Game //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -509,13 +590,45 @@ class AdminController extends Controller
         $game->insert($data);
 
 
-
-
-
         return redirect()->intended('admin/admin_list_team');///!!!!!!!!!!!!!!bolo admin.registration.list
+    }
 
+    public function gameList()
+    {
+        $games = DB::table('game')->get();;
+
+        foreach ($games as $game) {
+            $game->teamName1 = DB::table('teams')->select('name')->where('id', '=', $game->team1)->first()->name;
+            $game->teamName2 = DB::table('teams')->select('name')->where('id', '=', $game->team2)->first()->name;
+        }
+
+        // kolko zbrazime timov (paginate)
+        $data = [
+            'game' => $games,
+        ];
+
+
+        return view('admin.admin_list_games', $data);
 
     }
+
+    public function editGame($id)
+    {
+        $teams = DB::table('teams')->get();
+        $sezona = DB::table('sezona')->get();
+        $game = DB::table('game')->where('id', $id)->first();
+
+
+        $data = ['game' => $game,
+            'teams' => $teams,
+            'sezona' => $sezona,
+        ];
+        return view('admin.admin_update_game', $data);
+
+        //return view('admin.admin_update_team', compact('teams'));
+    }
+
+
 
     /// PlayerInGame //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // nacitanie zapasov ake sa hrali
@@ -661,5 +774,238 @@ class AdminController extends Controller
         // toto este nebude fungovat
         // ADMIN_ DASHBOARD MAM SPRAVENE AKO ADMIN !!! teda iba admin (find OUT)
         return redirect()->intended('admin/admin_list_player');
+    }
+
+    public function trainingList()
+    {
+
+        $training = DB::table('training')->get();
+        // kolko zbrazime timov (paginate)
+        /*$training = $training->paginate(20)->appends([
+            'teamTraining_id' => request('teamTraining_id'),
+            'starts' => request('starts'),
+            'length' => request('length'),
+        ]);*/
+        $data = [
+            'training' => $training,
+        ];
+
+        return view('admin.admin_list_training', $data);
+    }
+
+    // POKUTY
+    public function newFine()
+    {
+
+
+
+        $players = DB::table('players')->get();
+
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+
+
+        return view('admin.admin_insert_fine', $data);
+    }
+
+    public function insertFine(Request $request)
+    {
+
+
+        $fine = DB::table('fine');
+
+
+        $data = array(
+            'FinePlayerID' => $request->input('player'),
+            'reason' => $request->input('reason'),
+            'sum' => $request->input('sum'),
+        );
+        //var_dump($data);exit;
+
+        $fine->insert($data);
+
+
+        return redirect()->intended('admin/admin_list_fine');///!!!!!!!!!!!!!!bolo admin.registration.list
+        ///
+    }
+
+    public function fineLists()
+    {
+
+
+
+        $players = DB::table('fine')
+            ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+            ->select('fine.id',
+                'fine.reason',
+                'fine.sum',
+                'players.name')
+            ->get();
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+        return view('admin.admin_list_fine', $data);
+    }
+    public function editFine($id)
+    {
+        $fine = DB::table('fine')->where('id', $id)->first();
+        $players = DB::table('players')->get();;
+
+
+        $data = ['fine' => $fine,
+            'players' => $players,
+        ];
+        return view('admin.admin_update_fine', $data);
+
+        //return view('admin.admin_update_team', compact('teams'));
+    }
+
+    public function updateFine(Request $request, $id)
+    {
+
+
+        $fine = DB::table('fine')->where('id', $id)->update(['FinePlayerID' => $request->input('player')]);
+        $fine = DB::table('fine')->where('id', $id)->update(['reason' => $request->input('reason')]);
+        $fine = DB::table('fine')->where('id', $id)->update(['sum' => $request->input('sum')]);
+
+
+
+
+
+        return redirect()->intended('admin/admin_list_fine');
+
+    }
+
+    public function tryDeleteFine($id)
+    {
+        $fine = DB::table('fine')->where('id', $id)->first();
+        $players = DB::table('players')->get();;
+
+
+        $data = ['fine' => $fine,
+            'players' => $players,
+        ];
+        return view('admin.admin_delete_fine', $data);
+
+        //return view('admin.admin_update_team', compact('teams'));
+    }
+
+    public function deleteFine($id){
+        DB::table('fine')->where('id', $id)->delete();
+
+        return redirect()->intended('admin/admin_list_fine');
+    }
+
+    // Zranenia
+    public function newInjury()
+    {
+
+        $players = DB::table('players')->get();
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+
+
+        return view('admin.admin_insert_injury', $data);
+    }
+
+    public function insertInjury(Request $request)
+    {
+
+
+        $injury = DB::table('injuries');
+
+
+        $data = array(
+            'InjuryPlayerID' => $request->input('player'),
+            'type_injury' => $request->input('type_injury'),
+            'approximately_time' => $request->input('approximately_time'),
+        );
+        //var_dump($data);exit;
+
+        $injury->insert($data);
+
+
+        return redirect()->intended('admin/admin_list_injury');
+        ///
+    }
+
+    public function injuryLists()
+    {
+
+
+        $players = DB::table('injuries')
+            ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+            ->select('injuries.id',
+                'injuries.type_injury',
+                'injuries.approximately_time',
+                'players.name')
+            ->get();
+
+        // musi natvrdo este dat tabulku teams do premenej
+        $data = [
+            'players' => $players,
+        ];
+
+        return view('admin.admin_list_injury', $data);
+    }
+
+    public function editInjury($id)
+    {
+        $injuries = DB::table('injuries')->where('id', $id)->first();
+        $players = DB::table('players')->get();
+
+
+        $data = ['injuries' => $injuries,
+            'players' => $players,
+        ];
+        return view('admin.admin_update_injury', $data);
+
+        //return view('admin.admin_update_team', compact('teams'));
+    }
+
+    public function updateInjury(Request $request, $id)
+    {
+
+
+        $injuries = DB::table('injuries')->where('id', $id)->update(['InjuryPlayerID' => $request->input('player')]);
+        $injuries = DB::table('injuries')->where('id', $id)->update(['type_injury' => $request->input('type_injury')]);
+        $injuries = DB::table('injuries')->where('id', $id)->update(['approximately_time' => $request->input('approximately_time')]);
+
+
+
+
+
+        return redirect()->intended('admin/admin_list_injury');
+
+    }
+
+    public function tryDeleteInjury($id)
+    {
+        $injuries = DB::table('injuries')->where('id', $id)->first();
+        $players = DB::table('players')->get();;
+
+
+        $data = ['injuries' => $injuries,
+            'players' => $players,
+        ];
+        return view('admin.admin_delete_injury', $data);
+
+        //return view('admin.admin_update_team', compact('teams'));
+    }
+
+    public function deleteInjury($id){
+        DB::table('injuries')->where('id', $id)->delete();
+
+        return redirect()->intended('admin/admin_list_injury');
     }
 }

@@ -24,7 +24,8 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Meno</th>      
-                                            <th>Editácie</th>                         
+                                            <th>Editácie</th>
+                                            <th>Vymazanie</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,6 +34,7 @@
                                             <th>{{ $manager->id}}</th> 
                                             <th>{{ $manager->name}}</th>
                                             <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.manager.update',$manager->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                            <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.manager.delete',$manager->id)}}"><i class='material-icons'>delete</i></a></center> </th>
                                         </tr>
                                         </tr>
                                         @endforeach

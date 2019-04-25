@@ -26,6 +26,7 @@
     <li class="submenu" ><a href="#"><i class="fas fa-futbol"></i> <span>Games</span><span class="label label-important"></span></a>
       <ul>
         <li><a href="{{ url('/admin/admin_insert_game') }}">Create Games</a></li>
+        <li><a href="{{ url('/admin/admin_list_games') }}">List Games</a></li>
       </ul>
     </li>
     <li class="submenu" ><a href="#"><i class="fas fa-futbol"></i> <span>Player in Game</span><span class="label label-important"></span></a>
@@ -36,6 +37,19 @@
     <li class="submenu" ><a href="#"><i class="fas fa-bolt"></i> <span>Training</span><span class="label label-important"></span></a>
       <ul>
         <li><a href="{{ url('/admin/admin_insert_training') }}">Create Training</a></li>
+        <li><a href="{{ url('/admin/admin_list_training') }}">List Training</a></li>
+      </ul>
+    </li>
+    <li class="submenu" ><a href="#"><i class="fas fa-bolt"></i> <span>Fine</span><span class="label label-important"></span></a>
+      <ul>
+        <li><a href="{{ url('/admin/admin_insert_fine') }}">Create Fine</a></li>
+        <li><a href="{{ url('/admin/admin_list_fine') }}">List Fine</a></li>
+      </ul>
+    </li>
+    <li class="submenu" ><a href="#"><i class="fas fa-bolt"></i> <span>Injuries</span><span class="label label-important"></span></a>
+      <ul>
+        <li><a href="{{ url('/admin/admin_insert_injury') }}">Create Injuries</a></li>
+        <li><a href="{{ url('/admin/admin_list_injury') }}">List Injury</a></li>
       </ul>
     </li>
   </ul>

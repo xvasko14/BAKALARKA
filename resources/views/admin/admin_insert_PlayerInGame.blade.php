@@ -26,6 +26,16 @@
                     <label for="goals">Pocet golov</label>
                     <input type="number" class="form-control" name="goals" placeholder="goals">
                 </div>
+                  <div class="Column">
+                      {{ csrf_field()}}
+                      <label for="asists">Pocet asistencii</label>
+                      <input type="number" class="form-control" name="asists" placeholder="asists">
+                  </div>
+                  <div class="Column">
+                      {{ csrf_field()}}
+                      <label for="min">Pocet odohratych minut</label>
+                      <input type="number" class="form-control" name="min" placeholder="min">
+                  </div>
                 <div class="Column">
                     {{ csrf_field()}}
                     <label for="yellowCard">Pocet zltych kariet</label>
@@ -36,6 +46,11 @@
                     <label for="redCard">Cervena karta</label>
                     <input type="number" class="form-control" name="redCard" placeholder="redCard">
                 </div>
+                  <div class="Column">
+                      {{ csrf_field()}}
+                      <label for="redCard">Cervena karta</label>
+                      <input type="number" class="form-control" name="redCard" placeholder="redCard">
+                  </div>
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -59,6 +74,16 @@
                         {{ csrf_field()}}
                         <label for="goals1">Pocet golov</label>
                         <input type="number" class="form-control" name="goals1" placeholder="goals">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="asists1">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists1" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min1">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min1" placeholder="min">
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
@@ -96,6 +121,16 @@
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
+                        <label for="asists2">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists2" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min2">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min2" placeholder="min">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
                         <label for="yellowCard2">Pocet zltych kariet</label>
                         <input type="number" class="form-control" name="yellowCard2" placeholder="yellowCard">
                     </div>
@@ -130,6 +165,17 @@
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
+                        <label for="asists3">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists3" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min3">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min3" placeholder="min">
+                    </div>
+                    <div class="Column">
+
+                        {{ csrf_field()}}
                         <label for="yellowCard3">Pocet zltych kariet</label>
                         <input type="number" class="form-control" name="yellowCard3" placeholder="yellowCard">
                     </div>
@@ -162,6 +208,16 @@
                         {{ csrf_field()}}
                         <label for="goals4">Pocet golov</label>
                         <input type="number" class="form-control" name="goals4" placeholder="goals">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="asists4">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists4" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min4">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min4" placeholder="min">
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
@@ -199,13 +255,23 @@
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
+                        <label for="asists5">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists5" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min5">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min5" placeholder="min">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
                         <label for="yellowCard5">Pocet zltych kariet</label>
                         <input type="number" class="form-control" name="yellowCard5" placeholder="yellowCard">
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
                         <label for="redCard">Cervena karta</label>
-                        <input type="number5" class="form-control" name="redCard5" placeholder="redCard">
+                        <input type="number" class="form-control" name="redCard5" placeholder="redCard">
                     </div>
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -230,6 +296,16 @@
                         {{ csrf_field()}}
                         <label for="goals6">Pocet golov</label>
                         <input type="number" class="form-control" name="goals6" placeholder="goals">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="asists6">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists6" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min6">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min6" placeholder="min">
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
@@ -263,6 +339,16 @@
                         {{ csrf_field()}}
                         <label for="goals7">Pocet golov</label>
                         <input type="number" class="form-control" name="goals7" placeholder="goals">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="asists7">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists7" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min7">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min7" placeholder="min">
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
@@ -300,6 +386,16 @@
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
+                        <label for="asists8">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists8" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min8">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min8" placeholder="min">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
                         <label for="yellowCard8">Pocet zltych kariet</label>
                         <input type="number" class="form-control" name="yellowCard8" placeholder="yellowCard">
                     </div>
@@ -334,6 +430,16 @@
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
+                        <label for="asists9">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists9" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min9">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min9" placeholder="min">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
                         <label for="yellowCard9">Pocet zltych kariet</label>
                         <input type="number" class="form-control" name="yellowCard9" placeholder="yellowCard">
                     </div>
@@ -363,6 +469,16 @@
                         {{ csrf_field()}}
                         <label for="goals10">Pocet golov</label>
                         <input type="number" class="form-control" name="goals10" placeholder="goals">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="asists10">Pocet asistencii</label>
+                        <input type="number" class="form-control" name="asists10" placeholder="asists">
+                    </div>
+                    <div class="Column">
+                        {{ csrf_field()}}
+                        <label for="min10">Pocet odohratych minut</label>
+                        <input type="number" class="form-control" name="min10" placeholder="min">
                     </div>
                     <div class="Column">
                         {{ csrf_field()}}
