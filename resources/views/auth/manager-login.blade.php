@@ -9,6 +9,7 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
 
     <link rel="stylesheet" href="{{ asset('css/login_css/style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
@@ -16,7 +17,7 @@
 <div class="login-wrap">
     <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Prihlasit sa ako Manazer</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
         <div class="login-form">
             <form method="POST" action="{{ route('manager.login.submit') }}">
                 @csrf
@@ -41,7 +42,7 @@
                 </div>
                 <div class="group">
                     <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                    <label for="check"><span class="icon"></span> Zostať prilasený</label>
                 </div>
                 <div class="group">
                     <input type="submit" class="button" value="Sign In">

@@ -17,12 +17,10 @@
                 <input type="submit" value="">
             </form>
         </div>
+
         <div class="social">
-            <a href="#"><i class="facebook"></i></a>
-            <a href="#"><i class="twitter"></i></a>
-            <a href="#"><i class="dribble"></i></a>
-            <a href="#"><i class="google"></i></a>
-            <a href="#"><i class="youtube"></i></a>
+            <a href="https://www.facebook.com/groups/189044132827/" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -33,10 +31,13 @@
 <!--end-main-container-part-->
 
 @include('layouts.mainLayout.partials.main_footer')
-<script type="text/javascript"  src="{{ asset('js/main_js/jquery.min.js') }}"></script>
 
+<script type="text/javascript"  src="{{ URL::asset('js/main_js/jquery.min.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('js/main_js/responsiveslides.min.js') }}"></script>
+<script type="text/javascript"  src="{{URL::asset('js/main_js/jquery.min.js') }}"></script>
+
+<script type="text/javascript" src="{{ URL::asset('js/main_js/responsiveslides.min.js')}}"></script>
+
 
 
 

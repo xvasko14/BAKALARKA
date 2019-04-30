@@ -3,7 +3,7 @@
 @section('content')
     <div class="container" style="max-width:90%;">
         <div class="row">
-                    <h1 align="center">Zapasy</h1>
+                    <h1 class="NadpisTabulky" align="center">Zapasy</h1>
 
                     <div class="panel-heading">
                         <div class="">

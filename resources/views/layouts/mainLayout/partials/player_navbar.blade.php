@@ -1,23 +1,23 @@
 <div class="header">
     <div class="container">
         <div class="logo">
-            <h1><a href="/">FUTBAL</a></h1>
+            <h1><a href="/player_home">FUTBAL</a></h1>
         </div>
         <div class="top-menu">
             <span class="menu"></span>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="/player_home/player_club">MOJ KLUB</a></li>
+                    <li ><a href="/player_home">Domov</a></li>
+                    <li><a href="/player_home/player_club">Môj klub</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LEAGUE TABLE <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabuľka štatistík<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="/player_home/player_leagueOverview">League Table</a>
-                            <a class="dropdown-item" href="/player_home/player_statisticsOverview">Player Statistics</a>
+                            <a class="dropdown-item" href="/player_home/player_leagueOverview">Ligoá tabuľka</a>
+                            <a class="dropdown-item" href="/player_home/player_statisticsOverview">Štatistiky hráčov</a>
                         </ul>
                     </li>
-                    <li><a href="/player_home/player_mygames">MY GAMES</a></li>
-                    <li><a href="/player_home/player_training">TRENING</a></li>
+                    <li><a href="/player_home/player_mygames">Naše zápasy</a></li>
+                    <li><a href="/player_home/player_training">Tréning</a></li>
 
                 @guest
                     <li class="nav-item">

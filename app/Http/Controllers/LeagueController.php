@@ -94,4 +94,142 @@ class LeagueController extends BaseController
 
     }
 
+    // statistiky hracov v lige
+    // zobrazi len ligy
+    public function StatisticsOverview()
+    {
+        $league = DB::table('league')->get();
+        $data = [
+            'league' => $league,
+        ];
+
+
+        return view('pages.statisticsOveview', $data);
+    }
+
+    public function statistics_goal()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('goals','desc ')
+            //->orderBy('rcard','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('pages.statistics_goal', $data);
+
+    }
+
+    public function statistics_asists()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.asists) as asists'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('asists','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('pages.statistics_asists', $data);
+
+    }
+
+    public function statistics_yellowC()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('yellowCard','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('pages.statistics_yellowC', $data);
+
+    }
+    public function statistics_redC()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.redCard) as redCard'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('redCard','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('pages.statistics_redC', $data);
+
+    }
+    public function statistics_min()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.min) as min'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('min','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('pages.statistics_mins', $data);
+
+    }
+
+
 }

@@ -13,7 +13,7 @@
       <div class="panel-heading">
        <div class="">
 
-        <table id="rooms-table" class="table  table-striped table-dark " border=1 width="400">
+        <table id="league-table" class="table  table-striped table-dark " border=1 width="400">
          <thead>
          <tr>
           <th>Tim</th>
@@ -39,5 +39,15 @@
    </div>
   </div>
 
+
+  <script>
+   var table = document.getElementsByTagName('table')[0],
+           rows = table.getElementsByTagName('tr'),
+           text = 'textContent' in document ? 'textContent' : 'innerText';
+
+   for (var i = 0, len = rows.length; i < len; i++){
+    rows[i].children[0][text] = i + '.' + rows[i].children[0][text];
+   }
+  </script>
 
 @endsection

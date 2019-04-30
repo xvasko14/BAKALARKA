@@ -5,12 +5,19 @@
         </div>
         <div class="top-menu">
             <span class="menu"></span>
-            <ul>
-                <li class="active"><a href="/">HOME</a></li>
-                <li><a href="gallery">GALERIA</a></li>
-                <li><a href="leagueOverview">LIGOVA TABULKA</a></li>
-                <li><a href="/player_home/login">HRAC</a></li>
-                <li><a href="/manager_home/login">TRENER</a></li>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                <li><a href="/">Domov</a></li>
+                <li><a href="gallery">Galéria</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabuľký štatistík <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <a class="dropdown-item" href="/leagueOverview">Ligová tabuľka</a>
+                        <a class="dropdown-item" href="/statisticsOverview">Štatistiky hráčov</a>
+                    </ul>
+                </li>
+                <li><a href="/player_home/login">Hráč</a></li>
+                <li><a href="/manager_home/login">Tréner</a></li>
                 @guest
 
                 @else
@@ -37,6 +44,8 @@
                     </li>
                 @endguest
             </ul>
+            </div>
+
 
 
 

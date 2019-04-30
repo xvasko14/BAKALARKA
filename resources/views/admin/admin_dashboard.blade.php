@@ -18,6 +18,8 @@
                 <li class="bg_ls"> <a href="{{ url('/admin/admin_insert_game') }}"> <i class="icon-fullscreen"></i> Create Games</a> </li>
                 <li class="bg_lo span3"> <a href="{{ url('/admin/admin_insert_PlayerInGame_match') }}"> <i class=" icon-screenshot"></i> Create Player in Game</a> </li>
                 <li class="bg_ls"> <a href="{{ url('/admin/admin_insert_training') }}"> <i class="icon-tint"></i> Create Training</a> </li>
+                <li class="bg_ls"> <a href="{{ url('/admin/admin_insert_fine') }}"> <i class="icon-warning-sign"></i> Create Fine</a> </li>
+                <li class="bg_lo span4"> <a href="{{ url('/admin/admin_insert_injury') }}"> <i class="icon-plus-sign-alt"></i> Create Injuries</a> </li>
 
 
             </ul>

@@ -25,6 +25,7 @@
                                             <th>Suma</th>
                                             <th>Dovod</th>
                                             <th>editacia</th>
+                                            <th>vymazanie</th>
 
 
                                         </tr>

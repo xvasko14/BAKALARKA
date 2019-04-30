@@ -75,7 +75,7 @@ class ManagerController extends Controller
 
 
         $players = DB::table('players')
-            ->select('players.name','age','position')
+            ->select('players.id','players.name','age','position')
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
             ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
             ->where('teams.id', '=', $id)
@@ -88,6 +88,25 @@ class ManagerController extends Controller
         //var_dump($players); exit;
 
         return view('manager.manager_club_Info', $data);
+    }
+
+    public function myClubInfoPlayer($id)
+    {
+
+
+
+        $players = DB::table('players')
+            ->select('players.name','age','position','email')
+            ->where('players.id', '=', $id)
+            ->get();
+
+        //var_dump($players); exit;
+        $data = [
+            'players' => $players,
+        ];
+
+
+        return view('manager.manager_club_info_player', $data);
     }
 
 
@@ -166,13 +185,19 @@ class ManagerController extends Controller
             //var_dump($arr);*/
 
             //usort($myArray, function($a, $b) {
-           //     return $a['score'] <=> $b['score'];
+           //     return $a['score'] => $b['score'];
             //});
 
 
 
         }
 
+        $teams = $teams->toArray();
+        usort($teams, function ($a, $b) {
+            return strcmp($b->score, $a->score);
+        }
+
+        );
 
         $data = [
             'teams' => $teams,
@@ -304,7 +329,7 @@ class ManagerController extends Controller
 
         return view('manager.manager_mygames', $data);
     }
-
+    ////////////////////////////////////////////
     // Supisky oboch timov v zapase
     public function GamesLineup($id)
     {
@@ -320,6 +345,7 @@ class ManagerController extends Controller
             ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
             ->where('gameID', '=', $id)
             ->where('teamplayers.team_id', '=', $game->team1)
+            ->where('PlayerInGame.OnBench', '=', '0')
             ->get();
 
         $teamRight = DB::table('players')
@@ -330,11 +356,34 @@ class ManagerController extends Controller
             ->where('teamplayers.team_id', '=', $game->team2)
             ->get();
 
-       // var_dump($players);exit;
+        $teamLeftSub = DB::table('players')
+            ->select('*')
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
+            ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team1)
+            ->where('PlayerInGame.OnBench', '=', '1')
+            ->get();
+
+        $teamRightSub = DB::table('players')
+            ->select('*')
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
+            ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team2)
+            ->where('PlayerInGame.OnBench', '=', '1')
+            ->get();
+
+
+
+        //var_dump($teamLeftSub);exit;
 
         $data = [
             'teamLeft' => $teamLeft,
             'teamRight' => $teamRight,
+            'teamLeftSub' => $teamLeftSub,
+            'teamRightSub' => $teamRightSub,
+
         ];
 
 //var_dump($data); exit;
@@ -515,24 +564,127 @@ class ManagerController extends Controller
         return view('manager.manager_statisticsOverview', $data);
     }
 
-    public function statistics($id)
+    public function statistics()
     {
 
-        $statistics = DB::table('PlayerInGame')
-            ->select('*')
-            ->orderBy('PlayerInGame.goals', 'desc')
-            ->join('players', 'players.id', '=', 'PlayerInGame.playerGameID')
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
-            ->where('teams_in_league.league_id', '=', $id)
+           // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('goals','desc ')
+            ->orderBy('rcard','desc ')
             ->get();
 
-        //var_dump($statistics);exit;
+
         $data = [
             'statistics' => $statistics,
         ];
 
         return view('manager.manager_statistics', $data);
+
+    }
+
+    public function statistics_asists()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.asists) as asists'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('asists','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('manager.manager_statistics_asists', $data);
+
+    }
+
+    public function statistics_yellowC()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('yellowCard','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('manager.manager_statistics_yellowC', $data);
+
+    }
+    public function statistics_redC()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.redCard) as redCard'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('redCard','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('manager.manager_statistics_redC', $data);
+
+    }
+    public function statistics_min()
+    {
+
+        $statistics = DB::table('players')
+            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.min) as min'))
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+            // ->where('teams_in_league.league_id', '=', $id)
+            ->groupBy('players.id')
+            ->groupBy('players.name')
+            ->groupBy('players.age')
+            ->groupBy('players.position')
+            ->orderBy('min','desc ')
+            ->get();
+
+
+        $data = [
+            'statistics' => $statistics,
+        ];
+
+        return view('manager.manager_statistics_mins', $data);
 
     }
 

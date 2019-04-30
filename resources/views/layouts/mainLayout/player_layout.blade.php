@@ -18,11 +18,8 @@
             </form>
         </div>
         <div class="social">
-            <a href="#"><i class="facebook"></i></a>
-            <a href="#"><i class="twitter"></i></a>
-            <a href="#"><i class="dribble"></i></a>
-            <a href="#"><i class="google"></i></a>
-            <a href="#"><i class="youtube"></i></a>
+            <a href="https://www.facebook.com/groups/189044132827/" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
         </div>
         <div class="clearfix"></div>
     </div>

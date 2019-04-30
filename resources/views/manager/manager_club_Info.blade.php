@@ -22,7 +22,7 @@
                                 <tbody>
                                 @foreach($players as $key => $data)
                                     <tr>
-                                        <th>{{$data->name}}</th>
+                                        <th> <a  href="{{route('manager_club_InfoPlayer.main', $data->id)}}">{{ $data->name}}</a></th>
                                         <th>{{$data->age}}</th>
                                         <th>{{$data->position}}</th>
                                     </tr>

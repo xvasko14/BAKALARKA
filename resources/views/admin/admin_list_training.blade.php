@@ -33,6 +33,8 @@
                                                 <th>{{ $data->teamTraining_id}}</th>
                                                 <th>{{ $data->starts}}</th>
                                                 <th>{{ $data->length}}</th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.training.update',$data->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.training.delete',$data->id)}}"><i class='material-icons'>delete</i></a></center> </th>
                                             </tr>
                                         @endforeach
                                         </tbody>

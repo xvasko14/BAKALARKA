@@ -44,6 +44,68 @@ class GameController extends Controller
     }
 
 
+    ////////////////////////////////////////////
+    // Supisky oboch timov v zapase
+    public function GamesLineup($id)
+    {
+
+        $game = DB::table('game')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->first();
+
+        $teamLeft = DB::table('players')
+            ->select('*')
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
+            ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team1)
+            ->where('PlayerInGame.OnBench', '=', '0')
+            ->get();
+
+        $teamRight = DB::table('players')
+            ->select('*')
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
+            ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team2)
+            ->get();
+
+        $teamLeftSub = DB::table('players')
+            ->select('*')
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
+            ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team1)
+            ->where('PlayerInGame.OnBench', '=', '1')
+            ->get();
+
+        $teamRightSub = DB::table('players')
+            ->select('*')
+            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.PlayerGameID')
+            ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
+            ->where('gameID', '=', $id)
+            ->where('teamplayers.team_id', '=', $game->team2)
+            ->where('PlayerInGame.OnBench', '=', '1')
+            ->get();
+
+
+
+        //var_dump($teamLeftSub);exit;
+
+        $data = [
+            'teamLeft' => $teamLeft,
+            'teamRight' => $teamRight,
+            'teamLeftSub' => $teamLeftSub,
+            'teamRightSub' => $teamRightSub,
+
+        ];
+
+//var_dump($data); exit;
+
+
+        return view('player.player_mygames_lineup', $data);
+    }
 
 
     public function FormationGames()
@@ -52,6 +114,8 @@ class GameController extends Controller
 
         return view('player.player_mygames_formation');
     }
+
+
 
 
 }

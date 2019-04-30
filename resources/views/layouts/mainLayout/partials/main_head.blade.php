@@ -1,4 +1,4 @@
-<title>Soccer a Sports Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>Informačný systém Haniska</title>
 <!--fonts-->
 <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
@@ -7,7 +7,9 @@
 
 <link rel="stylesheet" href="{{ asset('css/main_css/bootstrap.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/main_css/style.css') }}" />
-
+<link rel="stylesheet" href="{{ asset('css/main_css/responsiveslides.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/main_css/touchTouch.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 <!--Musim upravit logout lebo sa to posuva-->
 <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,7 +23,7 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
 <!-- js -->
-<script type="text/javascript"  src="{{ asset('js/main_js/jquery.min.js') }}"></script>
+<script type="text/javascript"  src="{{ URL::asset('js/main_js/jquery.min.js') }}"></script>
 
 
 

@@ -5,15 +5,14 @@
 <div class="gallery-head">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">Gallery</li>
+            <li><a href="/">Domov</a></li>
+            <li class="active">Galéria</li>
         </ol>
     </div>
     <div class="gallery-text">
         <div class="container">
-            <h2>GALLERY</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula neque, pellentesque quis tempor eget, pretium sit amet nunc.
-                Ut blandit felis vel urna rutrum maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac neque eu enim auctor placerat fringilla feugiat tellus. Nulla massa nibh, eleifend egestas metus in, feugiat congue massa. Praesent consequat nec est ac bibendum.</p>
+            <h2>Galéria</h2>
+            <p>Prezrite si naše zápasy a ako sa nám v nich darilo.</p>
         </div>
     </div>
     <div class="container">
@@ -33,11 +32,11 @@
                         </li>
                         <li>
                             <a href="#image-abt2">
-                                <img src="images/main_images/g2.jpg" class="img-responsive" alt="">
+                                <img src="images/main_images/haniska_club.jpg" class="img-responsive" alt="">
                                 <span> </span>
                             </a>
                             <div class="lb-overlay" id="image-abt2">
-                                <img src="images/main_images/g2.jpg" class="img-responsive" alt="image03">
+                                <img src="images/main_images/haniska_club.jpg" class="img-responsive" alt="image03">
                                 <a href="gallery" class="lb-close"><img src="images/main_images/close.png" > </a>
                             </div>
                         </li>

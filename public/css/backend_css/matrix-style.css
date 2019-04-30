@@ -334,6 +334,7 @@ hr{ border-top-color:#dadada;}
 	text-shadow: 0 1px 0 #fff;
 	float: left;
 }
+
 .stat-boxes2 .left {
 	border-right: 1px solid #DCDCDC;
 	box-shadow: 1px 0 0 0 #FFFFFF;
@@ -376,6 +377,7 @@ hr{ border-top-color:#dadada;}
 	min-height:70px;
 }
 .quick-actions_homepage .quick-actions .span3{ width:30%;}
+.quick-actions_homepage .quick-actions .span4{ width:29%;}
 .quick-actions li, .quick-actions-horizontal li {
 	padding: 0;
 }
@@ -460,7 +462,7 @@ hr{ border-top-color:#dadada;}
 	margin-bottom: 3px;
 	margin-top: 6px;
 }
-.stat-boxes .peity_bar_good, .stat-boxes .peity_line_good, {
+.stat-boxes .peity_bar_good, .stat-boxes .peity_line_good {
  color: #459D1C;
 }
 .stat-boxes .peity_bar_neutral, .stat-boxes .peity_line_neutral {

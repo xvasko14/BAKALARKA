@@ -1,5 +1,6 @@
-body{
+body, html{
 	margin:0;
+	height: 100%;
 	color:#6a6f8c;
 	background:#c8c8c8;
 	font:600 16px/18px 'Open Sans',sans-serif;
@@ -164,4 +165,62 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
 	text-align:center;
+}
+
+.cardA {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	margin: auto;
+	text-align: center;
+}
+
+.titleA {
+	color: white;
+	font-size: 20px;
+}
+
+button {
+	border: none;
+	outline: 0;
+	display: inline-block;
+	padding: 8px;
+	color: white;
+	background-color: #000;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+}
+p{
+	color : white;
+	font: bold;
+}
+
+a {
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+}
+h1 {
+	color : white;
+}
+.BC{
+	background-color : black;
+}
+
+.bg {
+	/* The image used */
+	background-image: url('../../images/main_images/background.jpeg');
+
+	/* Full height */
+	height: 100%;
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+button:hover, a:hover {
+	opacity: 0.7;
 }

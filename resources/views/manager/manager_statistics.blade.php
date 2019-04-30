@@ -5,7 +5,7 @@
         <div class="row">
 
 
-                    <h1 align="center">Statistiky hracov v lige</h1>
+            <h1 class="NadpisTabulky" align="center">Najlepší strelci v lige</h1>
 
                     <div class="panel-heading">
                         <div class="">
@@ -17,6 +17,7 @@
                                     <th>Vek</th>
                                     <th>Pozicia</th>
                                     <th>Goly</th>
+                                    <th>rcard</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -26,6 +27,7 @@
                                         <th>{{$statistic->age}}</th>
                                         <th>{{$statistic->position}}</th>
                                         <th>{{$statistic->goals}}</th>
+                                        <th>{{$statistic->rcard}}</th>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -35,6 +37,16 @@
 
         </div>
     </div>
+
+        <script>
+            var table = document.getElementsByTagName('table')[0],
+                rows = table.getElementsByTagName('tr'),
+                text = 'textContent' in document ? 'textContent' : 'innerText';
+
+            for (var i = 0, len = rows.length; i < len; i++){
+                rows[i].children[0][text] = i + '.' + rows[i].children[0][text];
+            }
+        </script>
 
 
 @endsection

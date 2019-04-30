@@ -38,7 +38,8 @@
                                                 <th>{{$data->team1_goals}}</th>
                                                 <th>{{$data->team2_goals}}</th>
                                                 <th>{{$data->teamName2}}</th>
-                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.game.update',$game->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.game.update',$data->id)}}"><i class='material-icons'>edit</i></a></center> </th>
+                                                <th> <center><a class='btn-floating  waves-effect blue darken-4' href="{{route('admin.game.delete',$data->id)}}"><i class='material-icons'>delete</i></a></center> </th>
 
                                             </tr>
                                         @endforeach
