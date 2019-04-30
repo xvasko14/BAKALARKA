@@ -167,6 +167,7 @@ Route::prefix('player_home')->group(function() {
     //mojklub
     Route::get('/player_club','PlayerController@myclub')->name('player_club.main');
     Route::get('/player_club/player_club_Info/{id}','PlayerController@myclubInfo')->name('player_club_Info.main');
+    Route::get('/player_club/player_club_Info/{id}/player_club_info_player.blade.php','PlayerController@myclubInfoPlayer')->name('player_club_InfoPlayer.main');
 
 //trening
     Route::get('/player_training','PlayerController@myTraining')->name('player_training.main');

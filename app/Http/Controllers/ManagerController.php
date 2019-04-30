@@ -79,6 +79,7 @@ class ManagerController extends Controller
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
             ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
             ->where('teams.id', '=', $id)
+            ->orderBy('name','desc ')
             ->get();
 
 

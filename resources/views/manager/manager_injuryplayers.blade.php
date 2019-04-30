@@ -6,7 +6,7 @@
         <div class="row">
 
 
-            <h1 align="center">Zraneni v time</h1>
+            <h1 class="NadpisTabulky" align="center">Zraneni v time</h1>
 
             <div class="panel-heading">
                 <div class="">

@@ -171,10 +171,11 @@ class PlayerController extends Controller
 
 
         $players = DB::table('players')
-            ->select('players.name','age','position')
+            ->select('players.id','players.name','age','position')
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
             ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
             ->where('teams.id', '=', $id)
+            ->orderBy('name','desc ')
             ->get();
 
 
@@ -184,6 +185,25 @@ class PlayerController extends Controller
         //var_dump($players); exit;
 
         return view('player.player_club_Info', $data);
+    }
+
+    public function myClubInfoPlayer($id)
+    {
+
+
+
+        $players = DB::table('players')
+            ->select('players.name','age','position','email')
+            ->where('players.id', '=', $id)
+            ->get();
+
+        //var_dump($players); exit;
+        $data = [
+            'players' => $players,
+        ];
+
+
+        return view('player.player_club_info_player', $data);
     }
 
 

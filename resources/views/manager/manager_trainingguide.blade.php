@@ -4,7 +4,7 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
-            <h1 align="center">Trening timu</h1>
+            <h1 class="NadpisTabulky" align="center">Trening timu</h1>
             <div class="flex">
                 <div class="flex-item">
                     <td><button class="ZranenieTvorba btn btn-primary"  onclick="location.href='{{route('manager_training.main')}}'">Treningy timu</button></td>

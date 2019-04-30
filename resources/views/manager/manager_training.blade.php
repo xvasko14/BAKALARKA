@@ -6,7 +6,7 @@
 
         <div class="row">
 
-                    <h1 align="center">Trening timu</h1>
+                    <h1 class="NadpisTabulky" align="center">Trening timu</h1>
 
                     <div class="panel-heading">
                         <div class="">

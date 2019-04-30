@@ -1,7 +1,7 @@
 <div class="header">
     <div class="container">
         <div class="logo">
-            <h1><a href="/">FUTBAL</a></h1>
+            <h1><a href="/">FutbalIS</a></h1>
         </div>
         <div class="top-menu">
             <span class="menu"></span>
