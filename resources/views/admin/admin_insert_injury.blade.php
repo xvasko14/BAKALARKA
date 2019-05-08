@@ -11,6 +11,12 @@
 
         <div class="container" style="max-width:80%; margin-top: 40px;">
             <form action="{{ route('admin.injury.insertInjury') }}" method="post">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                    <br>
+                @endif
                 <div class="form-group">
                     <label for="club">Hrac</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
@@ -29,12 +35,7 @@
                     <label for="approximately_time">Dlzka absencie</label>
                     <input type="text" class="form-control" name="approximately_time"  placeholder="Pocet dni">
                 </div>
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    <br>
-                @endif
+
                 <button type="submit" class="btn btn-primary">Odoslať</button>
             </form>
 

@@ -1,8 +1,11 @@
-@extends('layouts.mainLayout.player_layout')
+@extends('layouts.mainLayout.main_layout')
 
 @section('content')
-
     <div class="container" style="max-width:90%;">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Zapasy</li>
+        </ol>
         <div class="row">
             <h1 class="NadpisTabulky" align="center">Zapasy</h1>
 
@@ -24,7 +27,7 @@
                         <tbody>
                         @foreach($game as $key => $data)
                             <tr>
-                                <th> <a  href="{{route('player.TeamsGame', $data->id)}}">{{ $data->id}}</a> </th>
+                                <th> <a  href="{{route('TeamsGame', $data->id)}}">{{ $data->id}}</a> </th>
                                 <th>{{$data->Round}}</th>
                                 <th>{{$data->Date}}</th>
                                 <th>{{$data->teamName1}}</th>
@@ -45,4 +48,3 @@
 
 
 @endsection
-

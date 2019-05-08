@@ -21,9 +21,13 @@
     <div class="BC">
         <img src="{{URL::asset('/images/main_images/hrac.jpeg')}}" alt="John" style="width:100%">
         <h1>Meno : {{$data->name}}</h1>
-        <p class="titleA">Vek : {{$data->age}}</p>
+        <p class="titleA">Vek : {{\Carbon\Carbon::parse($data->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</p>
         <p>Pozicia: {{$data->position}}</p>
+        <p>Cislo dresu: {{$data->player_number}}</p>
+        <p>Vaha: {{$data->weight}}</p>
+        <p>Vyska: {{$data->height}}</p>
         <p>Kontakt: {{$data->email}}</p>
+
    </div>
 
     @endforeach

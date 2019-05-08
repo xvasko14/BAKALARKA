@@ -20,7 +20,19 @@
             </div>
             <div class="form-group">
               <label for="age">Vek</label>
-                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$players->age}}">
+                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$players->date_of_birth}}">
+            </div>
+            <div class="form-group">
+                <label for="weight">Váha</label>
+                <input type="text" class="form-control" name="weight" aria-describedby="weight" placeholder="Váha" value="{{$players->weight}}">
+            </div>
+            <div class="form-group">
+                <label for="height">Výška</label>
+                <input type="text" class="form-control" name="height" aria-describedby="height" placeholder="Výška" value="{{$players->height}}">
+            </div>
+            <div class="form-group">
+                <label for="player_number">Cislo dresu</label>
+                <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Cislo dresu" value="{{$players->player_number}}">
             </div>
             <div class="form-group">
               <label for="position">Pozicia</label>

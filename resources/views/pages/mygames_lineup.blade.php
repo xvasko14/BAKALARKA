@@ -1,4 +1,4 @@
-@extends('layouts.mainLayout.player_layout')
+@extends('layouts.mainLayout.main_layout')
 
 @section('content')
 

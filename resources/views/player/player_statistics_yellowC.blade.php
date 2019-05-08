@@ -24,7 +24,7 @@
                         @foreach($statistics as $statistic)
                             <tr>
                                 <th>{{$statistic->name}}</th>
-                                <th>{{$statistic->age}}</th>
+                                <th>{{\Carbon\Carbon::parse($statistic->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</th>
                                 <th>{{$statistic->position}}</th>
                                 <th>{{$statistic->yellowCard}}</th>
                             </tr>

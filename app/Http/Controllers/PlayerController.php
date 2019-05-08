@@ -31,8 +31,25 @@ class PlayerController extends Controller
      */
     public function index()
     {
+        // nacitanie si ID usera ktory je akurat prihlaseny
+        $user = Auth::user()->id;
+
+        // nacitanie tabulky hracov aby bola uz pre uvodnu obrazovku
+        $players = DB::table('players')
+            ->select('players.id','players.name', 'date_of_birth','position')
+            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+            //->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+            ->where('teamplayers.player_id', '=', $user)
+            //->where('teams.id', '=', $id)
+            ->orderBy('name','desc ')
+            ->get();
+
+        $data = [
+            'players' => $players,
+        ];
+
         // prechod z priecinku do player-home cez bodku
-        return view('player.player_home');
+        return view('player.player_home',$data );
     }
 
 
@@ -124,7 +141,7 @@ class PlayerController extends Controller
 
 
         $players = DB::table('players')
-            ->select('players.name','age','position')
+            ->select('players.name','date_of_birth','position')
             ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
             ->join('training', 'training.id', '=', 'teams_training.training_id')
             ->where('training.id', '=', $id)
@@ -137,6 +154,8 @@ class PlayerController extends Controller
 
         return view('player.player_trainingPlayers', $data);
     }
+    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public function myClub()
     {
 
@@ -164,17 +183,22 @@ class PlayerController extends Controller
         //var_dump($teams); exit;
         return view('player.player_club', $data);
     }
+    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    public function myClubInfo($id)
+    public function myClubInfo()
     {
 
+        // TIETO VECI NACITANE UZ V INDEXE
 
+        $user = Auth::user()->id;
 
         $players = DB::table('players')
-            ->select('players.id','players.name','age','position')
+            ->select('players.id','players.name', 'date_of_birth','position')
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
-            ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
-            ->where('teams.id', '=', $id)
+            //->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+            ->where('teamplayers.player_id', '=', $user)
+            //->where('teams.id', '=', $id)
             ->orderBy('name','desc ')
             ->get();
 
@@ -187,14 +211,17 @@ class PlayerController extends Controller
         return view('player.player_club_Info', $data);
     }
 
+    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     public function myClubInfoPlayer($id)
     {
 
 
-
+        $user = Auth::user()->id;
         $players = DB::table('players')
-            ->select('players.name','age','position','email')
-            ->where('players.id', '=', $id)
+            ->select('players.name','date_of_birth','position','email', 'weight','height','player_number')
+            ->where('players.id', '=', $user)
             ->get();
 
         //var_dump($players); exit;
@@ -228,6 +255,7 @@ class PlayerController extends Controller
         // vyber ligy je natvrdo dany cislovkou asi zmenit !!!
         $teams = DB::table('teams')
             ->select('*')
+
             ->join('teams_in_league', 'teams.id', '=', 'teams_in_league.team_id')
             ->where('teams_in_league.league_id', '=', $id)
             ->get();
@@ -235,47 +263,80 @@ class PlayerController extends Controller
         foreach ($teams as $team) {
             $team->score = 0;
             $team->goals = 0;
+            $team->goalsoponent = 0;
+            $team->win = 0;
+            $team->draw = 0;
+            $team->lose = 0;
+            $team->match = 0;
 
 
+            //TODO
+            // zatial nastavena sezona natvrdo
             $p = DB::table('game')->select('*')
+                ->join('sezona', 'sezona.id', '=', 'game.sezona')
+                ->where('game.sezona', '=', '1')
                 ->where('team1', '=', $team->team_id)
                 ->get();
 
             $p1 = DB::table('game')->select('*')
+                ->join('sezona', 'sezona.id', '=', 'game.sezona')
+                ->where('game.sezona', '=', '1')
                 ->where('team2', '=', $team->team_id)
                 ->get();
 
             foreach ($p as $pp) {
                 if ($pp->team1_goals > $pp->team2_goals) {
                     $team->score += 3;
+                    $team->win += 1;
+                    $team->match += 1;
+
                 }
                 elseif ($pp->team1_goals == $pp->team2_goals) {
                     $team->score += 1;
+                    $team->draw += 1;
+                    $team->match += 1;
+                }
+                else {
+                    $team->lose += 1;
+                    $team->match += 1;
+
                 }
 
                 $team->goals += $pp->team1_goals;
+                $team->goalsoponent += $pp->team2_goals;
+
             }
 
             foreach ($p1 as $pp) {
                 if ($pp->team1_goals < $pp->team2_goals) {
                     $team->score += 3;
+                    $team->win += 1;
+                    $team->match += 1;
                 }
                 elseif ($pp->team1_goals == $pp->team2_goals) {
                     $team->score += 1;
+                    $team->draw += 1;
+                    $team->match += 1;
+                }
+                else {
+                    $team->lose += 1;
+                    $team->match += 1;
+
                 }
 
                 $team->goals += $pp->team2_goals;
+                $team->goalsoponent += $pp->team1_goals;
             }
 
-            $collection = collect([
-                ['team' => 'score'],
-            ]);
-            $sorted = $collection->sortBy('score');
-
-            $sorted->values()->all();
 
         }
 
+        $teams = $teams->toArray();
+        usort($teams, function ($a, $b) {
+            return strcmp($b->score, $a->score);
+        }
+
+        );
 
         $data = [
             'teams' => $teams,
@@ -323,14 +384,14 @@ class PlayerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('goals','desc ')
             ->get();
@@ -348,14 +409,14 @@ class PlayerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.asists) as asists'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.asists) as asists'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('asists','desc ')
             ->get();
@@ -373,14 +434,14 @@ class PlayerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('yellowCard','desc ')
             ->get();
@@ -397,14 +458,14 @@ class PlayerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.redCard) as redCard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.redCard) as redCard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('redCard','desc ')
             ->get();
@@ -421,14 +482,14 @@ class PlayerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.min) as min'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.min) as min'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('min','desc ')
             ->get();

@@ -16,16 +16,27 @@
                             <thead>
                             <tr>
                                 <th>Tim</th>
-                                <th>Skore</th>
-                                <th>Goly</th>
+                                <th>Zápasy</th>
+                                <th>Strelené Góly</th>
+                                <th>Obdržané Góly</th>
+                                <th>Výhra</th>
+                                <th>Remíza</th>
+                                <th>Prehra</th>
+                                <th>Body</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($teams as $key => $data)
                                 <tr>
                                     <th>{{$data->name}}</th>
-                                    <th>{{$data->score}}</th>
+                                    <th>{{$data->match}}</th>
                                     <th>{{$data->goals}}</th>
+                                    <th>{{$data->goalsoponent}}</th>
+                                    <th>{{$data->win}}</th>
+                                    <th>{{$data->draw}}</th>
+                                    <th>{{$data->lose}}</th>
+                                    <th>{{$data->score}}</th>
+
                                 </tr>
                             @endforeach
                             </tbody>

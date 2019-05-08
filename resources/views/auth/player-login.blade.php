@@ -41,7 +41,7 @@
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
-                        <label for="check"><span class="icon"></span> Keep me signed in</label>
+                        <label for="check"><span class="icon"></span> Zostať prilasený</label>
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="Prihlasit sa">

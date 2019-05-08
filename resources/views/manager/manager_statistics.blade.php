@@ -17,17 +17,15 @@
                                     <th>Vek</th>
                                     <th>Pozicia</th>
                                     <th>Goly</th>
-                                    <th>rcard</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($statistics as $statistic)
                                     <tr>
                                         <th>{{$statistic->name}}</th>
-                                        <th>{{$statistic->age}}</th>
+                                        <th>{{\Carbon\Carbon::parse($statistic->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</th>
                                         <th>{{$statistic->position}}</th>
                                         <th>{{$statistic->goals}}</th>
-                                        <th>{{$statistic->rcard}}</th>
                                     </tr>
                                 @endforeach
                                 </tbody>

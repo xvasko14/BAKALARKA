@@ -17,6 +17,8 @@
                                     <th>Hrac</th>
                                     <th>Pozicia</th>
                                     <th>Goly</th>
+                                    <th>Minúty</th>
+                                    <th>Striedal</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -25,6 +27,12 @@
                                         <th>{{$teamL->name}}</th>
                                         <th>{{$teamL->position}}</th>
                                         <th>{{$teamL->goals}}</th>
+                                        <th>{{$teamL->min}}</th>
+                                        @if($teamL->substitution == 1)
+                                            <th>Ano</th>
+                                        @endif
+
+
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -48,6 +56,8 @@
                                 <th>Hrac</th>
                                 <th>Pozicia</th>
                                 <th>Goly</th>
+                                <th>Minúty</th>
+                                <th>Striedal</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,7 +66,12 @@
                                     <th>{{$teamR->name}}</th>
                                     <th>{{$teamR->position}}</th>
                                     <th>{{$teamR->goals}}</th>
+                                    <th>{{$teamR->min}}</th>
+                                    @if($teamR->substitution == 1)
+                                        <th>Ano</th>
+                                    @endif
                                 </tr>
+
                             @endforeach
                             </tbody>
                         </table>
@@ -79,6 +94,9 @@
                                     <th>Hrac</th>
                                     <th>Pozicia</th>
                                     <th>Goly</th>
+                                    <th>Minúty</th>
+                                    <th>Striedal</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -87,6 +105,10 @@
                                         <th>{{$teamLe->name}}</th>
                                         <th>{{$teamLe->position}}</th>
                                         <th>{{$teamLe->goals}}</th>
+                                        <th>{{$teamLe->min}}</th>
+                                        @if($teamLe->substitution == 1)
+                                            <th>Ano</th>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -109,6 +131,8 @@
                                     <th>Hrac</th>
                                     <th>Pozicia</th>
                                     <th>Goly</th>
+                                    <th>Minúty</th>
+                                    <th>Striedal</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -117,6 +141,10 @@
                                         <th>{{$teamRe->name}}</th>
                                         <th>{{$teamRe->position}}</th>
                                         <th>{{$teamRe->goals}}</th>
+                                        <th>{{$teamRe->min}}</th>
+                                        @if($teamRe->substitution == 1)
+                                            <th>Ano</th>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -12,7 +12,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moj klub <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <a href="/manager_home/manager_club">Moj klub</a>
+                            <a class="dropdown-item" href="/manager_home/manager_club_Info">Moj klub</a>
                             <a class="dropdown-item" href="/manager_home/manager_injuryguide">Zranenia</a>
                             <a class="dropdown-item" href="/manager_home/manager_fineguide">Pokuty</a>
                         </ul>

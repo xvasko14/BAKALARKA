@@ -20,7 +20,18 @@
                     <label for="email">Pocet Timov</label>
                     <input type="text" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Pocet timov" value="{{$league->teams_number}}">
                 </div>
-                @if (session('status'))
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <label for="sezona">Sezona</label>
+                    <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
+                    <select name="season">
+                        @foreach ($sezona as $sezon)
+                            <option value="{{$sezon->id }}">{{$sezon->season }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+            @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
                     </div>

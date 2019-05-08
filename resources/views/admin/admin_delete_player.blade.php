@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Vek</label>
-                    <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$players->age}}">
+                    <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$players->date_of_birth}}">
                 </div>
                 <div class="form-group">
                     <label for="position">Pozicia</label>

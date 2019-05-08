@@ -62,7 +62,11 @@ class AdminController extends Controller
     public function insertPlayer(Request $request)
     {
         if ($request->input('name') == NULL || $request->input('email') == NULL ||
-            $request->input('password') == NULL || $request->input('password2') == NULL || $request->input('age') == NULL || $request->input('position') == NULL || $request->input('club') == NULL) {
+            $request->input('password') == NULL || $request->input('password2') == NULL ||
+            $request->input('age') == NULL || $request->input('height') == NULL ||
+            $request->input('weight') == NULL ||
+            $request->input('position') == NULL || $request->input('player_number') == NULL ||
+            $request->input('club') == NULL) {
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
         $players = DB::table('players')->where('email', $request->input('email'))->first();
@@ -72,16 +76,17 @@ class AdminController extends Controller
         if (strcmp($request->input('password'), $request->input('password2'))) {
             return redirect()->back()->with('status', 'Heslá sa nezhodujú');
         }
-        if ((!is_numeric($request->input('age')))) {
-            return redirect()->back()->with('status', 'pozicia je  položka typu string');
-        }
+
 
         $data = array(
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => \Hash::make($request->input('password')),
-            'age' => $request->input('age'),
+            'date_of_birth' => $request->input('age'),
             'position' => $request->input('position'),
+            'height' => $request->input('height'),
+            'weight' => $request->input('weight'),
+            'player_number' => $request->input('player_number')
             //'club' => $request->input('club'),
 
         );
@@ -105,15 +110,23 @@ class AdminController extends Controller
     public function updatePlayer(Request $request, $id)
     {
         if ($request->input('name') == NULL || $request->input('email') == NULL ||
-            $request->input('age') == NULL || $request->input('position') == NULL || $request->input('club') == NULL) {
+            $request->input('height') == NULL ||
+            $request->input('weight') == NULL ||
+            $request->input('age') == NULL ||
+            $request->input('position') == NULL ||
+            $request->input('player_number') == NULL ||
+            $request->input('club') == NULL) {
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
 
 
         $players = DB::table('players')->where('id', $id)->update(['name' => $request->input('name')]);
         $players = DB::table('players')->where('id', $id)->update(['email' => $request->input('email')]);
-        $players = DB::table('players')->where('id', $id)->update(['age' => $request->input('age')]);
+        $players = DB::table('players')->where('id', $id)->update(['date_of_birth' => $request->input('age')]);
         $players = DB::table('players')->where('id', $id)->update(['position' => $request->input('position')]);
+        $players = DB::table('players')->where('id', $id)->update(['weight' => $request->input('weight')]);
+        $players = DB::table('players')->where('id', $id)->update(['height' => $request->input('height')]);
+        $players = DB::table('players')->where('id', $id)->update(['player_number' => $request->input('player_number')]);
 
 
         //$playerId = DB::table('players')->update($players);
@@ -219,15 +232,13 @@ class AdminController extends Controller
         if (strcmp($request->input('password'), $request->input('password2'))) {
             return redirect()->back()->with('status', 'Heslá sa nezhodujú');
         }
-        if ((!is_numeric($request->input('age')))) {
-            return redirect()->back()->with('status', 'pozicia je  položka typu string');
-        }
+
 
         $data = array(
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => \Hash::make($request->input('password')),
-            'age' => $request->input('age'),
+            'date_of_birth' => $request->input('age'),
             //'club' => $request->input('club'),   
 
         );
@@ -261,7 +272,7 @@ class AdminController extends Controller
         $managers = DB::table('managers')->where('id', $id)->update(['name' => $request->input('name')]);
 
         $managers = DB::table('managers')->where('id', $id)->update(['email' => $request->input('email')]);
-        $managers = DB::table('managers')->where('id', $id)->update(['age' => $request->input('age')]);
+        $managers = DB::table('managers')->where('id', $id)->update(['date_of_birth' => $request->input('age')]);
 
 
         // zmenaj jeho klubu
@@ -482,7 +493,12 @@ class AdminController extends Controller
     public function newLeague()
     {
         $league = DB::table('league')->get();
-        return view('admin.admin_insert_league', compact('league'));
+        $sezona = DB::table('sezona')->get();
+        $data = [
+            'league' => $league,
+            'sezona' => $sezona,
+        ];
+        return view('admin.admin_insert_league',$data );
     }
 
 
@@ -496,6 +512,7 @@ class AdminController extends Controller
         $data = array(
             'name' => $request->input('name'),
             'teams_number' => $request->input('teams_number'),
+            'season'=> $request->input('season'),
         );
 
         // tu moze byt problem kedze ta premena data  sa moze odkazovat na to ze tam dame data z predosleho
@@ -509,13 +526,36 @@ class AdminController extends Controller
     public function editLeague($id)
     {
         $league = DB::table('league')->where('id', $id)->first();
+        $sezona = DB::table('sezona')->get();
 
 
         $data = ['league' => $league,
+            'sezona' => $sezona,
         ];
         return view('admin.admin_update_league', $data);
 
         //return view('admin.admin_update_team', compact('teams'));
+    }
+
+    public function updateLeague(Request $request, $id)
+    {
+
+
+        if ($request->input('name') == NULL || $request->input('teams_number') == NULL) {
+            return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
+        }
+
+
+        $league = DB::table('teams')->where('id', $id)->update(['name' => $request->input('name')]);
+        $league = DB::table('teams')->where('id', $id)->update(['teams_number' => $request->input('teams_number')]);
+        $league = DB::table('teams')->where('id', $id)->update(['season' => $request->input('season')]);
+
+
+
+
+        return redirect()->intended('admin/admin_list_league');
+
+
     }
     public function leagueList()
     {
@@ -535,9 +575,12 @@ class AdminController extends Controller
 
     public function tryDeleteLeague($id){
         $league = DB::table('league')->where('id', $id)->first();
+        $sezona = DB::table('sezona')->get();
 
 
         $data = ['league' => $league,
+            'sezona' => $sezona,
+
         ];
 
         return view('admin.admin_delete_league', $data);
@@ -546,7 +589,9 @@ class AdminController extends Controller
 
     public function deleteLeague($id){
         DB::table('league')->where('id',$id)->delete();
+        DB::table('teams_in_league')->where('league_id',$id)->delete();
         return redirect()->intended('admin/admin_list_league');
+
     }
 
     /// Game //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -568,9 +613,12 @@ class AdminController extends Controller
     public function insertGame(Request $request)
     {///toto v funkcii Request $request
         $game = DB::table('game');
-        /*if ($request->input('') == NULL) {
+
+        if ($request->input('Date') == NULL || $request->input('time') == NULL ||
+            $request->input('Round') == NULL || $request->input('club1') == NULL || $request->input('club2') == NULL || $request->input('result1') == NULL || $request->input('result2') == NULL) {
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
-        }*/
+        }
+
 
         $datetime = $request->input('Date') . ' ' . $request->input('time');
         $data = array(
@@ -877,6 +925,12 @@ class AdminController extends Controller
     public function insertFine(Request $request)
     {
 
+        if ($request->input('player') == NULL ||
+            $request->input('reason') == NULL ||
+            $request->input('sum') == NULL ) {
+            return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
+        }
+
 
         $fine = DB::table('fine');
 
@@ -984,6 +1038,11 @@ class AdminController extends Controller
     public function insertInjury(Request $request)
     {
 
+        if ($request->input('player') == NULL ||
+            $request->input('type_injury') == NULL ||
+            $request->input('approximately_time') == NULL ) {
+            return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
+        }
 
         $injury = DB::table('injuries');
 

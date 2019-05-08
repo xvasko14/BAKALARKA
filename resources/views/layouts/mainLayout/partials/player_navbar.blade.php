@@ -8,7 +8,9 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li ><a href="/player_home">Domov</a></li>
-                    <li><a href="/player_home/player_club">Môj klub</a></li>
+                    @foreach($players as $key => $data)
+                    <li><a  href="{{route('player_club_InfoPlayer.main', $data->id)}}">Hráč</a></li>
+                    @endforeach
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabuľka štatistík<span class="caret"></span></a>
                         <ul class="dropdown-menu">

@@ -36,7 +36,7 @@
             <button type="submit" class="btn btn-primary">Odoslať</button>
             </div>
         </form>
-    </div><!-- /.col-lg-4 -->
+    </div>
     </div>
 
     </div>

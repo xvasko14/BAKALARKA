@@ -11,6 +11,7 @@
                             <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                 <thead>
                                 <tr>
+                                    <th>Editácia súpisky </th>
                                     <th>Zapas ID </th>
                                     <th>Kolo </th>
                                     <th>Datum </th>
@@ -24,6 +25,7 @@
                                 @foreach($game as $key => $data)
                                     <tr>
                                         <th> <a  href="{{route('manager.TeamsGame', $data->id)}}">{{ $data->id}}</a> </th>
+                                        <th> <a  href="{{route('manager.TeamsGame.formation', $data->id)}}">{{ $data->id}}</a> </th>
                                         <th>{{$data->Round}}</th>
                                         <th>{{$data->Date}}</th>
                                         <th>{{$data->teamName1}}</th>

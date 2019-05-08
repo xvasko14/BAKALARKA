@@ -45,7 +45,7 @@
                     <label for="check"><span class="icon"></span> Zostať prilasený</label>
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Sign In">
+                    <input type="submit" class="button" value="Prihlasiť sa">
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">

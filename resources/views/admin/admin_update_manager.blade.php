@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
               <label for="email">Vek</label>
-                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$managers->age}}">
+                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$managers->date_of_birth}}">
             </div>
             <div class="form-group">
               <label for="email">Klub</label>

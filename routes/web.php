@@ -23,7 +23,6 @@ Route::get('/gallery','PagesController@Gallery');
 //statistiky hracov v lige
 Route::get('/statisticsOverview','LeagueController@StatisticsOverview')->name('statisticsOverview.main');
 Route::prefix('statisticsOverview')->group(function() {
-
 Route::get('statistics_goal','LeagueController@statistics_goal')->name('statistics_goal.main');
 Route::get('statistics_asists','LeagueController@statistics_asists')->name('statistics_asists.main');
 Route::get('statistics_yellowC','LeagueController@statistics_yellowC')->name('statistics_yellowC.main');
@@ -31,6 +30,14 @@ Route::get('statistics_redC','LeagueController@statistics_redC')->name('statisti
 Route::get('statistics_min','LeagueController@statistics_min')->name('statistics_min.main');
 });
 
+//mojklub, zursene zatial aby nebolo preskokova obrazovka
+//Route::get('/club','PagesController@myclub')->name('club.main');
+Route::get('/club_Info','PagesController@myclubInfo')->name('club_Info.main');
+Route::get('/club_Info{id}/club_info_player.blade.php','PagesController@myclubInfoPlayer')->name('club_InfoPlayer.main');
+
+// Zapasy
+Route::get('/mygames','PagesController@Games')->name('games.main');
+Route::get('/mygames/mygames_lineup/{id}','PagesController@GamesLineup')->name('TeamsGame');
 
 Route::get('/leagueOverview','LeagueController@LeagueOverview')->name('leagueOverview.main');
 Route::prefix('leagueOverview')->group(function() {
@@ -110,7 +117,7 @@ Route::prefix('admin')->group(function() {
     //Route::post('/admin_insert_PlayerInGame','AdminController@insertPlayerInGame')->name('admin.PlayerInGame.insertGame');
     //training
     Route::get('/admin_insert_training', 'AdminController@newTraining')->name('admin.training.insert');
-    Route::post('/admin_insert_training', 'AdminController_a@insertTraining')->name('admin.training.insertTraining');
+    Route::post('/admin_insert_training', 'AdminController@insertTraining')->name('admin.training.insertTraining');
 
     Route::get('/admin_list_training', 'AdminController@trainingList')->name('admin.training.list');
 
@@ -165,9 +172,10 @@ Route::prefix('player_home')->group(function() {
     Route::get('/player_leagueOverview/league/{id}','PlayerController@main')->name('player_league.main');
 
     //mojklub
-    Route::get('/player_club','PlayerController@myclub')->name('player_club.main');
-    Route::get('/player_club/player_club_Info/{id}','PlayerController@myclubInfo')->name('player_club_Info.main');
-    Route::get('/player_club/player_club_Info/{id}/player_club_info_player.blade.php','PlayerController@myclubInfoPlayer')->name('player_club_InfoPlayer.main');
+    //Route::get('/player_club','PlayerController@myclub')->name('player_club.main');
+   //Route::get('/player_club/player_club_Info/{id}','PlayerController@myclubInfo')->name('player_club_Info.main');
+   // Route::get('/player_club_Info','PlayerController@myclubInfo')->name('player_club_Info.main');
+    Route::get('/player_club_info_player{id}','PlayerController@myclubInfoPlayer')->name('player_club_InfoPlayer.main');
 
 //trening
     Route::get('/player_training','PlayerController@myTraining')->name('player_training.main');
@@ -218,9 +226,9 @@ Route::prefix('manager_home')->group(function() {
     Route::get('/manager_leagueOverview/league/{id}','ManagerController@main')->name('manager_league.main');
 
     //club
-    Route::get('/manager_club','ManagerController@myclub')->name('manager_club.main');
-    Route::get('/manager_club/manager_club_Info/{id}','ManagerController@myclubInfo')->name('manager_club_Info.main');
-    Route::get('/manager_club/manager_club_Info/{id}/manager_club_info_player.blade.php','ManagerController@myclubInfoPlayer')->name('manager_club_InfoPlayer.main');
+    //Route::get('/manager_club','ManagerController@myclub')->name('manager_club.main');
+    Route::get('/manager_club_Info','ManagerController@myclubInfo')->name('manager_club_Info.main');
+    Route::get('/manager_club_Info{id}/manager_club_info_player.blade.php','ManagerController@myclubInfoPlayer')->name('manager_club_InfoPlayer.main');
 
 
     //training
@@ -234,8 +242,11 @@ Route::prefix('manager_home')->group(function() {
 
     //zobrazenie zapasov
     Route::get('/manager_mygames','ManagerController@Games')->name('manager_games.main');
-    Route::get('/manager_mygames/manager_mygames_lineup/{id}','ManagerController@GamesLineup')->name('manager.TeamsGame');
+    Route::get('/manager_mygames/manager_mygames_lineup/{id}','ManagerController@GamesLineup')->name('manager.TeamsGame.formation');
 
+    Route::get('/manager_insert_PlayerInGame_match/manager_insert_PlayerInGame_match_teams/{id}','ManagerController@TeamsGameManager')->name('manager.TeamsGame');
+    Route::get('/manager_insert_PlayerInGame_match/manager_insert_PlayerInGame_match_teams/manager_insert_PlayerInGame/{team},{id}','ManagerController@newPlayerInGame')->name('manager.newPlayerInGame');
+    Route::post('/manager_insert_PlayerInGame_match/manager_insert_PlayerInGame_match_teams/manager_insert_PlayerInGame/{id}','ManagerController@insertPlayerInGame')->name('manager.PlayerInGame.insertGame');
     //zranenie
     Route::get('/manager_injuryguide','ManagerController@InjuryGuide')->name('manager_injuryguide.main');
     Route::get('/manager_injury','ManagerController@Injury')->name('manager_injury.main');

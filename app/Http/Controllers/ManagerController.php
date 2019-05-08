@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use Auth;
 use App\Sezona;
+use Carbon\Carbon;
 
 use App\Admin;
 use App\Player;
@@ -40,6 +41,8 @@ class ManagerController extends Controller
     }
 
     // aky ma klub dany hrac
+    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public function myClub()
     {
 
@@ -50,8 +53,8 @@ class ManagerController extends Controller
 
         $teams = DB::table('teams')
             ->select('teams.*')
-            ->join('teamplayers', 'teams.id', '=', 'teamplayers.team_id')
-            ->where('teamplayers.player_id', '=', $user)
+            ->join('teammanagers', 'teams.id', '=', 'teammanagers.team_id')
+            ->where('teammanagers.manager_id', '=', $user)
             ->get();
 
         // $teams = DB::table('teamplayers')->where('id', $id)->first();
@@ -67,18 +70,23 @@ class ManagerController extends Controller
         //var_dump($teams); exit;
         return view('manager.manager_club', $data);
     }
+    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     //aky hraci su v klube atd
-    public function myClubInfo($id)
+    public function myClubInfo()
     {
 
 
+        $user = Auth::user()->id;
 
         $players = DB::table('players')
-            ->select('players.id','players.name','age','position')
+            ->select('players.id','players.name', 'date_of_birth','position')
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
             ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
-            ->where('teams.id', '=', $id)
+            ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+            ->where('teammanagers.manager_id', '=', $user)
+            //->where('teams.id', '=', $id)
             ->orderBy('name','desc ')
             ->get();
 
@@ -97,10 +105,11 @@ class ManagerController extends Controller
 
 
         $players = DB::table('players')
-            ->select('players.name','age','position','email')
+            ->select('players.name','date_of_birth','position','email', 'weight','height','date_of_birth','player_number')
             ->where('players.id', '=', $id)
             ->get();
 
+        //$years = \Carbon::parse($dateOfBirth)->age;
         //var_dump($players); exit;
         $data = [
             'players' => $players,
@@ -144,6 +153,12 @@ class ManagerController extends Controller
         foreach ($teams as $team) {
             $team->score = 0;
             $team->goals = 0;
+            $team->goalsoponent = 0;
+            $team->win = 0;
+            $team->draw = 0;
+            $team->lose = 0;
+            $team->match = 0;
+
 
             //TODO
             // zatial nastavena sezona natvrdo
@@ -162,23 +177,45 @@ class ManagerController extends Controller
             foreach ($p as $pp) {
                 if ($pp->team1_goals > $pp->team2_goals) {
                     $team->score += 3;
+                    $team->win += 1;
+                    $team->match += 1;
+
                 }
                 elseif ($pp->team1_goals == $pp->team2_goals) {
                     $team->score += 1;
+                    $team->draw += 1;
+                    $team->match += 1;
+                }
+                else {
+                    $team->lose += 1;
+                    $team->match += 1;
+
                 }
 
                 $team->goals += $pp->team1_goals;
+                $team->goalsoponent += $pp->team2_goals;
+
             }
 
             foreach ($p1 as $pp) {
                 if ($pp->team1_goals < $pp->team2_goals) {
                     $team->score += 3;
+                    $team->win += 1;
+                    $team->match += 1;
                 }
                 elseif ($pp->team1_goals == $pp->team2_goals) {
                     $team->score += 1;
+                    $team->draw += 1;
+                    $team->match += 1;
+                }
+                else {
+                    $team->lose += 1;
+                    $team->match += 1;
+
                 }
 
                 $team->goals += $pp->team2_goals;
+                $team->goalsoponent += $pp->team1_goals;
             }
             //var_dump($team->score );exit;
            /* $arr= array ($team->score);
@@ -195,7 +232,12 @@ class ManagerController extends Controller
 
         $teams = $teams->toArray();
         usort($teams, function ($a, $b) {
-            return strcmp($b->score, $a->score);
+            $comparison = strcmp($b->score, $a->score);
+            // ak vrati 0, teda rozdiel je nulovy a body rovnake tak porovname podla golov
+            if ($comparison == 0) {
+                return strcmp($b->goals, $a->goals);
+            }
+            return $comparison;
         }
 
         );
@@ -217,7 +259,17 @@ class ManagerController extends Controller
 
     public function newTraining()
     {
-        $teams = DB::table('teams')->get();
+
+        $user = Auth::user()->id;
+        //var_dump($user); exit;
+
+
+
+        $teams = DB::table('teams')
+            ->select('teams.*')
+            ->join('teammanagers', 'teammanagers.team_id', '=', 'teams.id')
+            ->where('teammanagers.manager_id', '=', $user)
+            ->get();
         $data = [
             'teams' => $teams,
         ];
@@ -297,7 +349,7 @@ class ManagerController extends Controller
 
 
         $players = DB::table('players')
-            ->select('players.name','age','position')
+            ->select('players.name','date_of_birth','position')
             ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
             ->join('training', 'training.id', '=', 'teams_training.training_id')
             ->where('training.id', '=', $id)
@@ -387,11 +439,96 @@ class ManagerController extends Controller
 
         ];
 
-//var_dump($data); exit;
-
 
         return view('manager.manager_mygames_lineup', $data);
     }
+    // nacitanie klubov toho zapasu
+    public function TeamsGameManager($id)
+    {
+
+        $games = DB::table('game')
+            ->select('*')
+            ->where('game.id', '=', $id)
+            ->get();
+
+        foreach ($games as $game) {
+            $game->teamName1 = DB::table('teams')->select('*')->where('id', '=', $game->team1)->first()->name;
+            $game->teamName2 = DB::table('teams')->select('*')->where('id', '=', $game->team2)->first()->name;
+        }
+
+        $data = [
+            'game' => $games,
+        ];
+
+        //var_dump($data); exit;
+
+        return view('manager.manager_insert_PlayerInGame_match_teams', $data);
+    }
+
+    // nacitanie tej tabulky
+    public function newPlayerInGame($team, $id)
+    {
+        //var_dump($team); exit;
+        $players = DB::table('players')
+            ->select('players.*')
+            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+            ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+            ->where('teams.id', '=', $team)
+            ->get();
+
+        $game = DB::table('game')
+            ->select('game.*')
+            ->where('game.id', '=', $id)
+            ->first();
+
+        $data = [
+            'players' => $players,
+            'game' => $game,
+        ];
+        //var_dump($data); exit;
+
+        return view('manager.manager_insert_PlayerInGame', $data);
+
+    }
+
+    public function insertPlayerInGame(Request $request, $id)
+    {
+
+        //var_dump($id); exit;
+        $playersInGame = DB::table('PlayerInGame');
+
+        /*$data = array(
+            'playerGameID' => $request->input('player'),
+            //'gameID' => $id,
+            'goals' => $request->input('goals'),
+            'yellowCard' => $request->input('yellowCard'),
+            'redCard' => $request->input('redCard'),
+        );*/
+
+        $data = array(
+            array('playerGameID'=>$request->input('brankar'),'gameID'=>$id, 'goals' => $request->input('goals'), 'asists' => $request->input('asists'),'min' => $request->input('min'),'yellowCard' => $request->input('yellowCard'),'redCard' => $request->input('redCard'),'substitution' => $request->input('substitution'),'OnBench' => $request->input('OnBench')),
+            array('playerGameID'=>$request->input('obranca1'),'gameID'=>$id, 'goals' => $request->input('goals1'),'asists' => $request->input('asists1'),'min' => $request->input('min1'),'yellowCard' => $request->input('yellowCard1'),'redCard' => $request->input('redCard1'),'substitution' => $request->input('substitution1'),'OnBench' => $request->input('OnBench1')),
+            array('playerGameID'=>$request->input('obranca2'),'gameID'=>$id, 'goals' => $request->input('goals2'),'asists' => $request->input('asists2'),'min' => $request->input('min2'),'yellowCard' => $request->input('yellowCard2'),'redCard' => $request->input('redCard2'),'substitution' => $request->input('substitution2'),'OnBench' => $request->input('OnBench2')),
+            array('playerGameID'=>$request->input('obranca3'),'gameID'=>$id, 'goals' => $request->input('goals3'),'asists' => $request->input('asists3'),'min' => $request->input('min3'),'yellowCard' => $request->input('yellowCard3'),'redCard' => $request->input('redCard3'),'substitution' => $request->input('substitution3'),'OnBench' => $request->input('OnBench3')),
+            array('playerGameID'=>$request->input('obranca4'),'gameID'=>$id, 'goals' => $request->input('goals4'),'asists' => $request->input('asists4'),'min' => $request->input('min4'),'yellowCard' => $request->input('yellowCard4'),'redCard' => $request->input('redCard4'),'substitution' => $request->input('substitution4'),'OnBench' => $request->input('OnBench4')),
+            array('playerGameID'=>$request->input('zaloznik1'),'gameID'=>$id, 'goals' => $request->input('goals5'),'asists' => $request->input('asists5'),'min' => $request->input('min5'),'yellowCard' => $request->input('yellowCard5'),'redCard' => $request->input('redCard5'),'substitution' => $request->input('substitution5'),'OnBench' => $request->input('OnBench5')),
+            array('playerGameID'=>$request->input('zaloznik2'),'gameID'=>$id, 'goals' => $request->input('goals6'),'asists' => $request->input('asists6'),'min' => $request->input('min6'),'yellowCard' => $request->input('yellowCard6'),'redCard' => $request->input('redCard6'),'substitution' => $request->input('substitution6'),'OnBench' => $request->input('OnBench6')),
+            array('playerGameID'=>$request->input('zaloznik3'),'gameID'=>$id, 'goals' => $request->input('goals7'),'asists' => $request->input('asists7'),'min' => $request->input('min7'),'yellowCard' => $request->input('yellowCard7'),'redCard' => $request->input('redCard7'),'substitution' => $request->input('substitution7'),'OnBench' => $request->input('OnBench7')),
+            array('playerGameID'=>$request->input('utocnik1'),'gameID'=>$id, 'goals' => $request->input('goals8'),'asists' => $request->input('asists8'),'min' => $request->input('min8'),'yellowCard' => $request->input('yellowCard8'),'redCard' => $request->input('redCard8'),'substitution' => $request->input('substitution8'),'OnBench' => $request->input('OnBench8')),
+            array('playerGameID'=>$request->input('utocnik2'),'gameID'=>$id, 'goals' => $request->input('goals9'),'asists' => $request->input('asists9'),'min' => $request->input('min9'),'yellowCard' => $request->input('yellowCard9'),'redCard' => $request->input('redCard9'),'substitution' => $request->input('substitution9'),'OnBench' => $request->input('OnBench9')),
+            array('playerGameID'=>$request->input('utocnik3'),'gameID'=>$id, 'goals' => $request->input('goals10'),'asists' => $request->input('asists10'),'min' => $request->input('min10'),'yellowCard' => $request->input('yellowCard10'),'redCard' => $request->input('redCard10'),'substitution' => $request->input('substitution10'),'OnBench' => $request->input('OnBench10')),
+            array('playerGameID'=>$request->input('nahradnik1'),'gameID'=>$id, 'goals' => $request->input('goals11'),'asists' => $request->input('asists11'),'min' => $request->input('min11'),'yellowCard' => $request->input('yellowCard11'),'redCard' => $request->input('redCard11'),'substitution' => $request->input('substitution11'),'OnBench' => $request->input('OnBench11')),
+            array('playerGameID'=>$request->input('nahradnik2'),'gameID'=>$id, 'goals' => $request->input('goals12'),'asists' => $request->input('asists12'),'min' => $request->input('min12'),'yellowCard' => $request->input('yellowCard12'),'redCard' => $request->input('redCard12'),'substitution' => $request->input('substitution12'),'OnBench' => $request->input('OnBench12')),
+            array('playerGameID'=>$request->input('nahradnik3'),'gameID'=>$id, 'goals' => $request->input('goals13'),'asists' => $request->input('asists13'),'min' => $request->input('min13'),'yellowCard' => $request->input('yellowCard13'),'redCard' => $request->input('redCard13'),'substitution' => $request->input('substitution13'),'OnBench' => $request->input('OnBench13')),
+            array('playerGameID'=>$request->input('nahradnik4'),'gameID'=>$id, 'goals' => $request->input('goals14'),'asists' => $request->input('asists14'),'min' => $request->input('min14'),'yellowCard' => $request->input('yellowCard14'),'redCard' => $request->input('redCard14'),'substitution' => $request->input('substitution14'),'OnBench' => $request->input('OnBench14')),
+            array('playerGameID'=>$request->input('nahradnik5'),'gameID'=>$id, 'goals' => $request->input('goals15'),'asists' => $request->input('asists15'),'min' => $request->input('min15'),'yellowCard' => $request->input('yellowCard15'),'redCard' => $request->input('redCard15'),'substitution' => $request->input('substitution15'),'OnBench' => $request->input('OnBench15')),
+        );
+        //var_dump($data); exit;
+        $playersInGame->insert($data);
+
+        return redirect()->intended('admin');
+    }
+
     // ZRANENIA
     public function InjuryGuide()
     {
@@ -569,17 +706,16 @@ class ManagerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.goals) as goals'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
            // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('goals','desc ')
-            ->orderBy('rcard','desc ')
             ->get();
 
 
@@ -595,14 +731,14 @@ class ManagerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.asists) as asists'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.asists) as asists'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('asists','desc ')
             ->get();
@@ -620,14 +756,14 @@ class ManagerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('yellowCard','desc ')
             ->get();
@@ -644,14 +780,14 @@ class ManagerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.redCard) as redCard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.redCard) as redCard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('redCard','desc ')
             ->get();
@@ -668,14 +804,14 @@ class ManagerController extends Controller
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.min) as min'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.min) as min'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('min','desc ')
             ->get();

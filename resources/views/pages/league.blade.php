@@ -8,7 +8,7 @@
 
 
      <div class="panel panel-default">
-      <h1 align="center">Ligova tabulka</h1>
+      <h1 class="NadpisTabulky" align="center">Ligova tabulka</h1>
 
       <div class="panel-heading">
        <div class="">
@@ -17,16 +17,17 @@
          <thead>
          <tr>
           <th>Tim</th>
-          <th>Skore</th>
           <th>Goly</th>
+          <th>Body</th>
          </tr>
          </thead>
          <tbody>
          @foreach($teams as $key => $data)
           <tr>
            <th>{{$data->name}}</th>
-           <th>{{$data->score}}</th>
            <th>{{$data->goals}}</th>
+           <th>{{$data->score}}</th>
+
           </tr>
          @endforeach
          </tbody>

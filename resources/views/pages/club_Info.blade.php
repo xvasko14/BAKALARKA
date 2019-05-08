@@ -1,7 +1,6 @@
-@extends('layouts.mainLayout.player_layout')
+@extends('layouts.mainLayout.main_layout')
 
 @section('content')
-
     <div class="container" style="max-width:90%;">
         <div class="row">
 
@@ -22,7 +21,7 @@
                         <tbody>
                         @foreach($players as $key => $data)
                             <tr>
-                                <th> <a  href="{{route('player_club_InfoPlayer.main', $data->id)}}">{{ $data->name}}</a></th>
+                                <th> <a  href="{{route('club_InfoPlayer.main', $data->id)}}">{{ $data->name}}</a></th>
                                 <th>{{\Carbon\Carbon::parse($data->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</th>
                                 <th>{{$data->position}}</th>
                             </tr>

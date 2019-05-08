@@ -11,6 +11,12 @@
 
     <div class="container" style="max-width:80%; margin-top: 40px;">
         <form action="{{ route('admin.team.insertTeam') }}" method="post">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+                <br>
+            @endif
             <div class="form-group">
                 {{ csrf_field()}}
                 <label for="meno">Tim</label>
@@ -25,12 +31,7 @@
                     @endforeach
                 </select>
             </div>
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    <br>
-                @endif
+
             <button type="submit" class="btn btn-primary">Odoslať</button>
         </form>
 

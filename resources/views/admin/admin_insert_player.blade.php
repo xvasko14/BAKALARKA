@@ -11,6 +11,12 @@
 
     <div class="container" style="max-width:80%; margin-top: 40px;">
         <form action="{{ route('admin.player.insertPlayer') }}" method="post">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+                <br>
+            @endif
             <div class="form-group">
                 {{ csrf_field()}}
                 <label for="meno">Meno</label>
@@ -22,8 +28,20 @@
             </div>
             <div class="form-group">
               <label for="email">Vek</label>
-                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek">
+                <input type="date" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek">
             </div>
+                <div class="form-group">
+                    <label for="weight">Váha</label>
+                    <input type="text" class="form-control" name="weight" aria-describedby="weight" placeholder="Váha">
+                </div>
+                <div class="form-group">
+                    <label for="height">Výška</label>
+                    <input type="text" class="form-control" name="height" aria-describedby="height" placeholder="Výška">
+                </div>
+                <div class="form-group">
+                    <label for="player_number">Cislo dresu</label>
+                    <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Cislo dresu">
+                </div>
             <div class="form-group">
               <label for="email">Pozicia</label>
                 <input type="text" class="form-control" name="position" aria-describedby="position" placeholder="Enter Pozicia">
@@ -39,19 +57,14 @@
             </div>
             <div class="form-group">
                 <label for="password">Heslo</label>
-                <input type="password" class="form-control" name="password" placeholder="Heslo">
+                <input type="password" class="form-control" name="password"  pattern=".{7,}" title="7 a viac znakov" placeholder="Heslo">
             </div>
 
             <div class="form-group">
                 <label for="password">Potvrdenie hesla</label>
                 <input type="password" class="form-control" name="password2" placeholder="Heslo">
             </div>
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    <br>
-                @endif
+
             <button type="submit" class="btn btn-primary">Odoslať</button>
         </form>
 

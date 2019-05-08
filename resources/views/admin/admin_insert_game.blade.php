@@ -11,6 +11,12 @@
 
         <div class="container" style="max-width:80%; margin-top: 40px;">
             <form action="{{ route('admin.game.insertGame') }}" method="post">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                    <br>
+                @endif
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="sezona">Sezona</label>
@@ -66,12 +72,7 @@
                     <input type="text" class="form-control" name="result2" placeholder="Result2">
                 </div>
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    <br>
-                @endif
+
                 <button type="submit" class="btn btn-primary">Odoslať</button>
             </form>
 

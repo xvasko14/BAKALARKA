@@ -24,7 +24,7 @@
                                 @foreach($players as $key => $data)
                                     <tr>
                                         <th>{{$data->name}}</th>
-                                        <th>{{$data->age}}</th>
+                                        <th>{{\Carbon\Carbon::parse($data->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</th>
                                         <th>{{$data->position}}</th>
                                     </tr>
                                 @endforeach

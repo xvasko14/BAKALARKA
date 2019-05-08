@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -25,6 +26,8 @@ class LeagueController extends BaseController
         $data = [
             'league' => $league,
         ];
+        $dateOfBirth = '1994-07-02';
+
 
 
         return view('pages.leagueOverview', $data);
@@ -37,6 +40,7 @@ class LeagueController extends BaseController
         // vyber ligy je natvrdo dany cislovkou asi zmenit !!!
         $teams = DB::table('teams')
             ->select('*')
+
             ->join('teams_in_league', 'teams.id', '=', 'teams_in_league.team_id')
             ->where('teams_in_league.league_id', '=', $id)
             ->get();
@@ -45,12 +49,19 @@ class LeagueController extends BaseController
             $team->score = 0;
             $team->goals = 0;
 
+            //var_dump($team); exit;
 
+            //TODO
+            // zatial nastavena sezona natvrdo
             $p = DB::table('game')->select('*')
+                ->join('sezona', 'sezona.id', '=', 'game.sezona')
+                ->where('game.sezona', '=', '1')
                 ->where('team1', '=', $team->team_id)
                 ->get();
 
             $p1 = DB::table('game')->select('*')
+                ->join('sezona', 'sezona.id', '=', 'game.sezona')
+                ->where('game.sezona', '=', '1')
                 ->where('team2', '=', $team->team_id)
                 ->get();
 
@@ -75,16 +86,25 @@ class LeagueController extends BaseController
 
                 $team->goals += $pp->team2_goals;
             }
+            //var_dump($team->score );exit;
+            /* $arr= array ($team->score);
+             sort($arr);
+             //var_dump($arr);*/
 
-            $collection = collect([
-                ['team' => 'score'],
-            ]);
-            $sorted = $collection->sortBy('score');
+            //usort($myArray, function($a, $b) {
+            //     return $a['score'] => $b['score'];
+            //});
 
-            $sorted->values()->all();
+
 
         }
 
+        $teams = $teams->toArray();
+        usort($teams, function ($a, $b) {
+            return strcmp($b->score, $a->score);
+        }
+
+        );
 
         $data = [
             'teams' => $teams,
@@ -111,14 +131,14 @@ class LeagueController extends BaseController
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('goals','desc ')
             //->orderBy('rcard','desc ')
@@ -137,14 +157,14 @@ class LeagueController extends BaseController
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.asists) as asists'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.asists) as asists'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('asists','desc ')
             ->get();
@@ -162,14 +182,14 @@ class LeagueController extends BaseController
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('yellowCard','desc ')
             ->get();
@@ -186,14 +206,14 @@ class LeagueController extends BaseController
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.redCard) as redCard'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.redCard) as redCard'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('redCard','desc ')
             ->get();
@@ -210,14 +230,14 @@ class LeagueController extends BaseController
     {
 
         $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.age, players.position, SUM(PlayerInGame.min) as min'))
+            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.min) as min'))
             ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
             ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
             ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
             // ->where('teams_in_league.league_id', '=', $id)
             ->groupBy('players.id')
             ->groupBy('players.name')
-            ->groupBy('players.age')
+            ->groupBy('players.date_of_birth')
             ->groupBy('players.position')
             ->orderBy('min','desc ')
             ->get();
