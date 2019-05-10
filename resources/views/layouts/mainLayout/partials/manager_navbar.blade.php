@@ -32,6 +32,20 @@
                     <li><a href="/manager_home/manager_mygames">{{ __('message.Matches') }}</a></li>
                     <li><a href="/manager_home/manager_trainingguide">{{ __('message.squadtraining') }}</a></li>
 
+                    <style>
+                        div.topcorner {
+                            position:absolute;
+                            top:0;
+                            right:0;
+                        }
+                    </style>
+
+                    <div class="topcorner">
+                        <a style="color: green" href="{{ url('locale/sk') }}" ><i  class="fa fa-flag"></i> SK</a>
+                        <a style="color: red" href="{{ url('locale/en') }}" ><i class="fa fa-flag"></i> EN</a>
+
+                    </div>
+
 
 
 

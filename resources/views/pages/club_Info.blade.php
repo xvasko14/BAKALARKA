@@ -7,10 +7,10 @@
             <form class="form-inline" action="{{ route('club_Info.main')}}" method="get">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <input type="text" class="form-control" name="search" placeholder="Meno hráča">
+                    <input type="text" class="form-control" name="search" placeholder="{{ __('message.Player') }}">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit">Vyhľadať</button>
+                    <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>
                 </div>
             </form>
 

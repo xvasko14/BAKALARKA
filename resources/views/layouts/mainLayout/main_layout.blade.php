@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <a href="{{ url('locale/en') }}" ><i class="fa fa-language"></i> EN</a>
 
-        <a href="{{ url('locale/sk') }}" ><i class="fa fa-language"></i> FR</a>
 
     @include('layouts.mainLayout.partials.main_head')
     </head>
@@ -58,10 +56,6 @@
 
                 </div>
 
-                <select class="selectpicker" data-width="fit">
-                    <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                    <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
-                </select>
                 <script>
                     $(function(){
                         $('.selectpicker').selectpicker();

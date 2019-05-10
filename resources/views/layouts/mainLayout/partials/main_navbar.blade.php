@@ -25,6 +25,20 @@
                 <li><a href="/mygames">{{ __('message.Matches') }}</a></li>
                 <li><a href="/player_home/login">{{ __('message.Player') }}</a></li>
                 <li><a href="/manager_home/login">{{ __('message.Manager') }}</a></li>
+
+                    <style>
+                        div.topcorner {
+                            position:absolute;
+                            top:0;
+                            right:0;
+                        }
+                    </style>
+
+                    <div class="topcorner">
+                        <a style="color: green" href="{{ url('locale/sk') }}" ><i  class="fa fa-flag"></i> SK</a>
+                    <a style="color: red" href="{{ url('locale/en') }}" ><i class="fa fa-flag"></i> EN</a>
+
+                    </div>
                 @guest
 
                 @else
@@ -52,6 +66,8 @@
                 @endguest
             </ul>
             </div>
+
+
 
 
 

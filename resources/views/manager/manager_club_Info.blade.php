@@ -8,7 +8,7 @@
             <form class="form-inline" action="{{ route('manager_club_Info.main')}}" method="get">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <input type="text" class="form-control" name="search" placeholder="Meno hráča">
+                    <input type="text" class="form-control" name="search" placeholder="{{ __('message.Player') }}">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>

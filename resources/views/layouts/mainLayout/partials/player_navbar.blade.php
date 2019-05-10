@@ -24,6 +24,20 @@
                     <li><a href="/player_home/player_mygames">{{ __('message.Matches') }}</a></li>
                     <li><a href="/player_home/player_training">{{ __('message.squadtraining') }}</a></li>
 
+                    <style>
+                        div.topcorner {
+                            position:absolute;
+                            top:0;
+                            right:0;
+                        }
+                    </style>
+
+                    <div class="topcorner">
+                        <a style="color: green" href="{{ url('locale/sk') }}" ><i  class="fa fa-flag"></i> SK</a>
+                        <a style="color: red" href="{{ url('locale/en') }}" ><i class="fa fa-flag"></i> EN</a>
+
+                    </div>
+
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
