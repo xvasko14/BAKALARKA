@@ -13,24 +13,25 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ><a href="/manager_home">Domov</a></li>
+                    <li ><a href="/manager_home">{{ __('message.Home') }}</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moj klub <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('message.Club') }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="/manager_home/manager_club_Info">Moj klub</a>
-                            <a class="dropdown-item" href="/manager_home/manager_injuryguide">Zranenia</a>
-                            <a class="dropdown-item" href="/manager_home/manager_fineguide">Pokuty</a>
+                            <a class="dropdown-item" href="/manager_home/manager_club_Info">{{ __('message.Club') }}</a>
+                            <a class="dropdown-item" href="/manager_home/manager_injuryguide">{{ __('message.injury') }}</a>
+                            <a class="dropdown-item" href="/manager_home/manager_fineguide">{{ __('message.fine') }}</a>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabuľký štatistík <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('message.StatisticTable') }}  <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="/manager_home/manager_leagueOverview">Ligová tabuľka</a>
-                            <a class="dropdown-item" href="/manager_home/manager_statisticsOverview">Štatistiky hráčov</a>
+                            <a class="dropdown-item" href="/manager_home/manager_leagueOverview">{{ __('message.LeagueTable') }}</a>
+                            <a class="dropdown-item" href="/manager_home/manager_statisticsOverview">{{ __('message.PlayerStatistics') }}</a>
                         </ul>
                     </li>
-                    <li><a href="/manager_home/manager_mygames">Naše zápasy</a></li>
-                    <li><a href="/manager_home/manager_trainingguide">Tréning</a></li>
+                    <li><a href="/manager_home/manager_mygames">{{ __('message.Matches') }}</a></li>
+                    <li><a href="/manager_home/manager_trainingguide">{{ __('message.squadtraining') }}</a></li>
+
 
 
 
@@ -68,6 +69,8 @@
                             </form>
                         </div>
                     </li>
+
+
                 @endguest
             </ul>
             </div>

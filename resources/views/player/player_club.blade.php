@@ -5,7 +5,7 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
-            <h1 class="NadpisTabulky" align="center">Moj klub</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.MyClub') }}</h1>
             <div class=" club1">
                 <img src="{{URL::asset('/images/main_images/haniska_club.jpg')}}" alt="club1">
                 @foreach($teams as $key => $data)

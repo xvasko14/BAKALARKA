@@ -20,13 +20,13 @@
     @foreach($players as $key => $data)
     <div class="BC">
         <img src="{{URL::asset('/images/main_images/hrac.jpeg')}}" alt="John" style="width:100%">
-        <h1>Meno : {{$data->name}}</h1>
+        <h1>{{ __('message.playername') }} : {{$data->name}}</h1>
         <p class="titleA">Vek : {{\Carbon\Carbon::parse($data->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</p>
-        <p>Pozicia: {{$data->position}}</p>
-        <p>Cislo dresu: {{$data->player_number}}</p>
-        <p>Vaha: {{$data->weight}}</p>
-        <p>Vyska: {{$data->height}}</p>
-        <p>Kontakt: {{$data->email}}</p>
+        <p>{{ __('message.position') }}: {{$data->position}}</p>
+        <p>{{ __('message.playernumber') }}: {{$data->player_number}}</p>
+        <p>{{ __('message.playerweight') }}: {{$data->weight}}</p>
+        <p>{{ __('message.playerheight') }}: {{$data->height}}</p>
+        <p>{{ __('message.playercontact') }}: {{$data->email}}</p>
 
    </div>
 

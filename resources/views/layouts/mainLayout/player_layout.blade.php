@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
 
+    <li><a href="{{ url('locale/en') }}" ><i class="fa fa-language"></i> EN</a></li>
+
+    <li><a href="{{ url('locale/sk') }}" ><i class="fa fa-language"></i> FR</a></li>
     @include('layouts.mainLayout.partials.main_head')
 </head>
 <body>

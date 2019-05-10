@@ -6,7 +6,7 @@
 
 
             <div class="panel panel-default">
-                <h1 align="center">Ligova tabulka</h1>
+                <h1 align="center">{{ __('message.LeagueTable') }}</h1>
 
                 <div class="panel-heading">
                     <div class="">
@@ -14,14 +14,14 @@
                         <table id="rooms-table" class="table  table-striped table-dark " border=1 width="400">
                             <thead>
                             <tr>
-                                <th>Tim</th>
-                                <th>Zapasy</th>
-                                <th>Strelene Goly</th>
-                                <th>Obrdzane Goly</th>
-                                <th>Vyhry</th>
-                                <th>Remizi</th>
-                                <th>Prehry</th>
-                                <th>Body</th>
+                                <th>{{ __('message.teamname') }}</th>
+                                <th>{{ __('message.Matches') }}</th>
+                                <th>{{ __('message.teamscored') }}</th>
+                                <th>{{ __('message.teamget') }}</th>
+                                <th>{{ __('message.teamwin') }}</th>
+                                <th>{{ __('message.teamdraw') }}</th>
+                                <th>{{ __('message.teamlose') }}</th>
+                                <th>{{ __('message.teampoints') }}</th>
                             </tr>
                             </thead>
                             <tbody>

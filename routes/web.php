@@ -19,6 +19,11 @@ Route::get('/contact', 'ContactController@create')->name('contact.create');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
 
 
+Route::get('locale/{locale}', function ($locale){
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
+
 
 // starostlivost o stranky bez prihlasenia
 Route::get('/','PagesController@index');

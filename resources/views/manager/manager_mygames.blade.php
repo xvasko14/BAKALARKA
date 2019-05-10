@@ -3,7 +3,7 @@
 @section('content')
     <div class="container" style="max-width:90%;">
         <div class="row">
-                    <h1 class="NadpisTabulky" align="center">Zapasy</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.Matches') }}</h1>
 
                     <div class="panel-heading">
                         <div class="">
@@ -11,13 +11,13 @@
                             <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                 <thead>
                                 <tr>
-                                    <th>Editácia súpisky </th>
-                                    <th>Zapas ID </th>
-                                    <th>Kolo </th>
-                                    <th>Datum </th>
+                                    <th>{{ __('message.squadeditation') }}</th>
+                                    <th>{{ __('message.matchid') }} </th>
+                                    <th>{{ __('message.matchround') }}</th>
+                                    <th>{{ __('message.matchdate') }} </th>
                                     <th>Team 1 </th>
-                                    <th>Team 1 Skore </th>
-                                    <th>Team 2 SKore </th>
+                                    <th>{{ __('message.matchteam1') }} </th>
+                                    <th>{{ __('message.matchteam2') }} </th>
                                     <th>Team 2 </th>
                                 </tr>
                                 </thead>

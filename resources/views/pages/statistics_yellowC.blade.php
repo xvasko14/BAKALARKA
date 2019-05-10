@@ -7,7 +7,7 @@
         <div class="row">
 
 
-            <h1 class="NadpisTabulky" align="center">Najviac ziskaných žltých kariet</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.mosty') }}</h1>
 
             <div  class="panel-heading">
                 <div class="">
@@ -15,10 +15,10 @@
                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                         <thead>
                         <tr>
-                            <th>Hraci</th>
-                            <th>Vek</th>
-                            <th>Pozicia</th>
-                            <th>Zlte karty</th>
+                            <th>{{ __('message.Player') }}</th>
+                            <th>{{ __('message.age') }}</th>
+                            <th>{{ __('message.position') }}</th>
+                            <th>{{ __('message.yellowC') }}</th>
                         </tr>
                         </thead>
                         <tbody>

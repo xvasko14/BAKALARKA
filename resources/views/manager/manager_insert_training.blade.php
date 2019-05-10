@@ -9,25 +9,25 @@
                     <div class="col-lg-4 col-lg-offset-4">
                         <div class="form-group">
                             {{ csrf_field()}}
-                            <label for="starts">Zaciatok treningu</label>
-                            <input type="time" class="form-control" name="time" placeholder="Zaciatok treningu">
+                            <label for="starts">{{ __('message.squadtrainingstarts') }}</label>
+                            <input type="time" class="form-control" name="time" placeholder="{{ __('message.squadtrainingstarts') }}">
                         </div>
                         <div class="form-group">
                             {{ csrf_field()}}
-                            <label for="starts">Datum</label>
-                            <input type="date" class="form-control" name="date" placeholder="Datum">
+                            <label for="starts">{{ __('message.matchdate') }}</label>
+                            <input type="date" class="form-control" name="date" placeholder="{{ __('message.matchdate') }}">
                         </div>
                         <div class="form-group">
                             {{ csrf_field()}}
-                            <label for="specialization">Datum</label>
-                            <input type="text" class="form-control" name="specialization" placeholder="Zameranie treningu">
+                            <label for="specialization">{{ __('message.squadtrainingfocu') }}</label>
+                            <input type="text" class="form-control" name="specialization" placeholder="{{ __('message.squadtrainingfocu') }}">
                         </div>
                         <div class="form-group">
-                            <label for="length">Dlzka</label>
-                            <input type="text" class="form-control" name="length"  placeholder="Cas">
+                            <label for="length">{{ __('message.squadtraininglenghts') }}</label>
+                            <input type="text" class="form-control" name="length"  placeholder="{{ __('message.squadtraininglenghts') }}">
                         </div>
                         <div class="form-group">
-                            <label for="club">Klub</label>
+                            <label for="club">{{ __('message.Club') }}</label>
                             <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                             <select name="club">
                                 @foreach ($teams as $team)
@@ -41,7 +41,7 @@
                             </div>
                             <br>
                         @endif
-                        <button type="submit" class="btn btn-primary">Odoslať</button>
+                        <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
                     </div>
                 </div>
 

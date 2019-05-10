@@ -5,36 +5,36 @@
         <div class="row">
 
 
-            <h1 class="NadpisTabulky" align="center">Najlepší strelci v lige</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.mostgoals') }}</h1>
 
-                    <div class="panel-heading">
-                        <div class="">
+            <div class="panel-heading">
+                <div class="">
 
-                            <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
-                                <thead>
-                                <tr>
-                                    <th>Hraci</th>
-                                    <th>Vek</th>
-                                    <th>Pozicia</th>
-                                    <th>Goly</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($statistics as $statistic)
-                                    <tr>
-                                        <td>{{$statistic->name}}</td>
-                                        <td>{{\Carbon\Carbon::parse($statistic->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</td>
-                                        <td>{{$statistic->position}}</td>
-                                        <td>{{$statistic->goals}}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                    <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
+                        <thead>
+                        <tr>
+                            <th>{{ __('message.Player') }}</th>
+                            <th>{{ __('message.age') }}</th>
+                            <th>{{ __('message.position') }}</th>
+                            <th>{{ __('message.goals') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($statistics as $statistic)
+                            <tr>
+                                <td>{{$statistic->name}}</td>
+                                <td>{{\Carbon\Carbon::parse($statistic->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</td>
+                                <td>{{$statistic->position}}</td>
+                                <td>{{$statistic->goals}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
 
-                        </div>
+                </div>
 
+            </div>
         </div>
-    </div>
     </div>
 
         <script>

@@ -6,7 +6,7 @@
         <div class="row">
 
 
-            <h1 class="NadpisTabulky" align="center">Prehľad štatistík</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.Statistics') }}</h1>
 
             <div class="panel-heading">
                 <div class="">
@@ -15,26 +15,26 @@
                         <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                             <thead>
                             <tr>
-                                <th>Statistiky</th>
+                                <th>{{ __('message.Statistics') }}y</th>
 
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics') }}">Goly</a> </td>
-                                </tr>
-                                <tr>
-                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_asists') }}">Asistencie</a> </td>
-                                </tr>
-                                <tr>
-                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_yellowC') }}">Zlte karty</a> </td>
-                                </tr>
-                                <tr>
-                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_redC') }}">Cervene karty</a> </td>
-                                </tr>
-                                <tr>
-                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_min') }}">Minuty</a> </td>
-                                </tr>
+                            <tr>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_goal') }}">{{ __('message.goals') }}</a> </td>
+                            </tr>
+                            <tr>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_asists') }}">{{ __('message.asists') }}</a> </td>
+                            </tr>
+                            <tr>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_yellowC') }}">{{ __('message.yellowC') }}</a> </td>
+                            </tr>
+                            <tr>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_redC') }}">{{ __('message.redC') }}</a> </td>
+                            </tr>
+                            <tr>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_min') }}">{{ __('message.mins') }}</a> </td>
+                            </tr>
 
                             </tbody>
                         </table>
@@ -45,7 +45,7 @@
 
         </div>
     </div>
-
+    </div>
 @endsection
 
 

@@ -11,12 +11,12 @@
                     <input type="text" class="form-control" name="search" placeholder="Meno hráča">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit">Vyhľadať</button>
+                    <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>
                 </div>
             </form>
 
 
-            <h1 class="NadpisTabulky" align="center">Supiska Timu</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.teamsupiska') }}</h1>
 
 
 
@@ -26,11 +26,9 @@
                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                         <thead>
                         <tr>
-                            <th>
-                                Hraci
-                            </th>
-                            <th>Vek</th>
-                            <th>Pozicia</th>
+                            <th>{{ __('message.players') }}</th>
+                            <th>{{ __('message.age') }}</th>
+                            <th>{{ __('message.position') }}</th>
                         </tr>
                         </thead>
                         <tbody>

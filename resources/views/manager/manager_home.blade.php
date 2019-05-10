@@ -43,27 +43,28 @@
                     <li>
                         <img src="images/main_images/bnr3.jpg" alt="">
                         <div class="banner-info">
-                            <h3>VITAJTE PAN TRENER </h3>
-                            <p>Ste prihlaseni v systeme ako trener. Mozete zacat manazovat svoj tim. Vela stastia !</p>
+                            <h3>{{ __('message.welcomemanager') }}</h3>
+                            <p>{{ __('message.welcomemanageruvod') }}</p>
                         </div>
                     </li>
                     <li>
                         <img src="images/main_images/bnr2.jpg" alt="">
                         <div class="banner-info">
-                            <h3>VITAJTE PAN TRENER </h3>
-                            <p>Ste prihlaseni v systeme ako trener. Mozete zacat manazovat svoj tim. Vela stastia !</p>
+                            <h3>{{ __('message.welcomemanager') }}</h3>
+                            <p>{{ __('message.welcomemanageruvod') }}</p>
                         </div>
                     </li>
                     <li>
                         <img src="images/main_images/bnr1.jpg" alt="">
                         <div class="banner-info">
-                            <h3>VITAJTE PAN TRENER </h3>
-                            <p>Ste prihlaseni v systeme ako trener. Mozete zacat manazovat svoj tim. Vela stastia !</p>
+                            <h3>{{ __('message.welcomemanager') }}</h3>
+                            <p>{{ __('message.welcomemanageruvod') }}</p>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
+        <!---->
         <!---->
 
         <!---start-content----->
@@ -72,15 +73,15 @@
                 <div class="col-md-6 banner-text-info clr1">
                     <i class="icon1"></i>
                     <div class="bnr-text">
-                        <h3>System</h3>
-                        <p>Informačný system pre klub, vďaka ktorému mate organizáciu klubu na jednom mieste.</p>
+                        <h3>{{ __('message.system') }}</h3>
+                        <p>{{ __('message.system_p') }}.</p>
                     </div>
                 </div>
                 <div class="col-md-6 banner-text-info clr2">
                     <i class="icon2"></i>
                     <div class="bnr-text">
-                        <h3>Ligove tabulky</h3>
-                        <p>Prezrite si tabuľky a zistite ako stoji váš obľubený tím. Takteiž nazrite aj do štatistík a zistite kto je najlepší kanonier či nahrávač.</p>
+                        <h3>{{ __('message.league_table') }}</h3>
+                        <p>{{ __('message.league_table_p') }}.</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -88,15 +89,15 @@
                 <div class="col-md-6 banner-text-info clr3 btm">
                     <i class="icon3"></i>
                     <div class="bnr-text">
-                        <h3>Trening</h3>
-                        <p>Vytvárajte tréning, prezerajte účasť a hodnote výkóny. Alebo sa na nich prihlasujte a trenujte ako veľky profesionál.</p>
+                        <h3>{{ __('message.training') }}</h3>
+                        <p>{{ __('message.training_p') }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 banner-text-info clr4 btm">
                     <i class="icon4"></i>
                     <div class="bnr-text">
-                        <h3>Galeria</h3>
-                        <p>Prezrite si galériu fotiek z naších zápasov. Nasajte tu atfosméru. Pri troché štastia sa najdete aj na fotke.</p>
+                        <h3>{{ __('message.galeria') }}</h3>
+                        <p>{{ __('message.galeria_p') }}.</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -105,6 +106,7 @@
     </div>
     <!-- //banner -->
 
+    <!-- content -->
 
     <!--- //content--->
     <!-- content-bottom -->
@@ -112,33 +114,32 @@
         <div class="container">
             <div class="content-bottom-grids">
                 <div class="col-md-4 popular">
-                    <h3>Možnosti systému</h3>
+                    <h3>{{ __('message.systempossibility') }}</h3>
                     <ul>
-                        <li>Trenúj ako správny tréner.</a></li>
-                        <li>Staň sa hráčom klubu a strielaj góly.</a></li>
-                        <li>Vytváraj tréningy.</a></li>
-                        <li>Zučastnuj sa tréningov a zlepšuj sa.</a></li>
-                        <li>Pokutuj nezodpovedných hráčov.</a></li>
-                        <li>Sleduj štatistiky a porovnávaj vykonostne posuvy.</a></li>
-                        <li>Sleduj svoj tím a jeho stúpanie vyššie..</a></li>
+                        <li>{{ __('message.systempossibility1') }}</li>
+                        <li>{{ __('message.systempossibility2') }}</li>
+                        <li>{{ __('message.systempossibility3') }}</li>
+                        <li>{{ __('message.systempossibility4') }}</li>
+                        <li>{{ __('message.systempossibility5') }}</li>
+                        <li>{{ __('message.systempossibility6') }}</li>
                     </ul>
                 </div>
                 <div class="col-md-4 welcome-pic">
-                    <h3>O systéme</h3>
-                    <h4>Informačný systém bol vytvorený ako bakalárska práca.</h4>
+                    <h3>{{ __('message.systempossibility7') }}</h3>
+                    <h4>{{ __('message.systempossibility8') }}</h4>
                     <img src="images/main_images/cnt.ab.jpg" alt=""/>
-                    <p>Jedná sa o informačny systém pre futbalový klub. Bol vytvaraný ako Bakalárska práca na VUT FIT.</p>
+                    <p>{{ __('message.systempossibility9') }}</p>
                 </div>
                 <div class="col-md-4 coach">
-                    <h3>Náš tréner</h3>
+                    <h3>{{ __('message.systempossibility10') }}</h3>
                     <div class="coch-grid chr">
                         <div class="coach-pic">
                             <img src="images/main_images/kochantrener.jpeg" alt=""/>
                         </div>
                         <div class="coach-pic-info">
                             <h4><a href="#">Peter Kochan</a></h4>
-                            <h5>Hlavny trener </h5>
-                            <p>Rodeny občan Hanisky. V klube posobí odmalička a teraz predáva svoje schopnosti ako tréner.</p>
+                            <h5>{{ __('message.systempossibility11') }} </h5>
+                            <p>{{ __('message.systempossibility12') }}</p>
                         </div>
                         <div class="clearfix"></div>
                     </div>

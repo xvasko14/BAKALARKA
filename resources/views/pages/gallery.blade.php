@@ -6,7 +6,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="/">Domov</a></li>
-            <li class="active">Galéria</li>
+            <li class="active">{{ __('message.galeria') }}</li>
         </ol>
     </div>
     <div class="gallery-text">

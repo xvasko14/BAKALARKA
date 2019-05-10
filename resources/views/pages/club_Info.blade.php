@@ -15,7 +15,7 @@
             </form>
 
 
-            <h1 class="NadpisTabulky" align="center">Supiska Timu</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.teamsupiska') }}</h1>
 
             <div class="panel-heading">
                 <div class="">
@@ -23,9 +23,9 @@
                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                         <thead>
                         <tr>
-                            <th>Hraci</th>
-                            <th>Vek</th>
-                            <th>Pozicia</th>
+                            <th>{{ __('message.players') }}</th>
+                            <th>{{ __('message.age') }}</th>
+                            <th>{{ __('message.position') }}</th>
                         </tr>
                         </thead>
                         <tbody>

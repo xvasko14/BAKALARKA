@@ -4,7 +4,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active">Ligova tabulka</li>
+            <li class="active">{{ __('message.LeagueTable') }}</li>
         </ol>
     </div>
 
@@ -13,7 +13,7 @@
 
 
 
-                    <h1 align="center">Prehlad hratelnych lig</h1>
+                    <h1 align="center">{{ __('message.LeagueTable') }}</h1>
 
                     <div class="panel-heading">
                         <div class="table_league">
@@ -22,7 +22,7 @@
                                 <table id="league-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                     <thead>
                                     <tr>
-                                        <th>Liga</th>
+                                        <th>{{ __('message.LeagueTable') }}</th>
 
                                     </thead>
                                     <tbody>

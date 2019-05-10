@@ -7,7 +7,7 @@
           <div class="row">
            <div class="col-lg-4 col-lg-offset-4">
             <div class="form-group">
-                <label for="club">Hrac</label>
+                <label for="club">{{ __('message.Player') }}</label>
                 <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                 <select name="player">
                     @foreach ($players as $dat)
@@ -17,12 +17,12 @@
             </div>
             <div class="form-group">
                 {{ csrf_field()}}
-                <label for="reason">Dovod pokuty</label>
-                <input type="text" class="form-control" name="reason" placeholder="Dovod pokuty">
+                <label for="reason">{{ __('message.reason') }}</label>
+                <input type="text" class="form-control" name="reason" placeholder="{{ __('message.reason') }}">
             </div>
             <div class="form-group">
-                <label for="sum">Ciastka</label>
-                <input type="text" class="form-control" name="sum"  placeholder="V eurach">
+                <label for="sum">{{ __('message.howmouch') }}</label>
+                <input type="text" class="form-control" name="sum"  placeholder="{{ __('message.euro') }}">
             </div>
             @if (session('status'))
                 <div class="alert alert-success">
@@ -30,7 +30,7 @@
                 </div>
                 <br>
             @endif
-            <button type="submit" class="btn btn-primary">Odoslať</button>
+            <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
             </div>
           </div>
     </div>

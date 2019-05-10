@@ -4,13 +4,13 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
-            <h1 class="NadpisTabulky" align="center">Zraneni v time</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.squadinjuryplayersteam') }}</h1>
             <div class="flex">
                 <div class="flex-item">
-                <td><button class="ZranenieTvorba btn btn-primary"  onclick="location.href='{{route('manager_injury.main')}}'">Vytvorit Zranenie</button></td>
+                <td><button class="ZranenieTvorba btn btn-primary"  onclick="location.href='{{route('manager_injury.main')}}'">{{ __('message.squadinjurycreate') }}</button></td>
                 </div>
                 <div class="flex-item">
-                <td><button class="ZranenieVsetci btn btn-primary" onclick="location.href='{{route('manager_injuryplayers.main')}}'">Zraneni hraci</button></td>
+                <td><button class="ZranenieVsetci btn btn-primary" onclick="location.href='{{route('manager_injuryplayers.main')}}'">{{ __('message.squadinjuryplayers') }}</button></td>
                 </div>
             </div>
             <div class=" zranenie1">

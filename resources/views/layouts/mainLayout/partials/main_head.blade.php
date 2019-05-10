@@ -3,6 +3,9 @@
 <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+
+
 <!--//fonts-->
 
 <link rel="stylesheet" href="{{ asset('css/main_css/bootstrap.css') }}" />

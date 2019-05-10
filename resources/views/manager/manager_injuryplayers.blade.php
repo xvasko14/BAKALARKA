@@ -12,12 +12,12 @@
                     <input type="text" class="form-control" name="search" placeholder="Meno hráča">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit">Vyhľadať</button>
+                    <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>
                 </div>
             </form>
 
 
-            <h1 class="NadpisTabulky" align="center">Zraneni v time</h1>
+            <h1 class="NadpisTabulky" align="center">{{ __('message.squadinjuryplayersteam') }}</h1>
 
             <div class="panel-heading">
                 <div class="">
@@ -28,11 +28,11 @@
                         </colgroup>
                         <thead>
                         <tr>
-                            <th>Hraci</th>
-                            <th>Typ</th>
-                            <th>Dlzka</th>
-                            <th>Zraneni</th>
-                            <th>Vylieceni</th>
+                            <th>{{ __('message.Player') }}</th>
+                            <th>{{ __('message.type') }}</th>
+                            <th>{{ __('message.squadtraininglenghts') }}</th>
+                            <th>{{ __('message.injury') }}</th>
+                            <th>{{ __('message.recovery') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,8 +45,8 @@
                                 @endif
                                 <td> {{$player->type_injury}}</td>
                                 <td>{{$player->approximately_time}}</td>
-                                <td><button id="bordeaux" onclick="location.href='{{route('manager_injury.delete', $player->id)}}'">Zraneni </button></td>
-                                <td><button id="green" onclick="location.href='{{route('manager_injury.in', $player->id)}}'"> Zotaveny</button></td>
+                                <td><button id="bordeaux" onclick="location.href='{{route('manager_injury.delete', $player->id)}}'">{{ __('message.injury') }}</button></td>
+                                <td><button id="green" onclick="location.href='{{route('manager_injury.in', $player->id)}}'"> {{ __('message.recovery') }}</button></td>
                                 {{--<script>--}}
                                     {{--function createCookie(name,value,days) {--}}
                                         {{--if (days) {--}}
