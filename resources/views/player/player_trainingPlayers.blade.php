@@ -5,8 +5,18 @@
 
     <div class="row">
 
+            <form class="form-inline" action="{{ route('player_trainingPlayers.main',$teamID)}}" method="get">
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <input type="text" class="form-control" name="search" placeholder="Meno hráča">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Vyhľadať</button>
+                </div>
+            </form>
 
-        <h1 align="center">Hraci na treningu</h1>
+
+        <h1 class="NadpisTabulky" align="center">Hraci na treningu</h1>
 
         <div class="panel-heading">
             <div class="">
@@ -14,22 +24,28 @@
                 <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                     <thead>
                     <tr>
+                        <td colspan="2"  ><span style="color:red"style="font-weight:bold">Zameranie treningu:</span></td>
+                        <td colspan="2" style="text-align: center" >{{$content_of_training}}</td>
+
+                    </tr>
+                    <tr>
                         <th>Hraci</th>
                         <th>Vek</th>
                         <th>Pozicia</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($players as $key => $data)
+                    @foreach($players as $player)
                         <tr>
-                            <th>{{$data->name}}</th>
-                            <th>{{$data->age}}</th>
-                            <th>{{$data->position}}</th>
+                            <td>{{$player->name}}</td>
+                            <td>{{\Carbon\Carbon::parse($player->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</td>
+                            <td>{{$player->position}}</td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
 
+                {{ $players->links() }}
 
             </div>
         </div>

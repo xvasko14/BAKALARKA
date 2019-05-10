@@ -3,18 +3,21 @@
         <div class="logo">
             <h1><a href="/player_home">FutbalIS</a></h1>
         </div>
+
+        <div class="logo">
+            <a class="furca"><img src="{{ asset('images/main_images/furcaH.jpg') }}" style="width:4em; height:3em;" ></a>
+        </div>
+
         <div class="top-menu">
             <span class="menu"></span>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li ><a href="/player_home">Domov</a></li>
-                    @foreach($players as $key => $data)
-                    <li><a  href="{{route('player_club_InfoPlayer.main', $data->id)}}">Hráč</a></li>
-                    @endforeach
+                    <li><a  href="/player_home/player_club_Info">Hráč</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabuľka štatistík<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="/player_home/player_leagueOverview">Ligoá tabuľka</a>
+                            <a class="dropdown-item" href="/player_home/player_leagueOverview">Ligová tabuľka</a>
                             <a class="dropdown-item" href="/player_home/player_statisticsOverview">Štatistiky hráčov</a>
                         </ul>
                     </li>

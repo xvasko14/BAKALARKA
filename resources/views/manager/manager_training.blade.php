@@ -16,15 +16,17 @@
                                 <tr>
                                     <th>Trening</th>
                                     <th>Zaciatok</th>
+                                    <th>Specializacia</th>
                                     <th>Dlzka</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($training as $key => $data)
                                     <tr>
-                                        <th> <a  href="{{route('manager_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </th>
-                                        <th>{{$data->starts}}</th>
-                                        <th>{{$data->length}}</th>
+                                        <td> <a  href="{{route('manager_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </td>
+                                        <td>{{$data->starts}}</td>
+                                        <td>{{$data->specialization}}</td>
+                                        <td>{{$data->length}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

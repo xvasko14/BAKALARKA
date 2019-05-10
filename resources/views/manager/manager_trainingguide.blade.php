@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=" training1">
-                <img src="{{URL::asset('/images/main_images/training_Photo.jpg')}}" alt="training1" >
+                <img src="{{URL::asset('/images/main_images/TR.jpg')}}" alt="training1" >
 
             </div>
         </div>

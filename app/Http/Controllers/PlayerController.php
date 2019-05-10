@@ -31,25 +31,10 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        // nacitanie si ID usera ktory je akurat prihlaseny
-        $user = Auth::user()->id;
 
-        // nacitanie tabulky hracov aby bola uz pre uvodnu obrazovku
-        $players = DB::table('players')
-            ->select('players.id','players.name', 'date_of_birth','position')
-            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
-            //->join('teams', 'teams.id', '=', 'teamplayers.team_id')
-            ->where('teamplayers.player_id', '=', $user)
-            //->where('teams.id', '=', $id)
-            ->orderBy('name','desc ')
-            ->get();
-
-        $data = [
-            'players' => $players,
-        ];
 
         // prechod z priecinku do player-home cez bodku
-        return view('player.player_home',$data );
+        return view('player.player_home');
     }
 
 
@@ -109,6 +94,7 @@ class PlayerController extends Controller
             ->insert(array(
         'playerTraining_id' => $user,
         'training_id' => $id,
+         'training_parcipitation' => 0,
 
 
     ));
@@ -137,19 +123,37 @@ class PlayerController extends Controller
     // hraci ktory su na treningu
     public function PlayerInTraining($id)
     {
+       if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('players')
+                ->select(DB::raw('teams_training.*, players.name,date_of_birth, position'))
+                ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
+                ->join('training', 'training.id', '=', 'teams_training.training_id')
+                ->where('training.id', '=', $id)
+                ->where('name','REGEXP',$pattern);
+            $players = $players->paginate(10);
 
+        }
 
+        else {
+            $players = DB::table('players')
+                ->select(DB::raw('teams_training.*, players.name,date_of_birth, position'))
+                ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
+                ->join('training', 'training.id', '=', 'teams_training.training_id')
+                ->where('training.id', '=', $id)
+                ->paginate(10);
+        }
 
-        $players = DB::table('players')
-            ->select('players.name','date_of_birth','position')
-            ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
-            ->join('training', 'training.id', '=', 'teams_training.training_id')
-            ->where('training.id', '=', $id)
-            ->get();
-
+        $content_of_training = DB::table('training')
+            ->select('content_of_training')
+            ->where('id', '=', $id)
+            ->first()->content_of_training;
 
         $data = [
             'players' => $players,
+            'teamID'    => $id,
+            'content_of_training'   => $content_of_training
         ];
 
         return view('player.player_trainingPlayers', $data);
@@ -218,10 +222,9 @@ class PlayerController extends Controller
     {
 
 
-        $user = Auth::user()->id;
         $players = DB::table('players')
             ->select('players.name','date_of_birth','position','email', 'weight','height','player_number')
-            ->where('players.id', '=', $user)
+            ->where('players.id', '=', $id)
             ->get();
 
         //var_dump($players); exit;

@@ -27,14 +27,14 @@
                             <tbody>
                             @foreach($teams as $key => $data)
                                 <tr>
-                                    <th>{{$data->name}}</th>
-                                    <th>{{$data->match}}</th>
-                                    <th>{{$data->goals}}</th>
-                                    <th>{{$data->goalsoponent}}</th>
-                                    <th>{{$data->win}}</th>
-                                    <th>{{$data->draw}}</th>
-                                    <th>{{$data->lose}}</th>
-                                    <th>{{$data->score}}</th>
+                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->match}}</td>
+                                    <td>{{$data->goals}}</td>
+                                    <td>{{$data->goalsoponent}}</td>
+                                    <td>{{$data->win}}</td>
+                                    <td>{{$data->draw}}</td>
+                                    <td>{{$data->lose}}</td>
+                                    <td>{{$data->score}}</td>
 
                                 </tr>
                             @endforeach

@@ -1,8 +1,13 @@
 <div class="header">
     <div class="container">
+
         <div class="logo">
             <h1><a href="/">FutbalIS</a></h1>
         </div>
+        <div class="logo">
+            <a class="furca"><img src="{{ asset('images/main_images/Haniska.jpg') }}" style="width:4em; height:3em;" ></a>
+        </div>
+
         <div class="top-menu">
             <span class="menu"></span>
             <div id="navbar" class="navbar-collapse collapse">

@@ -4,6 +4,16 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
+            <form class="form-inline" action="{{ route('club_Info.main')}}" method="get">
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <input type="text" class="form-control" name="search" placeholder="Meno hráča">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Vyhľadať</button>
+                </div>
+            </form>
+
 
             <h1 class="NadpisTabulky" align="center">Supiska Timu</h1>
 
@@ -19,21 +29,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($players as $key => $data)
+                        @foreach($players as $player)
                             <tr>
-                                <th> <a  href="{{route('club_InfoPlayer.main', $data->id)}}">{{ $data->name}}</a></th>
-                                <th>{{\Carbon\Carbon::parse($data->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</th>
-                                <th>{{$data->position}}</th>
+                                <td> <a  href="{{route('club_InfoPlayer.main', $player->id)}}">{{ $player->name}}</a></td>
+                                <td>{{\Carbon\Carbon::parse($player->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</td>
+                                <td>{{$player->position}}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    {{ $players->links() }}
 
                 </div>
             </div>
 
+
         </div>
+
     </div>
 
 
+
 @endsection
+
+

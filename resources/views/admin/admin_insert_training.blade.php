@@ -27,6 +27,11 @@
                     <label for="starts">Datum</label>
                     <input type="date" class="form-control" name="date" placeholder="Datum">
                 </div>
+                    <div class="form-group">
+                        {{ csrf_field()}}
+                        <label for="specialization">Datum</label>
+                        <input type="text" class="form-control" name="specialization" placeholder="Zameranie treningu">
+                    </div>
                 <div class="form-group">
                     <label for="length">Dlzka</label>
                     <input type="text" class="form-control" name="length"  placeholder="Cas">

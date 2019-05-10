@@ -24,12 +24,12 @@
                                 <tbody>
                                 @foreach($teamLeft as $teamL)
                                     <tr>
-                                        <th>{{$teamL->name}}</th>
-                                        <th>{{$teamL->position}}</th>
-                                        <th>{{$teamL->goals}}</th>
-                                        <th>{{$teamL->min}}</th>
+                                        <td>{{$teamL->name}}</td>
+                                        <td>{{$teamL->position}}</td>
+                                        <td>{{$teamL->goals}}</td>
+                                        <td>{{$teamL->min}}</td>
                                         @if($teamL->substitution == 1)
-                                            <th>Ano</th>
+                                            <td>Ano</td>
                                         @endif
 
 
@@ -63,12 +63,12 @@
                             <tbody>
                             @foreach($teamRight as $teamR)
                                 <tr>
-                                    <th>{{$teamR->name}}</th>
-                                    <th>{{$teamR->position}}</th>
-                                    <th>{{$teamR->goals}}</th>
-                                    <th>{{$teamR->min}}</th>
+                                    <td>{{$teamR->name}}</td>
+                                    <td>{{$teamR->position}}</td>
+                                    <td>{{$teamR->goals}}</td>
+                                    <td>{{$teamR->min}}</td>
                                     @if($teamR->substitution == 1)
-                                        <th>Ano</th>
+                                        <td>Ano</td>
                                     @endif
                                 </tr>
 
@@ -102,12 +102,12 @@
                                 <tbody>
                                 @foreach($teamLeftSub as $teamLe)
                                     <tr>
-                                        <th>{{$teamLe->name}}</th>
-                                        <th>{{$teamLe->position}}</th>
-                                        <th>{{$teamLe->goals}}</th>
-                                        <th>{{$teamLe->min}}</th>
+                                        <td>{{$teamLe->name}}</td>
+                                        <td>{{$teamLe->position}}</td>
+                                        <td>{{$teamLe->goals}}</td>
+                                        <td>{{$teamLe->min}}</td>
                                         @if($teamLe->substitution == 1)
-                                            <th>Ano</th>
+                                            <td>Ano</td>
                                         @endif
                                     </tr>
                                 @endforeach
@@ -138,12 +138,12 @@
                                 <tbody>
                                 @foreach($teamRightSub as $teamRe)
                                     <tr>
-                                        <th>{{$teamRe->name}}</th>
-                                        <th>{{$teamRe->position}}</th>
-                                        <th>{{$teamRe->goals}}</th>
-                                        <th>{{$teamRe->min}}</th>
+                                        <td>{{$teamRe->name}}</td>
+                                        <td>{{$teamRe->position}}</td>
+                                        <td>{{$teamRe->goals}}</td>
+                                        <td>{{$teamRe->min}}</td>
                                         @if($teamRe->substitution == 1)
-                                            <th>Ano</th>
+                                            <td>Ano</td>
                                         @endif
                                     </tr>
                                 @endforeach

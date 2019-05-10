@@ -829,6 +829,7 @@ class AdminController extends Controller
         if ($request->input('time') == NULL ||
             $request->input('date') == NULL ||
             $request->input('length') == NULL ||
+            $request->input('specialization') == NULL ||
             $request->input('club') == NULL) {
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
@@ -838,6 +839,7 @@ class AdminController extends Controller
             'starts' => date('Y-m-d H:i:s',strtotime($datetime)),
             'length' => $request->input('length'),
             'teamTraining_id' => $request->input('club'),
+            'specialization' => $request->input('specialization'),
 
             //'club' => $request->input('club'),
 
@@ -939,6 +941,7 @@ class AdminController extends Controller
             'FinePlayerID' => $request->input('player'),
             'reason' => $request->input('reason'),
             'sum' => $request->input('sum'),
+            'fine_pay' => 0,
         );
         //var_dump($data);exit;
 
@@ -1051,6 +1054,7 @@ class AdminController extends Controller
             'InjuryPlayerID' => $request->input('player'),
             'type_injury' => $request->input('type_injury'),
             'approximately_time' => $request->input('approximately_time'),
+            'injury_status' => 0,
         );
         //var_dump($data);exit;
 

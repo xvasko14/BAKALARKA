@@ -27,19 +27,19 @@
                             <tbody>
 
                             <tr>
-                                <th> <a  href="{{ url('/statisticsOverview/statistics_goal') }}">Goly</a> </th>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_goal') }}">Goly</a> </td>
                             </tr>
                             <tr>
-                                <th> <a  href="{{ url('/statisticsOverview/statistics_asists') }}">Asistencie</a> </th>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_asists') }}">Asistencie</a> </td>
                             </tr>
                             <tr>
-                                <th> <a  href="{{ url('/statisticsOverview/statistics_yellowC') }}">Zlte karty</a> </th>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_yellowC') }}">Zlte karty</a> </td>
                             </tr>
                             <tr>
-                                <th> <a  href="{{ url('/statisticsOverview/statistics_redC') }}">Cervene karty</a> </th>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_redC') }}">Cervene karty</a> </td>
                             </tr>
                             <tr>
-                                <th> <a  href="{{ url('/statisticsOverview/statistics_min') }}">Minuty</a> </th>
+                                <td> <a  href="{{ url('/statisticsOverview/statistics_min') }}">Minuty</a> </td>
                             </tr>
 
                             </tbody>

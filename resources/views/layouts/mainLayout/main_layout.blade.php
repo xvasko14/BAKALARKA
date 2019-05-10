@@ -47,14 +47,14 @@
 
                 <div class="social">
                     <a href="https://www.facebook.com/groups/189044132827/" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="https://www.instagram.com/haniska10/" class="fa fa-instagram"></a>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
 @yield('content')
 
-
+</div>
 <!--end-main-container-part-->
 
 @include('layouts.mainLayout.partials.main_footer')
@@ -66,7 +66,7 @@
 <script type="text/javascript" src="{{ URL::asset('js/main_js/responsiveslides.min.js')}}"></script>
 
 
-</div>
+
 
 
 

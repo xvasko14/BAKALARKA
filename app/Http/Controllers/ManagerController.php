@@ -80,6 +80,22 @@ class ManagerController extends Controller
 
         $user = Auth::user()->id;
 
+        if(request()->has('search')){
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('players')
+                ->select('players.id','players.name', 'date_of_birth','position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                //->where('teams.id', '=', $id)
+                ->orderBy('players.name','desc ')
+                ->where('players.name','REGEXP',$pattern);
+            $players = $players->paginate(10);
+        }
+        else {
+
         $players = DB::table('players')
             ->select('players.id','players.name', 'date_of_birth','position')
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
@@ -88,15 +104,18 @@ class ManagerController extends Controller
             ->where('teammanagers.manager_id', '=', $user)
             //->where('teams.id', '=', $id)
             ->orderBy('name','desc ')
-            ->get();
+            ->paginate(15);
 
 
-        $data = [
+
+        }
+
+        /*$data = [
             'players' => $players,
         ];
-        //var_dump($players); exit;
+        //var_dump($players); exit;*/
 
-        return view('manager.manager_club_Info', $data);
+        return view('manager.manager_club_Info',  compact('players'));
     }
 
     public function myClubInfoPlayer($id)
@@ -284,6 +303,7 @@ class ManagerController extends Controller
         if ($request->input('time') == NULL ||
             $request->input('date') == NULL ||
             $request->input('length') == NULL ||
+            $request->input('specialization') == NULL ||
             $request->input('club') == NULL) {
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
@@ -293,6 +313,9 @@ class ManagerController extends Controller
             'starts' => date('Y-m-d H:i:s',strtotime($datetime)),
             'length' => $request->input('length'),
             'teamTraining_id' => $request->input('club'),
+            'specialization' => $request->input('specialization'),
+
+
 
             //'club' => $request->input('club'),
 
@@ -345,22 +368,71 @@ class ManagerController extends Controller
     // hraci ktory su na treningu
     public function PlayerInTraining($id)
     {
+        if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('players')
+                ->select(DB::raw('teams_training.*, players.name,date_of_birth, position'))
+                ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
+                ->join('training', 'training.id', '=', 'teams_training.training_id')
+                ->where('training.id', '=', $id)
+                ->where('name','REGEXP',$pattern);
+                $players = $players->paginate(10);
 
+        }
 
-
+        else {
         $players = DB::table('players')
-            ->select('players.name','date_of_birth','position')
+            ->select(DB::raw('teams_training.*, players.name,date_of_birth, position'))
             ->join('teams_training', 'players.id', '=', 'teams_training.playerTraining_id')
             ->join('training', 'training.id', '=', 'teams_training.training_id')
             ->where('training.id', '=', $id)
-            ->get();
+            ->paginate(10);
+        }
 
+        $content_of_training = DB::table('training')
+            ->select('content_of_training')
+            ->where('id', '=', $id)
+            ->first()->content_of_training;
 
         $data = [
             'players' => $players,
+            'teamID'    => $id,
+            'content_of_training'   => $content_of_training
         ];
 
+
+
         return view('manager.manager_trainingPlayers', $data);
+    }
+
+    public function TrainingStatusIn($id)
+    {
+
+        $data = array(
+            'training_parcipitation' => 1,
+        );
+        //var_dump($data);exit;
+
+        DB::table('teams_training')->where('id', $id)->update($data);
+        //var_dump($data); exit;
+
+        return redirect()->back();
+    }
+
+    public function TrainingStatusDelete($id)
+    {
+
+
+        $data = array(
+            'training_parcipitation' => 0,
+        );
+        //var_dump($data);exit;
+
+        DB::table('teams_training')->where('id', $id)->update($data);
+
+        return redirect()->route('manager_training.main');
+        ///
     }
 
     public function Games()
@@ -407,6 +479,7 @@ class ManagerController extends Controller
             ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
             ->where('gameID', '=', $id)
             ->where('teamplayers.team_id', '=', $game->team2)
+            ->where('PlayerInGame.OnBench', '=', '0')
             ->get();
 
         $teamLeftSub = DB::table('players')
@@ -562,6 +635,7 @@ class ManagerController extends Controller
     }
 
 
+
     public function InjuryInsert(Request $request)
     {
 
@@ -573,6 +647,7 @@ class ManagerController extends Controller
             'InjuryPlayerID' => $request->input('player'),
             'type_injury' => $request->input('type_injury'),
             'approximately_time' => $request->input('approximately_time'),
+            'injury_status' => 0,
         );
         //var_dump($data);exit;
 
@@ -585,30 +660,69 @@ class ManagerController extends Controller
 
     public function InjuryPlayers()
     {
-
-
-
-
         $user = Auth::user()->id;
         //var_dump($user); exit;
 
+        if(request()->has('search')){
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('injuries')
+                    ->select(DB::raw('injuries.*, players.name'))
+                    ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+                    ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                    ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                    ->where('teammanagers.manager_id', '=', $user)
+                    ->where('name','REGEXP',$pattern);
+                    $players = $players->paginate(10);
+        }
+        else {
 
-
-        $players = DB::table('injuries')
-            ->select('*')
-            ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
-            ->where('teammanagers.manager_id', '=', $user)
-            ->get();
+            $players = DB::table('injuries')
+                ->select(DB::raw('injuries.*, players.name'))
+                ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->paginate(10);
+        }
 
         // musi natvrdo este dat tabulku teams do premenej
-        $data = [
+       /* $data = [
             'players' => $players,
-        ];
+        ];*/
 
-        return view('manager.manager_injuryplayers', $data);
+        return view('manager.manager_injuryplayers',  compact('players'));
     }
+
+    public function InjuryStatusIn($id)
+    {
+
+        $data = array(
+            'injury_status' => 1,
+        );
+        //var_dump($data);exit;
+
+        DB::table('injuries')->where('id', $id)->update($data);
+
+        return redirect()->route('manager_injuryplayers.main');
+        ///
+    }
+
+    public function InjuryStatusDelete($id)
+    {
+
+
+        $data = array(
+            'injury_status' => 0,
+        );
+        //var_dump($data);exit;
+
+        DB::table('injuries')->where('id', $id)->update($data);
+
+        return redirect()->route('manager_injuryplayers.main');
+        ///
+    }
+
 
     // POKUTY
 
@@ -655,6 +769,7 @@ class ManagerController extends Controller
             'FinePlayerID' => $request->input('player'),
             'reason' => $request->input('reason'),
             'sum' => $request->input('sum'),
+            'fine_pay' => 0,
         );
         //var_dump($data);exit;
 
@@ -670,23 +785,65 @@ class ManagerController extends Controller
 
         $user = Auth::user()->id;
         //var_dump($user); exit;
+        if(request()->has('search')){
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('fine')
+                ->select(DB::raw('fine.*, players.name'))
+                ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->where('name','REGEXP',$pattern);
+                 $players = $players->paginate(10); }
 
+        else {
 
+                $players = DB::table('fine')
+                    ->select(DB::raw('fine.*, players.name'))
+                    ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+                    ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                    ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                    ->where('teammanagers.manager_id', '=', $user)
+                    ->paginate(10);
 
-        $players = DB::table('fine')
-            ->select('*')
-            ->join('players', 'players.id', '=', 'fine.FinePlayerID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
-            ->where('teammanagers.manager_id', '=', $user)
-            ->get();
+            }
 
         // musi natvrdo este dat tabulku teams do premenej
-        $data = [
+       /* $data = [
             'players' => $players,
-        ];
+        ];*/
 
-        return view('manager.manager_fineplayers', $data);
+        return view('manager.manager_fineplayers', compact('players'));
+    }
+
+    public function FineStatusIn($id)
+    {
+
+        $data = array(
+            'fine_pay' => 1,
+        );
+        //var_dump($data);exit;
+
+        DB::table('fine')->where('id', $id)->update($data);
+
+        return redirect()->route('manager_fineplayers.main');
+        ///
+    }
+
+    public function FineStatusDelete($id)
+    {
+
+
+        $data = array(
+            'fine_pay' => 0,
+        );
+        //var_dump($data);exit;
+
+        DB::table('fine')->where('id', $id)->update($data);
+
+        return redirect()->route('manager_fineplayers.main');
+        ///
     }
 
     // statistiky hracov v lige

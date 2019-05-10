@@ -9,11 +9,12 @@
                     <div class="panel-heading">
                         <div class="">
 
-                            <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
+                            <table  id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                 <thead>
                                 <tr>
                                     <th>Trening</th>
                                     <th>Zaciatok</th>
+                                    <th>Specializacia</th>
                                     <th>Dlzka</th>
                                     <th>Potvrdit ucast</th>
                                 </tr>
@@ -21,21 +22,22 @@
                                 <tbody>
                                 @foreach($training as $key => $data)
                                     <tr>
-                                        <th><a  href="{{route('player_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </th>
-                                        <th>{{$data->starts}}</th>
-                                        <th>{{$data->length}}</th>
-                                        <th> <center>
+                                        <td><a  href="{{route('player_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </td>
+                                        @if ($data->signed)
+                                            <td id="kolonka_green" >{{$data->starts}}</td>
+                                        @else
+                                            <td id="kolonka_red" >{{$data->starts}}</td>
+                                        @endif
+                                        <td>{{$data->specialization}}</td>
+                                        <td>{{$data->length}}</td>
+                                        <td> <center>
                                                 @if ($data->signed)
-                                                    <a class='btn-floating  waves-effect blue darken-4' href="{{route('player_Remove_training.main',$data->id)}}">
-                                                        <i class='material-icons'>remove</i>
-                                                    </a>
+                                                    <button id="bordeaux" onclick="location.href='{{route('player_Remove_training.main', $data->id)}}'"> Odmietnut</button>
                                                 @else
-                                                    <a class='btn-floating  waves-effect blue darken-4' href="{{route('player_Join_training.main',$data->id)}}">
-                                                        <i class='material-icons'>join</i>
-                                                    </a>
+                                                    <button id="green" onclick="location.href='{{route('player_Join_training.main', $data->id)}}'"> Zucastneny</button>
                                                 @endif
-                                            </center>
-                                        </th>
+
+                                        </td>
 
                                     </tr>
                                 @endforeach

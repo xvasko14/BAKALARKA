@@ -49,6 +49,7 @@ class GameController extends Controller
     public function GamesLineup($id)
     {
 
+
         $game = DB::table('game')
             ->select('*')
             ->where('id', '=', $id)
@@ -69,6 +70,7 @@ class GameController extends Controller
             ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
             ->where('gameID', '=', $id)
             ->where('teamplayers.team_id', '=', $game->team2)
+            ->where('PlayerInGame.OnBench', '=', '0')
             ->get();
 
         $teamLeftSub = DB::table('players')
@@ -91,7 +93,7 @@ class GameController extends Controller
 
 
 
-        //var_dump($teamLeftSub);exit;
+
 
         $data = [
             'teamLeft' => $teamLeft,

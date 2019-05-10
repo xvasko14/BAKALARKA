@@ -22,11 +22,10 @@
                         <tbody>
                         @foreach($statistics as $statistic)
                             <tr>
-                                <th>{{$statistic->name}}</th>
-                                <th>{{\Carbon\Carbon::parse($statistic->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</th>
-                                <th>{{$statistic->position}}</th>
-                                <th>{{$statistic->goals}}</th>
-                                <th>{{$statistic->rcard}}</th>
+                                <td>{{$statistic->name}}</td>
+                                <td>{{\Carbon\Carbon::parse($statistic->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</td>
+                                <td>{{$statistic->position}}</td>
+                                <td>{{$statistic->goals}}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -36,15 +35,17 @@
 
             </div>
         </div>
+    </div>
 
-        <script>
-            var table = document.getElementsByTagName('table')[0],
-                rows = table.getElementsByTagName('tr'),
-                text = 'textContent' in document ? 'textContent' : 'innerText';
+    <script>
+        var table = document.getElementsByTagName('table')[0],
+            rows = table.getElementsByTagName('tr'),
+            text = 'textContent' in document ? 'textContent' : 'innerText';
 
-            for (var i = 0, len = rows.length; i < len; i++){
-                rows[i].children[0][text] = i + '.' + rows[i].children[0][text];
-            }
-        </script>
+        for (var i = 0, len = rows.length; i < len; i++){
+            rows[i].children[0][text] = i + '.' + rows[i].children[0][text];
+        }
+    </script>
+
 
 @endsection

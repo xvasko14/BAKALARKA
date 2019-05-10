@@ -37,6 +37,10 @@ class LeagueController extends BaseController
 
     public function main($id)
     {
+
+
+
+
         // vyber ligy je natvrdo dany cislovkou asi zmenit !!!
         $teams = DB::table('teams')
             ->select('*')
@@ -48,8 +52,12 @@ class LeagueController extends BaseController
         foreach ($teams as $team) {
             $team->score = 0;
             $team->goals = 0;
+            $team->goalsoponent = 0;
+            $team->win = 0;
+            $team->draw = 0;
+            $team->lose = 0;
+            $team->match = 0;
 
-            //var_dump($team); exit;
 
             //TODO
             // zatial nastavena sezona natvrdo
@@ -68,23 +76,45 @@ class LeagueController extends BaseController
             foreach ($p as $pp) {
                 if ($pp->team1_goals > $pp->team2_goals) {
                     $team->score += 3;
+                    $team->win += 1;
+                    $team->match += 1;
+
                 }
                 elseif ($pp->team1_goals == $pp->team2_goals) {
                     $team->score += 1;
+                    $team->draw += 1;
+                    $team->match += 1;
+                }
+                else {
+                    $team->lose += 1;
+                    $team->match += 1;
+
                 }
 
                 $team->goals += $pp->team1_goals;
+                $team->goalsoponent += $pp->team2_goals;
+
             }
 
             foreach ($p1 as $pp) {
                 if ($pp->team1_goals < $pp->team2_goals) {
                     $team->score += 3;
+                    $team->win += 1;
+                    $team->match += 1;
                 }
                 elseif ($pp->team1_goals == $pp->team2_goals) {
                     $team->score += 1;
+                    $team->draw += 1;
+                    $team->match += 1;
+                }
+                else {
+                    $team->lose += 1;
+                    $team->match += 1;
+
                 }
 
                 $team->goals += $pp->team2_goals;
+                $team->goalsoponent += $pp->team1_goals;
             }
             //var_dump($team->score );exit;
             /* $arr= array ($team->score);
@@ -101,7 +131,12 @@ class LeagueController extends BaseController
 
         $teams = $teams->toArray();
         usort($teams, function ($a, $b) {
-            return strcmp($b->score, $a->score);
+            $comparison = strcmp($b->score, $a->score);
+            // ak vrati 0, teda rozdiel je nulovy a body rovnake tak porovname podla golov
+            if ($comparison == 0) {
+                return strcmp($b->goals, $a->goals);
+            }
+            return $comparison;
         }
 
         );
@@ -109,6 +144,7 @@ class LeagueController extends BaseController
         $data = [
             'teams' => $teams,
         ];
+
 
         return view('pages.league', $data);
 

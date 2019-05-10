@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Day 001 Login Form</title>
+    <title>Prihlasovanie trenera</title>
 
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>

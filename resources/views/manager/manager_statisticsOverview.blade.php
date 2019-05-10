@@ -21,19 +21,19 @@
                             <tbody>
 
                                 <tr>
-                                    <th> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics') }}">Goly</a> </th>
+                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics') }}">Goly</a> </td>
                                 </tr>
                                 <tr>
-                                    <th> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_asists') }}">Asistencie</a> </th>
+                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_asists') }}">Asistencie</a> </td>
                                 </tr>
                                 <tr>
-                                    <th> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_yellowC') }}">Zlte karty</a> </th>
+                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_yellowC') }}">Zlte karty</a> </td>
                                 </tr>
                                 <tr>
-                                    <th> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_redC') }}">Cervene karty</a> </th>
+                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_redC') }}">Cervene karty</a> </td>
                                 </tr>
                                 <tr>
-                                    <th> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_min') }}">Minuty</a> </th>
+                                    <td> <a  href="{{ url('/manager_home/manager_statisticsOverview/statistics_min') }}">Minuty</a> </td>
                                 </tr>
 
                             </tbody>
@@ -44,7 +44,6 @@
             </div>
 
         </div>
-    </div>
     </div>
 
 @endsection

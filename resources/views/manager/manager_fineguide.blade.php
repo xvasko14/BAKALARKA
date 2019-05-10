@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=" pokuta1">
-                <img src="{{URL::asset('/images/main_images/pokuta_photo.jpg')}}" alt="pokuta" >
+                <img src="{{URL::asset('/images/main_images/pokuta.jpg')}}" alt="pokuta" >
 
             </div>
         </div>

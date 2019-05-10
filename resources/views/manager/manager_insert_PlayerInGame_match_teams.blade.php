@@ -21,8 +21,8 @@
                                     <tbody>
                                     @foreach($game as $key => $data)
                                         <tr>
-                                            <th> <a  href="{{route('manager.newPlayerInGame', [$data->team1, $data->id])}}">{{$data->teamName1}}</a> </th>
-                                            <th> <a  href="{{route('manager.newPlayerInGame', [$data->team2, $data->id])}}">{{$data->teamName2}}</a> </th>
+                                            <td> <a  href="{{route('manager.newPlayerInGame', [$data->team1, $data->id])}}">{{$data->teamName1}}</a> </td>
+                                            <td> <a  href="{{route('manager.newPlayerInGame', [$data->team2, $data->id])}}">{{$data->teamName2}}</a> </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -217,6 +217,136 @@ button.ZranenieVsetci {
     font-family: Helvetica;
     letter-spacing: 5px;
 }
+#kolonka {
+    color: #448F44;
+
+}
+
+ #green {
+    background-color: #448F44;
+    border: 1px solid #000;
+    display: inline-block;
+     font-size: 16px;
+     padding: 4px 24px;
+     cursor: pointer;
+     border-radius: 5px;
+     width: 125px;
+     display: block;
+     margin: auto;
+     font-weight: 700;
+     color: black;
+
+}
+#bordeaux {
+    background-color: #E8920C;
+    border: 1px solid #000;
+    display: inline-block;
+    font-size: 16px;
+    padding: 4px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 135px;
+    display: block;
+    margin: auto;
+    font-weight: 700;
+    color: black;
+}
+
+#kolonka_red{
+    color: red;
+
+}
+#kolonka_green{
+    color: green;
+}
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin: 15px;
+}
+
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide *
+/*pridana cast tabuly ako bude po novom vyzerat */
+
+th {
+    color:#D5DDE5;;
+    background:#1b1e24;
+    border-bottom:4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    font-size:23px;
+    font-weight: 100;
+    padding:24px;
+    text-align:left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align:middle;
+}
+
+th:first-child {
+    border-top-left-radius:3px;
+}
+
+th:last-child {
+    border-top-right-radius:3px;
+    border-right:none;
+}
+
+tr {
+    border-top: 1px solid #C1C3D1;
+    border-bottom-: 1px solid #C1C3D1;
+    color:#666B85;
+    font-size:16px;
+    font-weight:normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+    background:#4E5066;
+    color:red;
+    border-top: 1px solid #22262e;
+}
+
+tr:first-child {
+    border-top:none;
+}
+
+tr:last-child {
+    border-bottom:none;
+}
+
+tr:nth-child(odd) td {
+    background:#EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+    background:#4E5066;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius:3px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius:3px;
+}
+
+td {
+    background:#FFFFFF;
+    padding:20px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+    border-right: 0px;
+}
+
+/*pridana cast tabuly ako bude po novom vyzerat ENDDDDD */
 
 /* Style all font awesome icons */
 .fa {
@@ -1572,6 +1702,11 @@ p.abt-info,.about-head p{
 .logo h1 a {
   font-size: 26px;
 }
+.furca a {
+    width: 400px;
+    height: auto;
+}
+
 span.menu:before {
 	content: url(../images/nav.png);
 	cursor: pointer;	

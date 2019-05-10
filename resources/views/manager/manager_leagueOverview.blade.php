@@ -20,7 +20,7 @@
                                     <tbody>
                                     @foreach($league as $key => $data)
                                         <tr>
-                                            <th> <a  href="{{route('manager_league.main', $data->id)}}">{{ $data->name}}</a> </th>
+                                            <td> <a  href="{{route('manager_league.main', $data->id)}}">{{ $data->name}}</a> </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

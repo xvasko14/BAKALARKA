@@ -24,13 +24,13 @@
                         <tbody>
                         @foreach($game as $key => $data)
                             <tr>
-                                <th> <a  href="{{route('player.TeamsGame', $data->id)}}">{{ $data->id}}</a> </th>
-                                <th>{{$data->Round}}</th>
-                                <th>{{$data->Date}}</th>
-                                <th>{{$data->teamName1}}</th>
-                                <th>{{$data->team1_goals}}</th>
-                                <th>{{$data->team2_goals}}</th>
-                                <th>{{$data->teamName2}}</th>
+                                <td> <a  href="{{route('player.TeamsGame', $data->id)}}">{{ $data->id}}</a> </td>
+                                <td>{{$data->Round}}</td>
+                                <td>{{$data->Date}}</td>
+                                <td>{{$data->teamName1}}</td>
+                                <td>{{$data->team1_goals}}</td>
+                                <td>{{$data->team2_goals}}</td>
+                                <td>{{$data->teamName2}}</td>
 
                             </tr>
                         @endforeach

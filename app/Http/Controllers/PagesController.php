@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use Illuminate\Support\Facades\DB;
 
@@ -72,6 +73,7 @@ class PagesController extends Controller
             ->join('teamplayers', 'teamplayers.player_id', '=', 'PlayerInGame.PlayerGameID')
             ->where('gameID', '=', $id)
             ->where('teamplayers.team_id', '=', $game->team2)
+            ->where('PlayerInGame.OnBench', '=', '0')
             ->get();
 
         $teamLeftSub = DB::table('players')
@@ -146,14 +148,51 @@ class PagesController extends Controller
     {
 
 
+        if(request()->has('search')){
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('players')
+                ->select('players.id', 'players.name', 'date_of_birth', 'position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->where('teams.id', '=', '27')// natvrdo urcene ID hanisky
+                //->orderBy('name', 'desc ')
+                ->where('players.name','REGEXP',$pattern);
+                 $players = $players->paginate(10);
+        }
+        else {
 
-        $players = DB::table('players')
-            ->select('players.id','players.name', 'date_of_birth','position')
-            ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
-            ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
-            ->where('teams.id', '=', '27') // natvrdo urcene ID hanisky
-            ->orderBy('name','desc ')
-            ->get();
+            $players = DB::table('players')
+                ->select('players.id', 'players.name', 'date_of_birth', 'position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->where('teams.id', '=', '27')// natvrdo urcene ID hanisky
+                ->orderBy('name', 'desc ')
+                ->paginate(15);
+
+        }
+
+        /*$data = [
+            'players' => $players,
+
+        ];*/
+        //var_dump($players); exit;
+
+        return view('pages.club_Info', compact('players'));
+    }
+
+    // asi vymazat neviem ci to tak moze byt ci nie
+    public function myClubInfoSearch()
+    {
+
+
+       /* if(request()->has('search')){
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $players = DB::table('players')->where('name','REGEXP',$pattern);
+            $players = $players->get();
+        }
+
 
 
         $data = [
@@ -161,7 +200,7 @@ class PagesController extends Controller
         ];
         //var_dump($players); exit;
 
-        return view('pages.club_Info', $data);
+        return view('pages.club_Info',$data);*/
     }
 
     public function myClubInfoPlayer($id)

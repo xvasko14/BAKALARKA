@@ -3,6 +3,11 @@
         <div class="logo">
             <h1><a href="/manager_home">FutbalIS</a></h1>
         </div>
+
+        <div class="logo">
+            <a class="furca"><img src="{{ asset('images/main_images/furcaH.jpg') }}" style="width:4em; height:3em;" ></a>
+        </div>
+
         <div class="top-menu">
             <span class="menu"></span>
 
