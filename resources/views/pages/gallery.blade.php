@@ -5,14 +5,14 @@
 <div class="gallery-head">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="/">Domov</a></li>
+            <li><a href="/">{{ __('message.Home') }}</a></li>
             <li class="active">{{ __('message.galeria') }}</li>
         </ol>
     </div>
     <div class="gallery-text">
         <div class="container">
-            <h2>Galéria</h2>
-            <p>Prezrite si naše zápasy a ako sa nám v nich darilo.</p>
+            <h2>{{ __('message.galeria') }}</h2>
+            <p>{{ __('message.galeriaphoto') }}</p>
         </div>
     </div>
     <div class="container">

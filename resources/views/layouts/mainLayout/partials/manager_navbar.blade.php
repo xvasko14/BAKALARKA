@@ -33,6 +33,7 @@
                     <li><a href="/manager_home/manager_trainingguide">{{ __('message.squadtraining') }}</a></li>
 
                     <style>
+
                         div.topcorner {
                             position:absolute;
                             top:0;
@@ -46,10 +47,6 @@
 
                     </div>
 
-
-
-
-            <!--/.nav-collapse -->
 
 
                 @guest

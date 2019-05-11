@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">Štatistika hráčov</li>
+            <li><a href="/">{{ __('message.Home') }}</a></li>
+            <li class="active">{{ __('message.PlayerStatistics') }}</li>
         </ol>
     </div>
 
@@ -21,7 +21,7 @@
                         <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                             <thead>
                             <tr>
-                                <th>Statistiky</th>
+                                <th>{{ __('message.PlayerStatistics') }}</th>
 
                             </thead>
                             <tbody>

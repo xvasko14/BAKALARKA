@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="/">Home</a></li>
+            <li><a href="/">{{ __('message.Home') }}</a></li>
             <li class="active">{{ __('message.LeagueTable') }}</li>
         </ol>
     </div>

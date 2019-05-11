@@ -5,6 +5,17 @@
     <div class="container" style="max-width:90%;">
         <div class="row">
 
+            <form class="form-inline" action="{{ route('player_statistics_yellowC.main')}}" method="get">
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <input type="text" class="form-control" name="search" placeholder="{{ __('message.Player') }}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>
+                </div>
+            </form>
+
+
 
             <h1 class="NadpisTabulky" align="center">{{ __('message.mosty') }}</h1>
 
@@ -31,6 +42,8 @@
                         @endforeach
                         </tbody>
                     </table>
+
+                    {{ $statistics->links() }}
 
                 </div>
 

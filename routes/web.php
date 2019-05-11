@@ -15,14 +15,16 @@
 Auth::routes();
 
 
-Route::get('/contact', 'ContactController@create')->name('contact.create');
-Route::post('/contact', 'ContactController@store')->name('contact.store');
-
-
+// riesenie jazyka
 Route::get('locale/{locale}', function ($locale){
     Session::put('locale', $locale);
     return redirect()->back();
 });
+
+
+Route::get('stock/add','FinanceController@create');
+Route::post('stock/add','FinanceController@store');
+
 
 
 // starostlivost o stranky bez prihlasenia

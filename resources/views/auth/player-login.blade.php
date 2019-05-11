@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
 <body>
 <div class="login-wrap">
     <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Prihlasit sa ako Hrac</label>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">{{ __('message.loginplayer') }}</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
         <div class="login-form">
             <form method="POST" action="{{ route('player.login.submit') }}">
@@ -31,7 +31,7 @@
                         @endif
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">Heslo</label>
+                        <label for="pass" class="label">{{ __('message.password') }}</label>
                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
@@ -41,10 +41,10 @@
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
-                        <label for="check"><span class="icon"></span> Zostať prilasený</label>
+                        <label for="check"><span class="icon"></span> {{ __('message.keepsigned') }}</label>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Prihlasit sa">
+                        <input type="submit" class="button" value="{{ __('message.login') }}">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">

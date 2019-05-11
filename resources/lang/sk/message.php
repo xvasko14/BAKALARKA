@@ -24,6 +24,7 @@ return [//prva stranka uvodna
     'training'  => 'Tréning.',
     'training_p'  => 'Vytvárajte tréning, prezerajte účasť a hodnote výkóny. Alebo sa na nich prihlasujte a trenujte ako veľký profesionál.',
     'galeria'  => 'Galéria',
+    'galeriaphoto'  => 'Prezrite si fotogalériu z naších zápasov.',
     'galeria_p'  => 'Prezrite si galériu fotiek z naších zápasov. Nasajte tu atfosméru. Pri troché štastia sa najdete aj na fotke.',
     'systempossibility'  => 'Možnosti systému',
     'systempossibility1'  => 'Trenúj ako správny tréner.',
@@ -148,6 +149,15 @@ return [//prva stranka uvodna
     'paid'       => 'Zaplatené',
 
     'search'       => 'Vyhľadaj',
+
+    //prihlasvonie hraca trenera
+
+    'loginplayer'       => 'Prihlasiť sa ako hráč',
+    'loginmanager'       => 'Prihlasiť sa ako tréner',
+    'password'       => 'Heslo',
+    'keepsigned'       => 'Zostať prihlasený',
+    'login'       => 'Prihlásiť sa ',
+    'forgot'       => 'Zabudol si heslo?',
 
 
 

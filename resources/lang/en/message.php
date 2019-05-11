@@ -23,6 +23,7 @@ return [
     'training_p'  => 'Create training, see who was there or rate performances. Or just go to training and practise to be the best.',
     'galeria'  => 'Gallery',
     'galeria_p'  => 'Look to gallery from our matches. See the atmosphere. If you will have a luck, you will find yourself on the photo',
+    'galeriaphoto'  => 'Check our photoalbum.',
     'systempossibility'  => 'Things you can do',
     'systempossibility1'  => 'Be the greatest manager.',
     'systempossibility2'  => 'Create trainings.',
@@ -142,6 +143,12 @@ return [
     //vyhladaj
     'search'       => 'Search',
 
+    'loginplayer'       => 'Sign In as Player',
+    'loginmanager'       => 'Sign In as Manager',
+    'password'       => 'Password',
+    'keepsigned'       => 'Keep signed',
+    'login'       => 'Sign In',
+    'forgot'       => 'Forgot Password',
 
 
 

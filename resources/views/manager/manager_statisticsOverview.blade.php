@@ -15,7 +15,7 @@
                         <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                             <thead>
                             <tr>
-                                <th>{{ __('message.Statistics') }}y</th>
+                                <th>{{ __('message.PlayerStatistics') }}</th>
 
                             </thead>
                             <tbody>

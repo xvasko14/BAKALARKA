@@ -3,6 +3,13 @@
 @section('content')
     <div class="container" style="max-width:90%;">
         <div class="row">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">{{ __('message.Home') }}</a></li>
+                    <li class="active">{{ __('message.Club') }}</li>
+                </ol>
+            </div>
+
 
             <form class="form-inline" action="{{ route('club_Info.main')}}" method="get">
                 <div class="form-group">
