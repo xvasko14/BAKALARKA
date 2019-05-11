@@ -21,19 +21,19 @@
                             <tbody>
 
                             <tr>
-                                <td> <a  href="{{ url('/statisticsOverview/statistics_goal') }}">{{ __('message.goals') }}</a> </td>
+                                <td> <a  href="{{ url('/player_home/player_statisticsOverview/statistics_goal') }}">{{ __('message.goals') }}</a> </td>
                             </tr>
                             <tr>
-                                <td> <a  href="{{ url('/statisticsOverview/statistics_asists') }}">{{ __('message.asists') }}</a> </td>
+                                <td> <a  href="{{ url('/player_home/player_statisticsOverview/statistics_asists') }}">{{ __('message.asists') }}</a> </td>
                             </tr>
                             <tr>
-                                <td> <a  href="{{ url('/statisticsOverview/statistics_yellowC') }}">{{ __('message.yellowC') }}</a> </td>
+                                <td> <a  href="{{ url('/player_home/player_statisticsOverview/statistics_yellowC') }}">{{ __('message.yellowC') }}</a> </td>
                             </tr>
                             <tr>
-                                <td> <a  href="{{ url('/statisticsOverview/statistics_redC') }}">{{ __('message.redC') }}</a> </td>
+                                <td> <a  href="{{ url('/player_home/player_statisticsOverview/statistics_redC') }}">{{ __('message.redC') }}</a> </td>
                             </tr>
                             <tr>
-                                <td> <a  href="{{ url('/statisticsOverview/statistics_min') }}">{{ __('message.mins') }}</a> </td>
+                                <td> <a  href="{{ url('/player_home/player_statisticsOverview/statistics_mins') }}">{{ __('message.mins') }}</a> </td>
                             </tr>
 
                             </tbody>

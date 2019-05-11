@@ -166,20 +166,39 @@ class LeagueController extends BaseController
     public function statistics_goal()
     {
 
-        $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.goals) as goals, SUM(PlayerInGame.redCard) as rcard'))
-            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
-            // ->where('teams_in_league.league_id', '=', $id)
-            ->groupBy('players.id')
-            ->groupBy('players.name')
-            ->groupBy('players.date_of_birth')
-            ->groupBy('players.position')
-            ->orderBy('goals','desc ')
-            //->orderBy('rcard','desc ')
-            ->get();
+        if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $statistics = DB::table('players')
+                ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.goals) as goals'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->where('players.name','REGEXP',$pattern)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('goals','desc ');
+            $statistics= $statistics->paginate(10); }
 
+
+
+        else {
+            $statistics = DB::table('players')
+                ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.goals) as goals'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('goals','desc ')
+                ->paginate(10);
+        }
 
         $data = [
             'statistics' => $statistics,
@@ -192,18 +211,42 @@ class LeagueController extends BaseController
     public function statistics_asists()
     {
 
-        $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.asists) as asists'))
-            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
-            // ->where('teams_in_league.league_id', '=', $id)
-            ->groupBy('players.id')
-            ->groupBy('players.name')
-            ->groupBy('players.date_of_birth')
-            ->groupBy('players.position')
-            ->orderBy('asists','desc ')
-            ->get();
+
+        if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $statistics = DB::table('players')
+                ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.asists) as asists'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->where('players.name','REGEXP',$pattern)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('asists','desc ');
+            $statistics= $statistics->paginate(10);
+
+
+        }
+
+        else {
+            $statistics = DB::table('players')
+                ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.asists) as asists'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('asists','desc ')
+                ->paginate(10);
+
+        }
 
 
         $data = [
@@ -217,19 +260,42 @@ class LeagueController extends BaseController
     public function statistics_yellowC()
     {
 
-        $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
-            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
-            // ->where('teams_in_league.league_id', '=', $id)
-            ->groupBy('players.id')
-            ->groupBy('players.name')
-            ->groupBy('players.date_of_birth')
-            ->groupBy('players.position')
-            ->orderBy('yellowCard','desc ')
-            ->get();
+        if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $statistics = DB::table('players')
+                ->select(DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->where('players.name','REGEXP',$pattern)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('yellowCard', 'desc ');
+            $statistics= $statistics->paginate(10);
 
+
+        }
+
+        else {
+
+            $statistics = DB::table('players')
+                ->select(DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.yellowCard) as yellowCard'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('yellowCard', 'desc ')
+                ->paginate(10);
+
+        }
 
         $data = [
             'statistics' => $statistics,
@@ -241,18 +307,42 @@ class LeagueController extends BaseController
     public function statistics_redC()
     {
 
-        $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.redCard) as redCard'))
-            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
-            // ->where('teams_in_league.league_id', '=', $id)
-            ->groupBy('players.id')
-            ->groupBy('players.name')
-            ->groupBy('players.date_of_birth')
-            ->groupBy('players.position')
-            ->orderBy('redCard','desc ')
-            ->get();
+        if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $statistics = DB::table('players')
+                ->select(DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.redCard) as redCard'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->where('players.name','REGEXP',$pattern)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('redCard', 'desc ');
+            $statistics= $statistics->paginate(10);
+
+
+
+        }
+
+        else {
+
+            $statistics = DB::table('players')
+                ->select(DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.redCard) as redCard'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('redCard', 'desc ')
+                ->paginate(10);
+        }
 
 
         $data = [
@@ -265,20 +355,41 @@ class LeagueController extends BaseController
     public function statistics_min()
     {
 
-        $statistics = DB::table('players')
-            ->select( DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.min) as min'))
-            ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
-            ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
-            ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
-            // ->where('teams_in_league.league_id', '=', $id)
-            ->groupBy('players.id')
-            ->groupBy('players.name')
-            ->groupBy('players.date_of_birth')
-            ->groupBy('players.position')
-            ->orderBy('min','desc ')
-            ->get();
+        if(request()->has('search')) {
+            $find = request('search');
+            $pattern = ".*" . $find . ".*";
+            $statistics = DB::table('players')
+                ->select(DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.min) as min'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->where('players.name','REGEXP',$pattern)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('min', 'desc ');
+            $statistics= $statistics->paginate(10);
 
 
+        }
+
+        else {
+
+            $statistics = DB::table('players')
+                ->select(DB::raw('players.id, players.name, players.date_of_birth, players.position, SUM(PlayerInGame.min) as min'))
+                ->join('PlayerInGame', 'players.id', '=', 'PlayerInGame.playerGameID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teams_in_league', 'teams_in_league.team_id', '=', 'teamplayers.team_id')
+                // ->where('teams_in_league.league_id', '=', $id)
+                ->groupBy('players.id')
+                ->groupBy('players.name')
+                ->groupBy('players.date_of_birth')
+                ->groupBy('players.position')
+                ->orderBy('min', 'desc ')
+                ->paginate(10);
+        }
         $data = [
             'statistics' => $statistics,
         ];
