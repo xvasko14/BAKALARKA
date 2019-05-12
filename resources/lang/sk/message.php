@@ -72,7 +72,7 @@ return [//prva stranka uvodna
     'teamscored'       => 'Strelené góly',
     'teamget'       => 'Obdržané góly',
     'teamwin'       => 'Výhry',
-    'teamlose'       => 'Prehrý',
+    'teamlose'       => 'Prehry',
     'teamdraw'       => 'Remízi',
     'teampoints'       => 'Body',
 
@@ -83,8 +83,10 @@ return [//prva stranka uvodna
     'matchteam1'       => 'Team 1 Skóre',
     'matchteam2'       => 'Team 2 Skóre',
 
-    'squad'       => 'Základna zostava Tím',
-    'bench'       => 'Nahradníci',
+    'squad'       => 'Základná zostava Tím',
+    'bench'       => 'Náhradníci',
+
+    'bench1'       => 'Náhradník',
 
 
     //hracove statistiky
@@ -152,14 +154,31 @@ return [//prva stranka uvodna
 
     //prihlasvonie hraca trenera
 
-    'loginplayer'       => 'Prihlasiť sa ako hráč',
-    'loginmanager'       => 'Prihlasiť sa ako tréner',
+    'loginplayer'       => 'Prihlásiť sa ako hráč',
+    'loginmanager'       => 'Prihlásiť sa ako tréner',
     'password'       => 'Heslo',
-    'keepsigned'       => 'Zostať prihlasený',
+    'keepsigned'       => 'Zostať prihlásený',
     'login'       => 'Prihlásiť sa ',
     'forgot'       => 'Zabudol si heslo?',
 
 
+    //fianncie
+    'finance'       => 'Financie klubu',
+    'financecelkove'       => 'Celkový príjem',
+    'financecelkovelost'       => 'Celkové výdaje',
+    'financecelkovelostact'       => 'Aktualizovať financie',
+
+
+    'financecelkoveG'       => 'Graf príjimov',
+    'financecelkovelostG'       => 'Graf výdajov',
+
+    'nazov'       => 'Názov',
+
+
+    'income'       => 'Príjem',
+    'loss'       => 'Strata',
+
+    'lossincome'       => 'Príji a výdavky za určité obdobie',
 
 
 ];

@@ -21,9 +21,12 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
+//riesenie financii
+Route::get('finance/add','FinanceController@create')->name('createF');
+Route::post('finance/add','FinanceController@store')->name('storeF');
 
-Route::get('stock/add','FinanceController@create');
-Route::post('stock/add','FinanceController@store');
+Route::get('finance','FinanceController@index')->name('indexf');
+Route::get('finance/chart','FinanceController@chart')->name('chart');;
 
 
 
@@ -179,6 +182,15 @@ Route::prefix('player_home')->group(function() {
 	Route::post('/login', 'Auth\PlayerLoginController@login')->name('player.login.submit');
 	Route::get('/', 'PlayerController@index')->name('player.dashboard');
 
+
+    //financie
+    Route::get('finance','PlayerController@createP')->name('createP');
+    Route::post('finance','PlayerController@storeP')->name('storeP');
+
+    Route::get('finance_view','PlayerController@indexP')->name('indexP');
+    Route::get('finance_lost','PlayerController@lostP')->name('lostP');
+    Route::get('finance/chart','PlayerController@chartP')->name('chartP');
+
     //liga
     Route::get('/player_leagueOverview','PlayerController@LeagueOverview')->name('leagueOverview.main');
     Route::get('/player_leagueOverview/league/{id}','PlayerController@main')->name('player_league.main');
@@ -236,6 +248,15 @@ Route::prefix('manager_home')->group(function() {
     //liga
     Route::get('/manager_leagueOverview','ManagerController@LeagueOverview')->name('leagueOverview.main');
     Route::get('/manager_leagueOverview/league/{id}','ManagerController@main')->name('manager_league.main');
+
+    //financie
+    Route::get('finance','ManagerController@createM')->name('createM');
+    Route::post('finance','ManagerController@storeM')->name('storeM');
+
+    Route::get('finance_view','ManagerController@indexM')->name('indexM');
+    Route::get('finance_lost','ManagerController@lostM')->name('lostM');
+    Route::get('finance/chart','ManagerController@chartM')->name('chartM');
+
 
     //club
     //Route::get('/manager_club','ManagerController@myclub')->name('manager_club.main');

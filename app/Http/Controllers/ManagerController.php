@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Sezona;
 use Carbon\Carbon;
+use App\Finance;
 
 use App\Admin;
 use App\Player;
@@ -1084,6 +1085,48 @@ class ManagerController extends Controller
 
         return view('manager.manager_statistics_mins', $data);
 
+    }
+
+    public function createM()
+    {
+        return view('manager.finance');
+    }
+
+    public function storeM(Request $request)
+    {
+        $stock = new Finance([
+
+            'Prijem' => $request->get('Prijem'),
+            'Vydavok' => $request->get('Vydavok'),
+            'Datum' => $request->get('Datum'),
+            'Nazov' => $request->get('Nazov')
+        ]);
+        $stock->save();
+
+
+        //return view('manager.manager_home');
+        return redirect()->intended('manager_home');
+    }
+
+    public function indexM()
+    {
+        return view('manager.finance_view');
+    }
+
+    public function lostM()
+    {
+        return view('manager.finance_lost');
+    }
+
+
+    public function chartM()
+    {
+        $result = DB::table('Finance as F')
+            //->where('Nazov','=','Hello')
+            ->orderBy('F.Datum', 'asc')
+            ->get();
+        //vardump($result); exit;
+        return response()->json($result);
     }
 
 

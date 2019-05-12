@@ -12,6 +12,8 @@ use App\Player;
 use App\User;
 use App\Manager;
 
+use App\Finance;
+
 class PlayerController extends Controller
 {
     /**
@@ -617,6 +619,48 @@ class PlayerController extends Controller
         return view('player.player_statistics_mins', $data);
 
     }
+
+    public function createP()
+    {
+        return view('manager.finance');
+    }
+
+    public function storeP(Request $request)
+    {
+        $stock = new Finance([
+            'Nazov' => $request->get('Nazov'),
+            'Prijem' => $request->get('Prijem'),
+            'Vydavok' => $request->get('Vydavok'),
+            'rok' => $request->get('rok'),
+            'Datum' => $request->get('Datum')
+        ]);
+        $stock->save();
+
+        //return redirect('finance_view');
+        return view('player.finance_view');
+    }
+
+    public function indexP()
+    {
+        return view('player.finance_view');
+    }
+
+    public function lostP()
+    {
+        return view('player.finance_lost');
+    }
+
+
+    public function chartP()
+    {
+        $result = DB::table('Finance as F')
+            //->where('Nazov','=','Hello')
+            ->orderBy('F.Datum', 'asc')
+            ->get();
+        //vardump($result); exit;
+        return response()->json($result);
+    }
+
 
 
 }

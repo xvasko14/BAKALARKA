@@ -34,11 +34,11 @@ return [
 
     'systempossibility7'  => 'About system.',
     'systempossibility8'  => 'Information system was created as Bachelor Thesis.',
-    'systempossibility9'  => 'This is information system for football club. It was creates as Bachelor Thesis.',
+    'systempossibility9'  => 'This is information system for football club. It was created as Bachelor Thesis.',
 
     'systempossibility10'  => 'Our coach.',
     'systempossibility11'  => 'Main coach.',
-    'systempossibility12'  => 'He was born in Haniska. He is member of club from childhood. Now he contributing to club as manager.',
+    'systempossibility12'  => 'He was born in Haniska. He is member of club from childhood. Now he is contributing to club as manager.',
 
     'welcomemanager'       => 'Welcome Manager',
     'welcomemanageruvod'       => 'You are logged in as Manager. You can start to manage your team. Good Luck !',
@@ -83,6 +83,8 @@ return [
 
     'squad'       => 'Starting Eleven ',
     'bench'       => 'On bench',
+
+    'bench1'       => 'On bench',
 
     //hracove statistiky
     'goals'       => 'Goals',
@@ -149,6 +151,25 @@ return [
     'keepsigned'       => 'Keep signed',
     'login'       => 'Sign In',
     'forgot'       => 'Forgot Password',
+
+    //fianncie
+    'finance'       => 'Club Finance',
+
+    'financecelkove'       => 'Club Income',
+    'financecelkovelost'       => 'Club Net Loss',
+    'financecelkovelostact'       => 'Update Financial Status',
+
+    'financecelkoveG'       => 'Income Graph',
+    'financecelkovelostG'       => 'Net Loss Grapf',
+
+    'nazov'       => 'Name',
+
+    'income'       => 'Income  ',
+    'loss'       => 'Loss',
+
+    'lossincome'       => 'Income and Loss for selected period',
+
+
 
 
 

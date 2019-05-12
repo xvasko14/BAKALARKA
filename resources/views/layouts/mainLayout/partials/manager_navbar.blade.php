@@ -14,6 +14,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li ><a href="/manager_home">{{ __('message.Home') }}</a></li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('message.Club') }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -31,6 +32,14 @@
                     </li>
                     <li><a href="/manager_home/manager_mygames">{{ __('message.Matches') }}</a></li>
                     <li><a href="/manager_home/manager_trainingguide">{{ __('message.squadtraining') }}</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('message.finance') }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="/manager_home/finance_view">{{ __('message.financecelkove') }}</a>
+                            <a class="dropdown-item" href="/manager_home/finance_lost">{{ __('message.financecelkovelost') }}</a>
+                            <a class="dropdown-item" href="/manager_home/finance">{{ __('message.financecelkovelostact') }}</a>
+                        </ul>
+                    </li>
 
                     <style>
 

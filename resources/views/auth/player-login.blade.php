@@ -49,11 +49,7 @@
                     <div class="hr"></div>
                     <div class="foot-lnk">
 
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Zabudol si heslo?') }}
-                            </a>
-                        @endif
+
                     </div>
                 </div>
         </div>
