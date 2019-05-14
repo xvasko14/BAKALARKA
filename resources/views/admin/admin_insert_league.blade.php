@@ -19,11 +19,11 @@
                 @endif
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="meno">Tim</label>
+                    <label for="meno">Liga</label>
                     <input type="text" class="form-control" name="name" placeholder="Nazov ligy">
                 </div>
                 <div class="form-group">
-                    <label for="email">Pocet Timov</label>
+                    <label for="email">Počet tímov</label>
                     <input type="text" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Pocet timov">
                 </div>
                 <div class="form-group">

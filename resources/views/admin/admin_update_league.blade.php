@@ -13,16 +13,16 @@
             <form action="{{ route('admin.league.updateLeague',$league->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="meno">Tim</label>
+                    <label for="meno">Tím</label>
                     <input type="text" class="form-control" name="name" placeholder="Nazov ligy" value="{{$league->name}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Pocet Timov</label>
-                    <input type="text" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Pocet timov" value="{{$league->teams_number}}">
+                    <input type="text" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Počet tímov" value="{{$league->teams_number}}">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="sezona">Sezona</label>
+                    <label for="sezona">Sezóna</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                     <select name="season">
                         @foreach ($sezona as $sezon)

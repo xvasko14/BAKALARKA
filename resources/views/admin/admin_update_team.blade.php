@@ -13,7 +13,7 @@
             <form action="{{ route('admin.team.updateTeam',$teams->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="name">Tim</label>
+                    <label for="name">Tím</label>
                     <input type="text" class="form-control" name="name" placeholder="Nazov timu" value="{{$teams->name}}">
                 </div>
                 <div class="form-group">

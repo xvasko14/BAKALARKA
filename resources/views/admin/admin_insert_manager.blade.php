@@ -24,11 +24,11 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="email">Vek</label>
-                <input type="date" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek">
+                <input type="date" class="form-control" name="age" aria-describedby="age" placeholder="Vek">
             </div>
            <div class="form-group">
               <label for="email">Klub</label>

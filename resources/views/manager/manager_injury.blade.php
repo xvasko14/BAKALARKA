@@ -4,9 +4,17 @@
 
 
 
-
+    <h1 class="NadpisTabulky" align="center">{{ __('message.createinjury') }}</h1>
     <div class="container" style="max-width:80%; margin-top: 40px;">
+
         <form action="{{ route('manager_injury_insert.main') }}" method="post">
+            <div class="okno">
+                @if (session('status'))
+                    <div class="alert alert-warning alert-dismissible fade in text-center">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4">
             <div class="form-group">
@@ -27,12 +35,7 @@
                 <label for="approximately_time">{{ __('message.squadtraininglenghts') }}</label>
                 <input type="text" class="form-control" name="approximately_time"  placeholder="{{ __('message.days') }}">
             </div>
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-                <br>
-            @endif
+
             <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
             </div>
         </form>

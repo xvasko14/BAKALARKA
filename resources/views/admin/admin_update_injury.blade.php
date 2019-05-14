@@ -12,7 +12,7 @@
         <div class="container" style="max-width:80%; margin-top: 40px;">
             <form action="{{ route('admin.injury.updateInjury',$injuries->id) }}" method="post">
                 <div class="form-group">
-                    <label for="club">Hrac</label>
+                    <label for="club">Hrač</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                     <select name="player">
                         @foreach ($players as $dat)
@@ -26,8 +26,8 @@
                     <input type="text" class="form-control" name="type_injury" placeholder="Typ zranenia" value="{{$injuries->type_injury}}">
                 </div>
                 <div class="form-group">
-                    <label for="approximately_time">Dlzka absencie</label>
-                    <input type="text" class="form-control" name="approximately_time"  placeholder="Pocet dni" value="{{$injuries->approximately_time}}">
+                    <label for="approximately_time">Dlžka absencie</label>
+                    <input type="text" class="form-control" name="approximately_time"  placeholder="Počet dní" value="{{$injuries->approximately_time}}">
                 </div>
                 @if (session('status'))
                     <div class="alert alert-success">

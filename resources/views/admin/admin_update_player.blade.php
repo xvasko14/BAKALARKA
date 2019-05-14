@@ -12,15 +12,15 @@
             <div class="form-group">
                 {{ csrf_field()}}
                 <label for="meno">Meno</label>
-                <input type="text" class="form-control" name="name" placeholder="Meno uživateľa:string" value="{{$players->name}}">
+                <input type="text" class="form-control" name="name" placeholder="Meno uživateľa" value="{{$players->name}}">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{$players->email}}">
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email" value="{{$players->email}}">
             </div>
             <div class="form-group">
               <label for="age">Vek</label>
-                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$players->date_of_birth}}">
+                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Vek" value="{{$players->date_of_birth}}">
             </div>
             <div class="form-group">
                 <label for="weight">Váha</label>
@@ -31,12 +31,12 @@
                 <input type="text" class="form-control" name="height" aria-describedby="height" placeholder="Výška" value="{{$players->height}}">
             </div>
             <div class="form-group">
-                <label for="player_number">Cislo dresu</label>
-                <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Cislo dresu" value="{{$players->player_number}}">
+                <label for="player_number">Čislo dresu</label>
+                <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Čislo dresu" value="{{$players->player_number}}">
             </div>
             <div class="form-group">
-              <label for="position">Pozicia</label>
-                <input type="text" class="form-control" name="position" aria-describedby="position" placeholder="Enter Pozicia" value="{{$players->position}}">
+              <label for="position">Pozícia</label>
+                <input type="text" class="form-control" name="position" aria-describedby="position" placeholder="Pozícia" value="{{$players->position}}">
             </div>
             <div class="form-group">
               <label for="club">Klub</label>

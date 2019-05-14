@@ -13,8 +13,8 @@
             <form action="{{ route('admin.team.deleteTeam',$teams->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="name">Tim</label>
-                    <input type="text" class="form-control" name="name" placeholder="Nazov timu" value="{{$teams->name}}">
+                    <label for="name">Tím</label>
+                    <input type="text" class="form-control" name="name" placeholder="Názov tímu" value="{{$teams->name}}">
                 </div>
                 <div class="form-group">
                     <label for="league">Liga</label>
@@ -31,7 +31,7 @@
                     </div>
                     <br>
                 @endif
-                <button type="submit" class="btn btn-primary">Vymazat</button>
+                <button type="submit" class="btn btn-primary">Vymazať</button>
             </form>
 
         </div>

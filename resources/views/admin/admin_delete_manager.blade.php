@@ -14,15 +14,15 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="meno">Meno</label>
-                    <input type="text" class="form-control" name="name" placeholder="Meno uživateľa:string" value="{{$managers->name}}">
+                    <input type="text" class="form-control" name="name" placeholder="Meno uživateľa" value="{{$managers->name}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{$managers->email}}">
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email" value="{{$managers->email}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Vek</label>
-                    <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Enter Vek" value="{{$managers->date_of_birth}}">
+                    <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Vek" value="{{$managers->date_of_birth}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Klub</label>
@@ -39,7 +39,7 @@
                     </div>
                     <br>
                 @endif
-                <button type="submit" class="btn btn-primary">Vymazat</button>
+                <button type="submit" class="btn btn-primary">Vymazať</button>
             </form>
 
         </div>

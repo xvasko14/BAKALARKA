@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="email">Vek</label>
@@ -40,11 +40,11 @@
                 </div>
                 <div class="form-group">
                     <label for="player_number">Cislo dresu</label>
-                    <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Cislo dresu">
+                    <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Čislo dresu">
                 </div>
             <div class="form-group">
               <label for="email">Pozicia</label>
-                <input type="text" class="form-control" name="position" aria-describedby="position" placeholder="Enter Pozicia">
+                <input type="text" class="form-control" name="position" aria-describedby="position" placeholder="Pozícia hráča">
             </div>
             <div class="form-group">
               <label for="email">Klub</label>

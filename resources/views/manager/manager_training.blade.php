@@ -23,7 +23,7 @@
                                 <tbody>
                                 @foreach($training as $key => $data)
                                     <tr>
-                                        <td> <a  href="{{route('manager_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </td>
+                                        <td> <a style="color: #1d643b"  href="{{route('manager_trainingPlayers.main', $data->id)}}">{{ $data->id}}</a> </td>
                                         <td>{{$data->starts}}</td>
                                         <td>{{$data->specialization}}</td>
                                         <td>{{$data->length}}</td>

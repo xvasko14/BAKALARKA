@@ -13,7 +13,7 @@
             <form action="{{ route('admin.game.updateGame',$game->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="sezona">Sezona</label>
+                    <label for="sezona">Sezóna</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                     <select name="sezona">
                         @foreach ($sezona as $sezon)
@@ -47,12 +47,12 @@
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="result1">Tim</label>
+                    <label for="result1">Góly 1</label>
                     <input type="text" class="form-control" name="result1" placeholder="Result1" value="{{$game->team1_goals}}">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="result2">Tim</label>
+                    <label for="result2">Góly 2</label>
                     <input type="text" class="form-control" name="result2" placeholder="Result2" value="{{$game->team2_goals}}">
                 </div>
 

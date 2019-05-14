@@ -203,6 +203,7 @@ a {
 }
 h1 {
 	color : white;
+	display: inline;
 }
 .BC{
 	background-color : black;

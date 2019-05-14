@@ -48,7 +48,8 @@
 <script src="{{ asset('js/backend_js//select2.min.js') }}"></script> 
 <script src="{{ asset('js/backend_js//matrix.popover.js') }}"></script> 
 <script src="{{ asset('js/backend_js//jquery.dataTables.min.js') }}"></script> 
-<script src="{{ asset('js/backend_js//matrix.tables.js') }}"></script> 
+<script src="{{ asset('js/backend_js//matrix.tables.js') }}"></script>
+
 <script src="{{ asset('js/app.js') }}" defer></script>   <!--PRIDANE ZO ZAKALDNEHO SUBORU-->
 <script type="text/javascript">
 

@@ -32,8 +32,8 @@
                     <input type="text" class="form-control" name="type_injury" placeholder="Typ zranenia">
                 </div>
                 <div class="form-group">
-                    <label for="approximately_time">Dlzka absencie</label>
-                    <input type="text" class="form-control" name="approximately_time"  placeholder="Pocet dni">
+                    <label for="approximately_time">Dlžka absencie</label>
+                    <input type="text" class="form-control" name="approximately_time"  placeholder="Počet dní">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Odoslať</button>

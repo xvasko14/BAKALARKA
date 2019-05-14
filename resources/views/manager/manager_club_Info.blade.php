@@ -34,7 +34,7 @@
                         <tbody>
                         @foreach($players as $player)
                             <tr>
-                                <td> <a  href="{{route('manager_club_InfoPlayer.main', $player->id)}}">{{ $player->name}}</a></td>
+                                <td> <a  style="color: #1d643b" href="{{route('manager_club_InfoPlayer.main', $player->id)}}">{{ $player->name}}</a></td>
                                 <td>{{\Carbon\Carbon::parse($player->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y ')}}</td>
                                 <td>{{$player->position}}</td>
                             </tr>

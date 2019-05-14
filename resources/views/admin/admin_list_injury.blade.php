@@ -11,7 +11,7 @@
 
                 <div class="col-md-11 col-md-offset-2">
                     <div class="panel panel-default">
-                        <h1 align="center">Zoznam zranenych hracov</h1>
+                        <h1 align="center">Zoznam zranených hračov</h1>
 
                         <div class="panel-heading">
                             <div class="">
@@ -23,8 +23,8 @@
                                             <th>ID</th>
                                             <th>Meno</th>
                                             <th>Typ zranenia</th>
-                                            <th>Cas absencie</th>
-                                            <th>editacia</th>
+                                            <th>Čas absencie</th>
+                                            <th>Editacia</th>
                                             <th>Vymazanie</th>
 
 

@@ -2,9 +2,24 @@
 
 @section('content')
 
+    <h1 class="NadpisTabulky" align="center">{{ __('message.createtraining') }}</h1>
 
         <div class="container" style="max-width:80%; margin-top: 40px;">
             <form action="{{ route('manager.training.insertTraining') }}" method="post">
+                <div class="okno">
+                    @if (session('status'))
+                        <div class="alert alert-warning alert-dismissible fade in text-center">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="okno">
+                    @if (session('date'))
+                        <div class="alert alert-warning alert-dismissible fade in text-center">
+                            {{ session('date') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="row">
                     <div class="col-lg-4 col-lg-offset-4">
                         <div class="form-group">
@@ -27,6 +42,10 @@
                             <input type="text" class="form-control" name="length"  placeholder="{{ __('message.squadtraininglenghts') }}">
                         </div>
                         <div class="form-group">
+                            <label for="content_of_training">Napln treningu</label>
+                            <input type="text" class="form-control" name="content_of_training"  placeholder="{{ __('message.contenttraining') }}">
+                        </div>
+                        <div class="form-group">
                             <label for="club">{{ __('message.Club') }}</label>
                             <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                             <select name="club">
@@ -35,12 +54,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                            <br>
-                        @endif
+
                         <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
                     </div>
                 </div>

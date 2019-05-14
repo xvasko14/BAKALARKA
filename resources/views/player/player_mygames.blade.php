@@ -25,7 +25,7 @@
                         <tbody>
                         @foreach($game as $key => $data)
                             <tr>
-                                <td> <a  href="{{route('TeamsGame', $data->id)}}">{{ $data->id}}</a> </td>
+                                <td> <a style="color: #1d643b"  href="{{route('player.TeamsGame', $data->id)}}">{{ $data->id}}</a> </td>
                                 <td>{{$data->Round}}</td>
                                 <td>{{$data->Date}}</td>
                                 <td>{{$data->teamName1}}</td>

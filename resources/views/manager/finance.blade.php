@@ -6,9 +6,24 @@
 
 
      <h1 class="NadpisTabulky" align="center">{{ __('message.lossincome') }}</h1>
+
      <div class="container" style="max-width:80%; margin-top: 40px;">
         <form action="{{ route('storeM') }}" method="post">
             {{csrf_field()}}
+            <div class="okno">
+            @if (session('status'))
+                <div class="alert alert-warning alert-dismissible fade in text-center">
+                    {{ session('status') }}
+                </div>
+            @endif
+            </div>
+            <div class="okno">
+                @if (session('date'))
+                    <div class="alert alert-warning alert-dismissible fade in text-center">
+                        {{ session('date') }}
+                    </div>
+                @endif
+            </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4">
                     <div class="form-group">
@@ -22,11 +37,11 @@
                     </div>
                     <div class="form-group">
                         <label for="Prijem">{{ __('message.income') }}:</label>
-                        <input type="text" class="form-control" id="Prijem" name="Prijem">
+                        <input type="text" class="form-control" id="Prijem" name="Prijem" placeholder="{{ __('message.euro') }}">
                     </div>
                     <div class="form-group">
                         <label for="Vydavok">{{ __('message.loss') }}:</label>
-                        <input type="text" class="form-control" id="Vydavok" name="Vydavok">
+                        <input type="text" class="form-control" id="Vydavok" name="Vydavok" placeholder="{{ __('message.euro') }}">
                     </div>
 
                     <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>

@@ -69,6 +69,7 @@ class AdminController extends Controller
             $request->input('club') == NULL) {
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
+
         $players = DB::table('players')->where('email', $request->input('email'))->first();
         if (!is_null($players)) {
             return redirect()->back()->with('status', 'E-mail už je v databázi');
@@ -365,6 +366,11 @@ class AdminController extends Controller
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
 
+        $managers = DB::table('teams')->where('name', $request->input('name'))->first();
+        if (!is_null($managers)) {
+            return redirect()->back()->with('status', 'Rovnaký tím už existuje');
+        }
+
         $data = array(
             'name' => $request->input('name'),
         );
@@ -509,6 +515,11 @@ class AdminController extends Controller
             return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
         }
 
+        $managers = DB::table('league')->where('name', $request->input('name'))->first();
+        if (!is_null($managers)) {
+            return redirect()->back()->with('status', 'Rovnaká liga už existuje');
+        }
+
         $data = array(
             'name' => $request->input('name'),
             'teams_number' => $request->input('teams_number'),
@@ -546,9 +557,9 @@ class AdminController extends Controller
         }
 
 
-        $league = DB::table('teams')->where('id', $id)->update(['name' => $request->input('name')]);
-        $league = DB::table('teams')->where('id', $id)->update(['teams_number' => $request->input('teams_number')]);
-        $league = DB::table('teams')->where('id', $id)->update(['season' => $request->input('season')]);
+        $league = DB::table('league')->where('id', $id)->update(['name' => $request->input('name')]);
+        $league = DB::table('league')->where('id', $id)->update(['teams_number' => $request->input('teams_number')]);
+        $league = DB::table('league')->where('id', $id)->update(['season' => $request->input('season')]);
 
 
 
@@ -620,6 +631,32 @@ class AdminController extends Controller
         }
 
 
+        // hraju v tom istom kole
+        $samegameround = DB::table('game')->where('Round', $request->input('Round'))
+            ->where('team1', $request->input('club1'))
+            ->first();
+
+        // hraju v tom istom kole
+        $samegameround2 = DB::table('game')->where('Round', $request->input('Round'))
+            ->where('team2', $request->input('club2'))
+            ->first();
+        // rovnake timy co uz bolo
+        $samegame = DB::table('game')
+            ->where('team1', $request->input('club1'))
+            ->where('team2', $request->input('club2'))
+            ->first();
+        //var_dump($samegame); exit;
+        if (!is_null($samegameround)) {
+            return redirect()->back()->with('status', ' Zápas v tomto ligovom kole už bol vytvorený');
+        }
+        if (!is_null($samegameround2)) {
+            return redirect()->back()->with('status', ' Zápas v tomto ligovom kole už bol vytvorený');
+        }
+        if (!is_null($samegame)) {
+            return redirect()->back()->with('status', ' Teito tímy už spolu hrali');
+        }
+
+
         $datetime = $request->input('Date') . ' ' . $request->input('time');
         $data = array(
             'Date' => date('Y-m-d H:i:s',strtotime($datetime)),
@@ -657,6 +694,27 @@ class AdminController extends Controller
 
 
         return view('admin.admin_list_games', $data);
+
+    }
+    public function updateGame(Request $request, $id)
+    {
+        if ($request->input('Round') == NULL || $request->input('club1') == NULL || $request->input('club2') == NULL || $request->input('result1') == NULL || $request->input('result2') == NULL) {
+            return redirect()->back()->with('status', 'Musia byť vyplnene všetky položky');
+        }
+
+
+
+        $game = DB::table('game')->where('id', $id)->update(['team1' => $request->input('club1')]);
+        $game = DB::table('game')->where('id', $id)->update(['team2' => $request->input('club2')]);
+        $game = DB::table('game')->where('id', $id)->update(['team1_goals' => $request->input('result1')]);
+        $game = DB::table('game')->where('id', $id)->update(['team2_goals' => $request->input('result2')]);
+        $game = DB::table('game')->where('id', $id)->update(['sezona' => $request->input('sezona')]);
+        $game = DB::table('game')->where('id', $id)->update(['Round' => $request->input('Round')]);
+
+
+
+
+        return redirect()->intended('admin/admin_list_games');
 
     }
 
@@ -774,36 +832,34 @@ class AdminController extends Controller
     public function insertPlayerInGame(Request $request, $id)
     {
 
-        //var_dump($id); exit;
         $playersInGame = DB::table('PlayerInGame');
 
-        /*$data = array(
-            'playerGameID' => $request->input('player'),
-            //'gameID' => $id,
-            'goals' => $request->input('goals'),
-            'yellowCard' => $request->input('yellowCard'),
-            'redCard' => $request->input('redCard'),
-        );*/
+        $data = [];
 
-        $data = array(
-            array('playerGameID'=>$request->input('brankar'),'gameID'=>$id, 'goals' => $request->input('goals'), 'asists' => $request->input('asists'),'min' => $request->input('min'),'yellowCard' => $request->input('yellowCard'),'redCard' => $request->input('redCard'),'substitution' => $request->input('substitution'),'OnBench' => $request->input('OnBench')),
-            array('playerGameID'=>$request->input('obranca1'),'gameID'=>$id, 'goals' => $request->input('goals1'),'asists' => $request->input('asists1'),'min' => $request->input('min1'),'yellowCard' => $request->input('yellowCard1'),'redCard' => $request->input('redCard1'),'substitution' => $request->input('substitution1'),'OnBench' => $request->input('OnBench1')),
-            array('playerGameID'=>$request->input('obranca2'),'gameID'=>$id, 'goals' => $request->input('goals2'),'asists' => $request->input('asists2'),'min' => $request->input('min2'),'yellowCard' => $request->input('yellowCard2'),'redCard' => $request->input('redCard2'),'substitution' => $request->input('substitution2'),'OnBench' => $request->input('OnBench2')),
-            array('playerGameID'=>$request->input('obranca3'),'gameID'=>$id, 'goals' => $request->input('goals3'),'asists' => $request->input('asists3'),'min' => $request->input('min3'),'yellowCard' => $request->input('yellowCard3'),'redCard' => $request->input('redCard3'),'substitution' => $request->input('substitution3'),'OnBench' => $request->input('OnBench3')),
-            array('playerGameID'=>$request->input('obranca4'),'gameID'=>$id, 'goals' => $request->input('goals4'),'asists' => $request->input('asists4'),'min' => $request->input('min4'),'yellowCard' => $request->input('yellowCard4'),'redCard' => $request->input('redCard4'),'substitution' => $request->input('substitution4'),'OnBench' => $request->input('OnBench4')),
-            array('playerGameID'=>$request->input('zaloznik1'),'gameID'=>$id, 'goals' => $request->input('goals5'),'asists' => $request->input('asists5'),'min' => $request->input('min5'),'yellowCard' => $request->input('yellowCard5'),'redCard' => $request->input('redCard5'),'substitution' => $request->input('substitution5'),'OnBench' => $request->input('OnBench5')),
-            array('playerGameID'=>$request->input('zaloznik2'),'gameID'=>$id, 'goals' => $request->input('goals6'),'asists' => $request->input('asists6'),'min' => $request->input('min6'),'yellowCard' => $request->input('yellowCard6'),'redCard' => $request->input('redCard6'),'substitution' => $request->input('substitution6'),'OnBench' => $request->input('OnBench6')),
-            array('playerGameID'=>$request->input('zaloznik3'),'gameID'=>$id, 'goals' => $request->input('goals7'),'asists' => $request->input('asists7'),'min' => $request->input('min7'),'yellowCard' => $request->input('yellowCard7'),'redCard' => $request->input('redCard7'),'substitution' => $request->input('substitution7'),'OnBench' => $request->input('OnBench7')),
-            array('playerGameID'=>$request->input('utocnik1'),'gameID'=>$id, 'goals' => $request->input('goals8'),'asists' => $request->input('asists8'),'min' => $request->input('min8'),'yellowCard' => $request->input('yellowCard8'),'redCard' => $request->input('redCard8'),'substitution' => $request->input('substitution8'),'OnBench' => $request->input('OnBench8')),
-            array('playerGameID'=>$request->input('utocnik2'),'gameID'=>$id, 'goals' => $request->input('goals9'),'asists' => $request->input('asists9'),'min' => $request->input('min9'),'yellowCard' => $request->input('yellowCard9'),'redCard' => $request->input('redCard9'),'substitution' => $request->input('substitution9'),'OnBench' => $request->input('OnBench9')),
-            array('playerGameID'=>$request->input('utocnik3'),'gameID'=>$id, 'goals' => $request->input('goals10'),'asists' => $request->input('asists10'),'min' => $request->input('min10'),'yellowCard' => $request->input('yellowCard10'),'redCard' => $request->input('redCard10'),'substitution' => $request->input('substitution10'),'OnBench' => $request->input('OnBench10')),
-            array('playerGameID'=>$request->input('nahradnik1'),'gameID'=>$id, 'goals' => $request->input('goals11'),'asists' => $request->input('asists11'),'min' => $request->input('min11'),'yellowCard' => $request->input('yellowCard11'),'redCard' => $request->input('redCard11'),'substitution' => $request->input('substitution11'),'OnBench' => $request->input('OnBench11')),
-            array('playerGameID'=>$request->input('nahradnik2'),'gameID'=>$id, 'goals' => $request->input('goals12'),'asists' => $request->input('asists12'),'min' => $request->input('min12'),'yellowCard' => $request->input('yellowCard12'),'redCard' => $request->input('redCard12'),'substitution' => $request->input('substitution12'),'OnBench' => $request->input('OnBench12')),
-            array('playerGameID'=>$request->input('nahradnik3'),'gameID'=>$id, 'goals' => $request->input('goals13'),'asists' => $request->input('asists13'),'min' => $request->input('min13'),'yellowCard' => $request->input('yellowCard13'),'redCard' => $request->input('redCard13'),'substitution' => $request->input('substitution13'),'OnBench' => $request->input('OnBench13')),
-            array('playerGameID'=>$request->input('nahradnik4'),'gameID'=>$id, 'goals' => $request->input('goals14'),'asists' => $request->input('asists14'),'min' => $request->input('min14'),'yellowCard' => $request->input('yellowCard14'),'redCard' => $request->input('redCard14'),'substitution' => $request->input('substitution14'),'OnBench' => $request->input('OnBench14')),
-            array('playerGameID'=>$request->input('nahradnik5'),'gameID'=>$id, 'goals' => $request->input('goals15'),'asists' => $request->input('asists15'),'min' => $request->input('min15'),'yellowCard' => $request->input('yellowCard15'),'redCard' => $request->input('redCard15'),'substitution' => $request->input('substitution15'),'OnBench' => $request->input('OnBench15')),
-        );
-        //var_dump($data); exit;
+        $rows = $request->input('row');
+
+        $dataPlayers = [];
+
+        foreach ($rows as $row) {
+            if (in_array($row['hrac'], $dataPlayers)) {
+                return redirect()->back()->with('status', 'Rovnaký hráč je vybraný viackrát');
+            }
+
+            $data[] = [
+                'playerGameID'  => $row['hrac'],
+                'gameID' => $id,
+                'goals'  => $row['goals'],
+                'asists'  => $row['asists'],
+                'min'  => $row['min'],
+                'redCard'  => $row['redCard'],
+                'yellowCard'  => $row['yellowCard'],
+                'substitution'  => $row['substitution'],
+                'OnBench'  => $row['OnBench'],
+            ];
+            $dataPlayers[] = $row['hrac'];
+
+        }
+
         $playersInGame->insert($data);
 
         return redirect()->intended('admin');
@@ -835,13 +891,17 @@ class AdminController extends Controller
         }
 
         $datetime = $request->input('date') . ' ' . $request->input('time');
+        $date = DB::table('training')->where( DB::raw('starts'), $datetime)->first();
+
+        if ($date) {
+            return redirect()->back()->with('date', 'V tento datum uz je trening');
+        }
         $data = array(
             'starts' => date('Y-m-d H:i:s',strtotime($datetime)),
             'length' => $request->input('length'),
             'teamTraining_id' => $request->input('club'),
             'specialization' => $request->input('specialization'),
 
-            //'club' => $request->input('club'),
 
         );
 
@@ -849,8 +909,6 @@ class AdminController extends Controller
         $training->insert($data);
 
 
-        // toto este nebude fungovat
-        // ADMIN_ DASHBOARD MAM SPRAVENE AKO ADMIN !!! teda iba admin (find OUT)
         return redirect()->intended('admin/admin_list_player');
     }
 

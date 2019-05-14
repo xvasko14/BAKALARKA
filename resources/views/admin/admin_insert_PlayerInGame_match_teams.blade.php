@@ -12,7 +12,7 @@
 
             <div class="col-md-11 col-md-offset-2">
                 <div class="panel panel-default">
-                    <h1 align="center">Zapasy</h1>
+                    <h1 align="center">Zápasy</h1>
 
                     <div class="panel-heading">
                         <div class="">

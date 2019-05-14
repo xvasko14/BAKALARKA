@@ -13,17 +13,17 @@
             <form action="{{ route('admin.training.updateTraining',$training->id) }}" method="post">
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="starts">Zaciatok treningu</label>
-                    <input type="time" class="form-control" name="time" placeholder="Zaciatok treningu">
+                    <label for="starts">Začiatok tréningu</label>
+                    <input type="time" class="form-control" name="time" placeholder="Zaciatok treningu" {{$training->time}}>
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="starts">Datum</label>
-                    <input type="date" class="form-control" name="date" placeholder="Datum">
+                    <label for="starts">Dátum</label>
+                    <input type="date" class="form-control" name="date" placeholder="Datum" {{$training->date}}>
                 </div>
                 <div class="form-group">
-                    <label for="length">Dlzka</label>
-                    <input type="text" class="form-control" name="length"  placeholder="Cas">
+                    <label for="length">Dlžka</label>
+                    <input type="text" class="form-control" name="length"  placeholder="Čas" {{$training->lenght}}>
                 </div>
                 <div class="form-group">
                     <label for="club">Klub</label>

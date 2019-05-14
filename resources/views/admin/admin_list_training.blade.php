@@ -11,7 +11,7 @@
 
                 <div class="col-md-11 col-md-offset-2">
                     <div class="panel panel-default">
-                        <h1 align="center">Zoznam Treningov</h1>
+                        <h1 align="center">Zoznam tréningov</h1>
 
                         <div class="panel-heading">
                             <div class="">
@@ -21,8 +21,8 @@
                                         <thead>
                                         <tr>
                                             <th>Tim ID</th>
-                                            <th>Cas</th>
-                                            <th>Dlzka</th>
+                                            <th>Čas</th>
+                                            <th>Dlžka</th>
                                             <th>Editácie</th>
                                             <th>Vymazanie</th>
                                         </tr>

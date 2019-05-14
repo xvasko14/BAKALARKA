@@ -63,13 +63,13 @@
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="result1">Tim</label>
-                    <input type="text" class="form-control" name="result1" placeholder="Result1">
+                    <label for="result1">Góly tím 1</label>
+                    <input type="text" class="form-control" name="result1" placeholder="Góly">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="result2">Tim</label>
-                    <input type="text" class="form-control" name="result2" placeholder="Result2">
+                    <label for="result2">Góly tím 2</label>
+                    <input type="text" class="form-control" name="result2" placeholder="Góly">
                 </div>
 
 

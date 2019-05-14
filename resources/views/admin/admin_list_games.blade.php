@@ -11,7 +11,7 @@
 
                 <div class="col-md-11 col-md-offset-2">
                     <div class="panel panel-default">
-                        <h1 align="center">Zoznam Timov</h1>
+                        <h1 align="center">Zoznam tímov</h1>
 
                         <div class="panel-heading">
                             <div class="">
@@ -22,8 +22,8 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Team1</th>
-                                            <th>Team1 Goals</th>
-                                            <th>Team2 Goals</th>
+                                            <th>Team1 Góly</th>
+                                            <th>Team2 Góly</th>
                                             <th>Team2</th>
                                             <th>Editacia</th>
                                             <th>Vymazanie</th>

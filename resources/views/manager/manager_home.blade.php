@@ -17,6 +17,7 @@
         <div class="container-fluid">
             <div class="row">
 
+
         <div class="col-md-10 col-md-offset-1">
         @if(session()->has('training'))
             <div class="alert alert-success center-block">
@@ -33,6 +34,11 @@
                 {{ session()->get('pokuta') }}
             </div>
         @endif
+            @if(session()->has('Financie'))
+                <div class="alert alert-success center-block">
+                    {{ session()->get('Financie') }}
+                </div>
+            @endif
         </div>
             </div>
         </div>

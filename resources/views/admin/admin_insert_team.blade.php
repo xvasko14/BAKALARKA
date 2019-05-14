@@ -20,7 +20,7 @@
             <div class="form-group">
                 {{ csrf_field()}}
                 <label for="meno">Tim</label>
-                <input type="text" class="form-control" name="name" placeholder="Nazov timu">
+                <input type="text" class="form-control" name="name" placeholder="Nazov tímu">
             </div>
             <div class="form-group">
                 <label for="league">Liga</label>

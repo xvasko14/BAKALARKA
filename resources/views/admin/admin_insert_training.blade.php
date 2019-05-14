@@ -19,12 +19,12 @@
                 @endif
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="starts">Zaciatok treningu</label>
-                    <input type="time" class="form-control" name="time" placeholder="Zaciatok treningu">
+                    <label for="starts">Začiatok treningu</label>
+                    <input type="time" class="form-control" name="time" placeholder="Začiatok treningu">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="starts">Datum</label>
+                    <label for="starts">Dátum</label>
                     <input type="date" class="form-control" name="date" placeholder="Datum">
                 </div>
                     <div class="form-group">
@@ -33,8 +33,8 @@
                         <input type="text" class="form-control" name="specialization" placeholder="Zameranie treningu">
                     </div>
                 <div class="form-group">
-                    <label for="length">Dlzka</label>
-                    <input type="text" class="form-control" name="length"  placeholder="Cas">
+                    <label for="length">Dlžka</label>
+                    <input type="text" class="form-control" name="length"  placeholder="Čas">
                 </div>
                 <div class="form-group">
                     <label for="club">Klub</label>

@@ -7,7 +7,7 @@
 
 
         <div class="panel panel-default">
-            <h1 align="center">Ligova tabulka</h1>
+            <h1 align="center">{{ __('message.teamname') }}</h1>
 
             <div class="panel-heading">
                 <div class="">

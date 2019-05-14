@@ -28,7 +28,7 @@
         <div class="row-fluid">
             <div class="admin-text">
                 <h1 align="center">Vitaj Admin!</h1>
-                <p align="center" >Nachadzas sa na stránke správcu. Teraz máš absolútnu voľnosť vytvoriť čo len chceš.</p>
+                <p align="center" >Nachadzač sa na stránke správcu. Teraz máš absolútnu voľnosť vytvoriť čo len chceš.</p>
             </div>
         </div>
         <!--End-Action boxes-->

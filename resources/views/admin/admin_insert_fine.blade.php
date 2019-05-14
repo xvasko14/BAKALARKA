@@ -28,11 +28,11 @@
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="reason">Dovod pokuty</label>
-                    <input type="text" class="form-control" name="reason" placeholder="Dovod pokuty">
+                    <label for="reason">Dôvod pokuty</label>
+                    <input type="text" class="form-control" name="reason" placeholder="Dôvod pokuty">
                 </div>
                 <div class="form-group">
-                    <label for="sum">Ciastka</label>
+                    <label for="sum">Čiastka</label>
                     <input type="text" class="form-control" name="sum"  placeholder="V eurach">
                 </div>
 

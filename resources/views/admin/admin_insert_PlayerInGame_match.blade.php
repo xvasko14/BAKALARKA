@@ -12,7 +12,7 @@
 
             <div class="col-md-11 col-md-offset-2">
                 <div class="panel panel-default">
-                    <h1 align="center">Zapasy</h1>
+                    <h1 align="center">Z8pasy</h1>
 
                     <div class="panel-heading">
                         <div class="">
@@ -20,10 +20,10 @@
                             <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                                 <thead>
                                 <tr>
-                                    <th>ID Zapasu </th>
+                                    <th>ID Zpasu </th>
                                     <th>Team 1 </th>
-                                    <th>Team 1 Skore </th>
-                                    <th>Team 2 SKore </th>
+                                    <th>Team 1 Skóre </th>
+                                    <th>Team 2 SKóre </th>
                                     <th>Team 2 </th>
                                 </tr>
                                 </thead>

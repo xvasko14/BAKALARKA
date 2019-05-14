@@ -117,6 +117,7 @@ return [
     'squadtrainingspecializations'=> 'Specilialization ',
     'squadtraininglenghts'       => 'Lenght',
     'send'       => 'Send',
+    'contenttraining'       => 'Training content',
 
     'playertrainingaccept'       => 'Accept',
     'reject'       => 'Reject',
@@ -168,6 +169,12 @@ return [
     'loss'       => 'Loss',
 
     'lossincome'       => 'Income and Loss for selected period',
+
+    'squadchoose'       => 'Choose players and their statistics',
+
+    'createinjury'       => 'Add injury player',
+    'createfine'       => 'Add player with fine ',
+    'createtraining'       => 'Create teams training',
 
 
 

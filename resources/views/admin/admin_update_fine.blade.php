@@ -12,7 +12,7 @@
         <div class="container" style="max-width:80%; margin-top: 40px;">
             <form action="{{ route('admin.fine.updateFine',$fine->id) }}" method="post">
                 <div class="form-group">
-                    <label for="club">Hrac</label>
+                    <label for="club">Hrač</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
                     <select name="player">
                         @foreach ($players as $dat)
@@ -22,11 +22,11 @@
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
-                    <label for="reason">Dovod pokuty</label>
-                    <input type="text" class="form-control" name="reason" placeholder="Dovod pokuty" value="{{$fine->reason}}">
+                    <label for="reason">Dôvod pokuty</label>
+                    <input type="text" class="form-control" name="reason" placeholder="Dôvod pokuty" value="{{$fine->reason}}">
                 </div>
                 <div class="form-group">
-                    <label for="sum">Ciastka</label>
+                    <label for="sum">Čiastka</label>
                     <input type="text" class="form-control" name="sum"  placeholder="V eurach" value="{{$fine->sum}}">
                 </div>
                 @if (session('status'))

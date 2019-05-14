@@ -121,6 +121,8 @@ return [//prva stranka uvodna
     'squadtrainingspecializations'       => 'Špecializácia ',
     'squadtraininglenghts'       => 'Dĺžka',
     'send'       => 'Odoslať',
+    'contenttraining'       => 'Náplň tréningu',
+
 
     //mhrac trening
     'playertrainingaccept'       => 'Potvrdiť účasť',
@@ -169,7 +171,7 @@ return [//prva stranka uvodna
     'financecelkovelostact'       => 'Aktualizovať financie',
 
 
-    'financecelkoveG'       => 'Graf príjimov',
+    'financecelkoveG'       => 'Graf príjmov',
     'financecelkovelostG'       => 'Graf výdajov',
 
     'nazov'       => 'Názov',
@@ -178,7 +180,14 @@ return [//prva stranka uvodna
     'income'       => 'Príjem',
     'loss'       => 'Strata',
 
-    'lossincome'       => 'Príji a výdavky za určité obdobie',
+    'lossincome'       => 'Príjmi a výdavky za určité obdobie',
+
+    'squadchoose'       => 'Výber zakaldnej zostavy a štatistík',
+
+    'createinjury'       => 'Pridaj zraneného hráča',
+    'createfine'       => 'Udeľ hráčovi pokutu ',
+    'createtraining'       => 'Vytvor tímový tréning',
+
 
 
 ];

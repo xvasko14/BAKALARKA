@@ -1,9 +1,17 @@
 @extends('layouts.mainLayout.manager_layout')
 
 @section('content')
-
+    <h1 class="NadpisTabulky" align="center">{{ __('message.createfine') }}</h1>
     <div class="container" style="max-width:80%; margin-top: 40px;">
+
         <form action="{{ route('manager_fine_insert.main') }}" method="post">
+            <div class="okno">
+                @if (session('status'))
+                    <div class="alert alert-warning alert-dismissible fade in text-center">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
           <div class="row">
            <div class="col-lg-4 col-lg-offset-4">
             <div class="form-group">
@@ -24,12 +32,6 @@
                 <label for="sum">{{ __('message.howmouch') }}</label>
                 <input type="text" class="form-control" name="sum"  placeholder="{{ __('message.euro') }}">
             </div>
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-                <br>
-            @endif
             <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
             </div>
           </div>
