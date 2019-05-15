@@ -267,16 +267,15 @@ hr{ border-top-color:#dadada;}
 	margin-right: 5px;
 	opacity: .8;
 }
-.pagination > li > a, .pagination > li > span {
-	position: relative;
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
 	float: left;
-	padding: 6px 12px;
-	margin-left: -1px;
-	line-height: 1.42857143;
-	color: #337ab7;
+	padding: 8px 16px;
 	text-decoration: none;
-	background-color: #fff;
-	border: 1px solid #ddd;
 }
 /*todo-list*/
 .todo ul {

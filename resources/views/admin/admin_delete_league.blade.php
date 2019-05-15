@@ -26,7 +26,7 @@
                     </div>
                     <br>
                 @endif
-                <button type="submit" class="btn btn-primary">Vymazať</button>
+                <button type="submit" class="btn btn-primary"Vymazať</button>
             </form>
 
         </div>

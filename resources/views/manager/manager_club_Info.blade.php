@@ -18,29 +18,17 @@
 
             <h1 class="NadpisTabulky" align="center">{{ __('message.teamsupiska') }}</h1>
 
+
+
             <div class="panel-heading">
                 <div class="">
-                    <div class="col-md-6 col-md-offset-0">
-
-
-
-                    </div>
-                    </div>
 
                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                         <thead>
                         <tr>
-                            <th><a href="{{ route('manager_club_Info.main', ['name' => request('name'), 'sort' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.players') }}
-                                <a href="{{ route('manager_club_Info.main', ['name' => request('name'), 'sort' => 'desc'])}}"><i class="fas fa-sort-down"></i></a></th>
-                            <th><a href="{{ route('manager_club_Info.main', ['date_of_birth' => request('date_of_birth'), 'sort_age' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.age') }}
-                                <a href="{{ route('manager_club_Info.main', ['date_of_birth' => request('date_of_birth'), 'sort_age' => 'desc'])}}"><i class="fas fa-sort-down"></i></a>
-                            </th>
-                            <th><a href="{{ route('manager_club_Info.main', ['position' => request('position'), 'sort_position' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.position') }}
-                                <a href="{{ route('manager_club_Info.main', ['position' => request('position'), 'sort_position' => 'desc'])}}"><i class="fas fa-sort-down"></i></a>
-                            </th>
+                            <th>{{ __('message.players') }}</th>
+                            <th>{{ __('message.age') }}</th>
+                            <th>{{ __('message.position') }}</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -28,18 +28,9 @@
                         </colgroup>
                         <thead>
                         <tr>
-                            <th><a href="{{ route('manager_injuryplayers.main', ['players.name' => request('players.name'), 'sort' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.Player') }}
-                                <a href="{{ route('manager_injuryplayers.main', ['name' => request('name'), 'sort' => 'desc'])}}"><i class="fas fa-sort-down"></i></a></th>
-                            </th>
-                            <th><a href="{{ route('manager_injuryplayers.main', ['injuries.type_injury' => request('injuries.type_injury'), 'sort_type' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.type') }}
-                                <a href="{{ route('manager_injuryplayers.main', ['injuries.type_injury' => request('injuries.type_injury'), 'sort_type' => 'desc'])}}"><i class="fas fa-sort-down"></i></a>
-                            </th>
-                            <th><a href="{{ route('manager_injuryplayers.main', ['injuries.type_injury' => request('injuries.type_injury'), 'sort_type' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.squadtraininglenghts') }}
-                                <a href="{{ route('manager_injuryplayers.main', ['injuries.approximately_time' => request('injuries.approximately_time'), 'sort_time' => 'desc'])}}"><i class="fas fa-sort-down"></i></a>
-                            </th>
+                            <th>{{ __('message.Player') }}</th>
+                            <th>{{ __('message.type') }}</th>
+                            <th>{{ __('message.squadtraininglenghts') }}</th>
                             <th>{{ __('message.injury') }}</th>
                             <th>{{ __('message.recovery') }}</th>
                         </tr>

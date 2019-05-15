@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="sum">Čiastka</label>
-                    <input type="number" class="form-control" name="sum"  placeholder="V eurach" value="{{$fine->sum}}">
+                    <input type="text" class="form-control" name="sum"  placeholder="V eurach" value="{{$fine->sum}}">
                 </div>
                 @if (session('status'))
                     <div class="alert alert-success">

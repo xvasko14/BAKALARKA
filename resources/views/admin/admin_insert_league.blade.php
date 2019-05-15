@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Počet tímov</label>
-                    <input type="number" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Pocet timov">
+                    <input type="text" class="form-control" name="teams_number" aria-describedby="teams_number" placeholder="Pocet timov">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}

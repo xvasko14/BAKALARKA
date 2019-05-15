@@ -24,7 +24,7 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="Round">Kolo Ligy</label>
-                    <input type="number" class="form-control" name="Round" placeholder="Ligove kolo" value="{{$game->Round}}">
+                    <input type="text" class="form-control" name="Round" placeholder="Ligove kolo" value="{{$game->Round}}">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
@@ -48,12 +48,12 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="result1">Góly 1</label>
-                    <input type="number" class="form-control" name="result1" placeholder="Result1" value="{{$game->team1_goals}}">
+                    <input type="text" class="form-control" name="result1" placeholder="Result1" value="{{$game->team1_goals}}">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="result2">Góly 2</label>
-                    <input type="number" class="form-control" name="result2" placeholder="Result2" value="{{$game->team2_goals}}">
+                    <input type="text" class="form-control" name="result2" placeholder="Result2" value="{{$game->team2_goals}}">
                 </div>
 
                 @if (session('status'))

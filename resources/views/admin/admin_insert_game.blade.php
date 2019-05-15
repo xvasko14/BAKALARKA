@@ -30,7 +30,7 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="Round">Kolo Ligy</label>
-                    <input type="number" class="form-control" name="Round" placeholder="Ligove kolo">
+                    <input type="text" class="form-control" name="Round" placeholder="Ligove kolo">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
@@ -64,12 +64,12 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="result1">Góly tím 1</label>
-                    <input type="number" class="form-control" name="result1" placeholder="Góly">
+                    <input type="text" class="form-control" name="result1" placeholder="Góly">
                 </div>
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="result2">Góly tím 2</label>
-                    <input type="number" class="form-control" name="result2" placeholder="Góly">
+                    <input type="text" class="form-control" name="result2" placeholder="Góly">
                 </div>
 
 

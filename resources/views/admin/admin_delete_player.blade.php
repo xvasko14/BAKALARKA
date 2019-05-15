@@ -14,7 +14,7 @@
                 <div class="form-group">
                     {{ csrf_field()}}
                     <label for="meno">Meno</label>
-                    <input type="text" class="form-control" name="name" placeholder="Meno uživateľa" value="{{$players->name}}">
+                    <input type="text" class="form-control" name="name" placeholder="Meno uživateľa value="{{$players->name}}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>

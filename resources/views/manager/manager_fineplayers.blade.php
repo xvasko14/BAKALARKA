@@ -24,19 +24,9 @@
                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                         <thead>
                         <tr>
-                            <th><a href="{{ route('manager_fineplayers.main', ['players.name' => request('players.name'), 'sort' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.Player') }}
-                                <a href="{{ route('manager_fineplayers.main', ['name' => request('name'), 'sort' => 'desc'])}}"><i class="fas fa-sort-down"></i></a></th>
-                            </th>
-                            <th><a href="{{ route('manager_fineplayers.main', ['fine.reason' => request('fine.reason'), 'sort_reason' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.reason') }}
-                                <a href="{{ route('manager_fineplayers.main', ['fine.reason' => request('fine.reason'), 'sort_reason' => 'desc'])}}"><i class="fas fa-sort-down"></i></a></th>
-                            </th>
-
-                            <th><a href="{{ route('manager_fineplayers.main', ['fine.sum' => request('fine.sum'), 'sort_sum' => 'asc'])}}"><i class="fas fa-sort-up"></i></a>
-                                {{ __('message.howmouch') }}
-                                <a href="{{ route('manager_fineplayers.main', ['fine.sum' => request('fine.sum'), 'sort_sum' => 'desc'])}}"><i class="fas fa-sort-down"></i></a></th>
-                            </th>
+                            <th>{{ __('message.Player') }}</th>
+                            <th>{{ __('message.reason') }}</th>
+                            <th>{{ __('message.howmouch') }}</th>
                             <th>{{ __('message.paid') }}</th>
 
                         </tr>

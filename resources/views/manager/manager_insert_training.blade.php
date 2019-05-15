@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="length">{{ __('message.squadtraininglenghts') }}</label>
-                            <input type="number" class="form-control" name="length"  placeholder="{{ __('message.squadtraininglenghts') }}">
+                            <input type="text" class="form-control" name="length"  placeholder="{{ __('message.squadtraininglenghts') }}">
                         </div>
                         <div class="form-group">
                             <label for="content_of_training">Napln treningu</label>

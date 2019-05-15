@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="approximately_time">Dlžka absencie</label>
-                    <input type="number" class="form-control" name="approximately_time"  placeholder="Počet dní" value="{{$injuries->approximately_time}}">
+                    <input type="text" class="form-control" name="approximately_time"  placeholder="Počet dní" value="{{$injuries->approximately_time}}">
                 </div>
                 @if (session('status'))
                     <div class="alert alert-success">

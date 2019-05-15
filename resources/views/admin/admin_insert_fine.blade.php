@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="sum">Čiastka</label>
-                    <input type="number" class="form-control" name="sum"  placeholder="V eurach">
+                    <input type="text" class="form-control" name="sum"  placeholder="V eurach">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Odoslať</button>

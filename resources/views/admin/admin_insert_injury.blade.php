@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="approximately_time">Dlžka absencie</label>
-                    <input type="number" class="form-control" name="approximately_time"  placeholder="Počet dní">
+                    <input type="text" class="form-control" name="approximately_time"  placeholder="Počet dní">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Odoslať</button>

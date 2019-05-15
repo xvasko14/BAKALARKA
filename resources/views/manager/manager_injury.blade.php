@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="approximately_time">{{ __('message.squadtraininglenghts') }}</label>
-                <input type="number" class="form-control" name="approximately_time"  placeholder="{{ __('message.days') }}">
+                <input type="text" class="form-control" name="approximately_time"  placeholder="{{ __('message.days') }}">
             </div>
 
             <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
