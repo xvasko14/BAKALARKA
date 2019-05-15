@@ -261,6 +261,7 @@ Route::prefix('manager_home')->group(function() {
     //club
     //Route::get('/manager_club','ManagerController@myclub')->name('manager_club.main');
     Route::get('/manager_club_Info','ManagerController@myclubInfo')->name('manager_club_Info.main');
+    Route::get('/manager_club_Info','ManagerController@myclubInfo')->name('manager_club_Info.main');
     Route::get('/manager_club_Info{id}/manager_club_info_player.blade.php','ManagerController@myclubInfoPlayer')->name('manager_club_InfoPlayer.main');
 
 

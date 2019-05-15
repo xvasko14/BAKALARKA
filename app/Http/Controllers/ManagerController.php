@@ -93,10 +93,38 @@ class ManagerController extends Controller
                 ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
                 ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
                 ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
-                ->where('teammanagers.manager_id', '=', $user);
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('players.name',request('sort'))
+                ->paginate(15);
                 //->where('teams.id', '=', $id)
             //$players = $players->paginate(10);
-            $players = $players->orderBy('players.name',request('sort'));
+            //$players = $players
+        }
+        else if(request()->has('sort_position')){
+            $players = DB::table('players')
+                ->select('players.id','players.name', 'date_of_birth','position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('players.position',request('sort_position'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_age')){
+            $players = DB::table('players')
+                ->select('players.id','players.name', 'date_of_birth','position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('players.date_of_birth',request('sort_age'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
         }
         else {
 
@@ -681,6 +709,46 @@ class ManagerController extends Controller
                     ->where('name','REGEXP',$pattern);
                     $players = $players->paginate(10);
         }
+
+        else if(request()->has('sort')){
+            $players = DB::table('injuries')
+                ->select(DB::raw('injuries.*, players.name'))
+                ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('players.name',request('sort'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_type')){
+            $players = DB::table('injuries')
+                ->select(DB::raw('injuries.*, players.name'))
+                ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('injuries.type_injury',request('sort_type'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_time')){
+            $players = DB::table('injuries')
+                ->select(DB::raw('injuries.*, players.name'))
+                ->join('players', 'players.id', '=', 'injuries.InjuryPlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('injuries.approximately_time',request('sort_time'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
         else {
 
             $players = DB::table('injuries')
@@ -803,8 +871,49 @@ class ManagerController extends Controller
                 ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
                 ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
                 ->where('teammanagers.manager_id', '=', $user)
-                ->where('name','REGEXP',$pattern);
-                 $players = $players->paginate(10); }
+                ->where('players.name','REGEXP',$pattern);
+                 $players = $players->paginate(10);
+        }
+
+        else if(request()->has('sort')){
+            $players = DB::table('fine')
+                ->select(DB::raw('fine.*, players.name'))
+                ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('players.name',request('sort'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_reason')){
+            $players = DB::table('fine')
+                ->select(DB::raw('fine.*, players.name'))
+                ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('fine.reason',request('sort_reason'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_sum')){
+            $players = DB::table('fine')
+                ->select(DB::raw('fine.*, players.name'))
+                ->join('players', 'players.id', '=', 'fine.FinePlayerID')
+                ->join('teamplayers', 'teamplayers.player_id', '=', 'players.id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user)
+                ->orderBy('fine.sum',request('sort_sum'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
 
         else {
 
