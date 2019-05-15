@@ -51,8 +51,8 @@
 
 
                 <div class="social">
-                    <a href="https://www.facebook.com/groups/189044132827/" class="fa fa-facebook"></a>
-                    <a href="https://www.instagram.com/haniska10/" class="fa fa-instagram"></a>
+                    <a href="https://www.facebook.com/groups/189044132827/" class="fab fa-facebook-square fa-2x" ></a>
+                    <a href="https://www.instagram.com/haniska10/"  class="fab fa-instagram fa-2x"></a>
 
                 </div>
 
