@@ -1,7 +1,7 @@
 @extends('layouts.adminLayout.admin_design')
-@section('obsah')
 
-  
+
+@section('obsah')
 
 
 <div id="content">
@@ -9,9 +9,36 @@
              <div id="breadcrumb"> <a href="{{ url('/admin') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
      </div>
 
+
  <div class="container" style="max-width:90%;">
         <div class="row">
-
+            <form action="{{ route('admin.players.list')}}" method="get">
+                @if (session('insert'))
+                    <div class="alert alert-success">
+                        {{ session('insert') }}
+                    </div>
+                    <br>
+                @endif
+                    @if (session('deleted'))
+                        <div class="alert alert-success">
+                            {{ session('deleted') }}
+                        </div>
+                        <br>
+                    @endif
+                    @if (session('updated'))
+                        <div class="alert alert-success">
+                            {{ session('updated') }}
+                        </div>
+                        <br>
+                    @endif
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <input type="text" class="form-control" name="search" placeholder="{{ __('message.Player') }}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>
+                </div>
+            </form>
             <div class="col-md-11 col-md-offset-2">
                 <div class="panel panel-default">
                     <h1 align="center">Zoznam hráčov</h1>
@@ -21,7 +48,7 @@
                             <div class="panel-body">
 
                                 <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
-                                    <div class="pagination">
+
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -41,16 +68,13 @@
                                         @endforeach
                                     </tbody>
 
-                                    </div>
+
 
                                 </table>
 
 
-
-
-
+                            <span>{{ $players->links() }}</span>
                             </div>
-                        </div>
                 </div>
             </div>
         </div>
@@ -60,3 +84,4 @@
 
 
 @endsection
+

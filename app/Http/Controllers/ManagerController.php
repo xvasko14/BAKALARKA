@@ -37,18 +37,16 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        // prechod z priecinku do player-home cez bodku
+
         return view('manager.manager_home')->with('status', 'Ste uspesne prihlaseny ako Manazer !');
     }
 
-    // aky ma klub dany hrac
-    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
+
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public function myClub()
     {
 
         $user = Auth::user()->id;
-        //var_dump($user); exit;
 
 
 
@@ -58,10 +56,6 @@ class ManagerController extends Controller
             ->where('teammanagers.manager_id', '=', $user)
             ->get();
 
-        // $teams = DB::table('teamplayers')->where('id', $id)->first();
-        // preco toto tak???  spytaj as jura
-
-        // musi natvrdo este dat tabulku teams do premenej
         $data = [
             'teams' => $teams,
         ];
@@ -71,15 +65,13 @@ class ManagerController extends Controller
         //var_dump($teams); exit;
         return view('manager.manager_club', $data);
     }
-    // ZRUSENE ZATIAL KVOLI TOMU ZE SA CHCME DOSTAT NA KLUB HANISKY
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    //aky hraci su v klube atd
     public function myClubInfo()
     {
 
 
         $user = Auth::user()->id;
+        //var_dump($user); exit;
 
         if(request()->has('search')){
             $find = request('search');
@@ -91,30 +83,38 @@ class ManagerController extends Controller
                 ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
                 ->where('teammanagers.manager_id', '=', $user)
                 //->where('teams.id', '=', $id)
-                ->orderBy('players.name','desc ')
+                ->orderBy('players.name','asc ')
                 ->where('players.name','REGEXP',$pattern);
             $players = $players->paginate(10);
+        }
+        else if(request()->has('sort')){
+            $players = DB::table('players')
+                ->select('players.id','players.name', 'date_of_birth','position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
+                ->where('teammanagers.manager_id', '=', $user);
+                //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            $players = $players->orderBy('players.name',request('sort'));
         }
         else {
 
         $players = DB::table('players')
+
             ->select('players.id','players.name', 'date_of_birth','position')
             ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
             ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
             ->join('teammanagers', 'teammanagers.team_id', '=', 'teamplayers.team_id')
             ->where('teammanagers.manager_id', '=', $user)
             //->where('teams.id', '=', $id)
-            ->orderBy('name','desc ')
+            ->orderBy('name','asc ')
             ->paginate(15);
 
 
 
         }
 
-        /*$data = [
-            'players' => $players,
-        ];
-        //var_dump($players); exit;*/
 
         return view('manager.manager_club_Info',  compact('players'));
     }
@@ -129,8 +129,6 @@ class ManagerController extends Controller
             ->where('players.id', '=', $id)
             ->get();
 
-        //$years = \Carbon::parse($dateOfBirth)->age;
-        //var_dump($players); exit;
         $data = [
             'players' => $players,
         ];
@@ -237,14 +235,6 @@ class ManagerController extends Controller
                 $team->goals += $pp->team2_goals;
                 $team->goalsoponent += $pp->team1_goals;
             }
-            //var_dump($team->score );exit;
-           /* $arr= array ($team->score);
-            sort($arr);
-            //var_dump($arr);*/
-
-            //usort($myArray, function($a, $b) {
-           //     return $a['score'] => $b['score'];
-            //});
 
 
 
@@ -702,10 +692,7 @@ class ManagerController extends Controller
                 ->paginate(10);
         }
 
-        // musi natvrdo este dat tabulku teams do premenej
-       /* $data = [
-            'players' => $players,
-        ];*/
+
 
         return view('manager.manager_injuryplayers',  compact('players'));
     }
@@ -831,10 +818,7 @@ class ManagerController extends Controller
 
             }
 
-        // musi natvrdo este dat tabulku teams do premenej
-       /* $data = [
-            'players' => $players,
-        ];*/
+
 
         return view('manager.manager_fineplayers', compact('players'));
     }

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset('css/main_css/style.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/main_css/responsiveslides.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/main_css/touchTouch.css') }}" />
+<link rel="stylesheet" href="/path/to/material-icons/iconfont/material-icons.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 <!--Musim upravit logout lebo sa to posuva-->
@@ -27,7 +28,7 @@
 <!-- //for-mobile-apps -->
 <!-- js -->
 <script type="text/javascript"  src="{{ URL::asset('js/main_js/jquery.min.js') }}"></script>
-
+<script src="https://code.iconify.design/1/1.0.2/iconify.min.js"></script>
 
 
 

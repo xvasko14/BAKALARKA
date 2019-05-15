@@ -18,10 +18,16 @@
 
             <h1 class="NadpisTabulky" align="center">{{ __('message.teamsupiska') }}</h1>
 
-
-
             <div class="panel-heading">
                 <div class="">
+                    <div class="col-md-6 col-md-offset-0">
+
+
+                        <a href="{{ route('manager_club_Info.main',  $player->id,['name' => request('name'), 'sort' => 'asc'])}}"><i class="fas fa-arrow-circle-up"><</i></a>
+                        <a style="margin-left:15px;" href="{{ route('manager_club_Info.main',  $player->id,['name' => request('name'), 'sort' => 'dsc'])}}"><i class="mdi mdi-sort-descending"></i></a>
+
+                    </div>
+                    </div>
 
                     <table id="rooms-table" class="table table-bordered table-striped table-condensed" border=1 width="400">
                         <thead>

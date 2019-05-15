@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group">
                         <label for="Prijem">{{ __('message.income') }}:</label>
-                        <input type="text" class="form-control" id="Prijem" name="Prijem" placeholder="{{ __('message.euro') }}">
+                        <input type="number" class="form-control" id="Prijem" name="Prijem" placeholder="{{ __('message.euro') }}">
                     </div>
                     <div class="form-group">
                         <label for="Vydavok">{{ __('message.loss') }}:</label>
-                        <input type="text" class="form-control" id="Vydavok" name="Vydavok" placeholder="{{ __('message.euro') }}">
+                        <input type="number" class="form-control" id="Vydavok" name="Vydavok" placeholder="{{ __('message.euro') }}">
                     </div>
 
                     <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
