@@ -139,10 +139,10 @@ class AdminController extends Controller
             'team_id' => $clubId,
         );
 
-        $teamPlayers = DB::table('teamplayers')->where('id', $id)->first();
+        $teamPlayers = DB::table('teamplayers')->where('player_id', $id)->first();
 
         if ($teamPlayers) {
-            DB::table('teamplayers')->where('player_id', $teamPlayers->id)->update($data);
+            DB::table('teamplayers')->where('id', $teamPlayers->id)->update($data);
         } else {
             DB::table('teamplayers')->insert($data);
         }
