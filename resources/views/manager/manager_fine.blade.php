@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="sum">{{ __('message.howmouch') }}</label>
-                <input type="text" class="form-control" name="sum"  placeholder="{{ __('message.euro') }}">
+                <input type="number" class="form-control" name="sum"  placeholder="{{ __('message.euro') }}">
             </div>
             <button type="submit" class="btn btn-primary">{{ __('message.send') }}</button>
             </div>

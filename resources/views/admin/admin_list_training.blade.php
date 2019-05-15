@@ -8,6 +8,24 @@
         </div>
         <div class="container" style="max-width:90%;">
             <div class="row">
+                @if (session('insert'))
+                    <div class="alert alert-success">
+                        {{ session('insert') }}
+                    </div>
+                    <br>
+                @endif
+                @if (session('deleted'))
+                    <div class="alert alert-success">
+                        {{ session('deleted') }}
+                    </div>
+                    <br>
+                @endif
+                @if (session('updated'))
+                    <div class="alert alert-success">
+                        {{ session('updated') }}
+                    </div>
+                    <br>
+                @endif
 
                 <div class="col-md-11 col-md-offset-2">
                     <div class="panel panel-default">
@@ -39,6 +57,7 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+                                    <span>{{ $training->links() }}</span>
 
                                 </div>
                             </div>

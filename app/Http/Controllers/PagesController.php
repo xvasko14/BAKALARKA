@@ -160,6 +160,43 @@ class PagesController extends Controller
                 ->where('players.name','REGEXP',$pattern);
                  $players = $players->paginate(10);
         }
+        else if(request()->has('sort')){
+            $players = DB::table('players')
+                ->select('players.id', 'players.name', 'date_of_birth', 'position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->where('teams.id', '=', '27')// natvrdo urcene ID hanisky
+                //->orderBy('name', 'desc ')
+                ->orderBy('players.name',request('sort'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_position')){
+            $players = DB::table('players')
+                ->select('players.id', 'players.name', 'date_of_birth', 'position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->where('teams.id', '=', '27')// natvrdo urcene ID hanisky
+                ->orderBy('players.position',request('sort_position'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
+        else if(request()->has('sort_age')){
+            $players = DB::table('players')
+                ->select('players.id', 'players.name', 'date_of_birth', 'position')
+                ->join('teamplayers', 'players.id', '=', 'teamplayers.player_id')
+                ->join('teams', 'teams.id', '=', 'teamplayers.team_id')
+                ->where('teams.id', '=', '27')// natvrdo urcene ID hanisky
+                ->orderBy('players.date_of_birth',request('sort_age'))
+                ->paginate(15);
+            //->where('teams.id', '=', $id)
+            //$players = $players->paginate(10);
+            //$players = $players
+        }
         else {
 
             $players = DB::table('players')

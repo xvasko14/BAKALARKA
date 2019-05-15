@@ -32,15 +32,15 @@
             </div>
                 <div class="form-group">
                     <label for="weight">Váha</label>
-                    <input type="text" class="form-control" name="weight" aria-describedby="weight" placeholder="Váha">
+                    <input type="number" class="form-control" name="weight" aria-describedby="weight" placeholder="Váha">
                 </div>
                 <div class="form-group">
                     <label for="height">Výška</label>
-                    <input type="text" class="form-control" name="height" aria-describedby="height" placeholder="Výška">
+                    <input type="number" class="form-control" name="height" aria-describedby="height" placeholder="Výška">
                 </div>
                 <div class="form-group">
                     <label for="player_number">Cislo dresu</label>
-                    <input type="text" class="form-control" name="player_number" aria-describedby="height" placeholder="Čislo dresu">
+                    <input type="number" class="form-control" name="player_number" aria-describedby="height" placeholder="Čislo dresu">
                 </div>
             <div class="form-group">
               <label for="email">Pozicia</label>

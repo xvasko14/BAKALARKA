@@ -29,13 +29,18 @@
                 </div>
                     <div class="form-group">
                         {{ csrf_field()}}
-                        <label for="specialization">Datum</label>
+                        <label for="specialization">Zameranie tréningu</label>
                         <input type="text" class="form-control" name="specialization" placeholder="Zameranie treningu">
                     </div>
                 <div class="form-group">
                     <label for="length">Dlžka</label>
-                    <input type="text" class="form-control" name="length"  placeholder="Čas">
+                    <input type="number" class="form-control" name="length"  placeholder="Čas">
                 </div>
+                    <div class="form-group">
+                        {{ csrf_field()}}
+                        <label for="content_of_training">Podrobný popis</label>
+                        <input type="text" class="form-control" name="content_of_training" placeholder="Zameranie treningu">
+                    </div>
                 <div class="form-group">
                     <label for="club">Klub</label>
                     <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->
