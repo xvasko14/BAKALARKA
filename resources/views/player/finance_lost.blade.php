@@ -35,7 +35,7 @@
                     data: {
                         labels:Datum,
                         datasets: [{
-                            label: 'Príjem klubu za dané obdobie',
+                            label: 'Výdavok klubu za dane obdobie',
                             data: Vydavok,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',

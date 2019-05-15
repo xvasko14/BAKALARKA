@@ -18,10 +18,7 @@
               <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email" value="{{$managers->email}}">
             </div>
-            <div class="form-group">
-              <label for="email">Vek</label>
-                <input type="text" class="form-control" name="age" aria-describedby="age" placeholder="Vek" value="{{$managers->date_of_birth}}">
-            </div>
+
             <div class="form-group">
               <label for="email">Klub</label>
                 <!--<input type="text" class="form-control" name="club" aria-describedby="club placeholder="Enter Klub:string">-->

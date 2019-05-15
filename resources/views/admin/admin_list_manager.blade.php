@@ -11,6 +11,33 @@
  <div class="container" style="max-width:90%; ">
         <div class="row">
 
+            <form action="{{ route('admin.managers.list')}}" method="get">
+                @if (session('insert'))
+                    <div class="alert alert-success">
+                        {{ session('insert') }}
+                    </div>
+                    <br>
+                @endif
+                @if (session('deleted'))
+                    <div class="alert alert-success">
+                        {{ session('deleted') }}
+                    </div>
+                    <br>
+                @endif
+                @if (session('updated'))
+                    <div class="alert alert-success">
+                        {{ session('updated') }}
+                    </div>
+                    <br>
+                @endif
+                <div class="form-group">
+                    {{ csrf_field()}}
+                    <input type="text" class="form-control" name="search" placeholder="{{ __('message.Player') }}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">{{ __('message.search') }}</button>
+                </div>
+            </form>
             <div class="col-md-11 col-md-offset-2">
                 <div class="panel panel-default">
                     <h1 align="center">Zoznam trénerov</h1>
@@ -40,6 +67,8 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                <span>{{ $managers->links() }}</span>
                                 
                             </div>
                         </div>
