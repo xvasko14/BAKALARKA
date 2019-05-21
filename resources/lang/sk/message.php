@@ -182,7 +182,7 @@ return [//prva stranka uvodna
 
     'lossincome'       => 'Príjmi a výdavky za určité obdobie',
 
-    'squadchoose'       => 'Výber zakaldnej zostavy a štatistík',
+    'squadchoose'       => 'Výber zakladnej zostavy a štatistík',
 
     'createinjury'       => 'Pridaj zraneného hráča',
     'createfine'       => 'Udeľ hráčovi pokutu ',
